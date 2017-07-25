@@ -30,7 +30,7 @@ def quick_sort(list, left, right):
     if cursor_left < right: quick_sort(list, cursor_left, right)
 
 
-# 書き出し (追記まだ)
+# 書き出し
 def write_file(list):
     wpath = path + "result.txt"
     file = open(wpath, 'a', encoding="UTF-8")  # 'w' -> 'a'
@@ -48,7 +48,6 @@ def isSorted(list):
         i += 1
         if i == len(list) - 1:
             return print("ok! sorted")
-            break
     else:
         return print("index [", i, "] and [", i + 1, "] are not sorted")
 
