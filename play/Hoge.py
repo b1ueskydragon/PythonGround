@@ -14,3 +14,12 @@ print(type(Hoge.a))
 print(hoge.a)
 
 print(hoge.__dict__)
+
+
+# 応用
+class HogeHoge(object):
+    a = Hoge().a
+    b = Hoge.a
+
+print(HogeHoge().a)  # 'local var'
+print(HogeHoge().b)  # 'global var'
