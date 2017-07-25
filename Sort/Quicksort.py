@@ -1,6 +1,6 @@
 # ファイル読み込み
 def read_file():
-    opath = path + "target.txt"
+    opath = path + "testTarget.txt"
     buff = []
     file = open(opath, "r", encoding="UTF-8")
     for line in file:
@@ -33,7 +33,7 @@ def quick_sort(list, left, right):
 # 書き出し (追記まだ)
 def write_file(list):
     wpath = path + "result.txt"
-    file = open(wpath, 'w', encoding="UTF-8")
+    file = open(wpath, 'a', encoding="UTF-8")  # 'w' -> 'a'
     for el in list:
         el = str(el) + "\n"
         file.write(el)
@@ -53,7 +53,7 @@ def isSorted(list):
         return print("index [", i, "] and [", i + 1, "] are not sorted")
 
 
-path = "/Users/Inhwa_rg1/IdeaProjects/PythonGround/Sort/"  # pathは適宜変えること
+path = "/Users/jang_inhwa/PycharmProjects/PythonGround/Sort/"  # pathは適宜変えること
 list = read_file()  # ソート前
 print(list)
 quick_sort(list, 0, len(list) - 1)  # ソート中
