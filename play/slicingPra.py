@@ -29,6 +29,9 @@ print(moji[3:0:-1])  # dcba
 print("う")
 print(moji[-1::1])
 
+print("実はbuilt-in-function")
+print(type(slice(moji)))
+
 '''start idx : stop idx : step '''
 ''' -1 = 末尾'''
 ''' start idx <= [//] < stop idx '''
