@@ -35,3 +35,7 @@ print(type(slice(moji)))
 '''start idx : stop idx : step '''
 ''' -1 = 末尾'''
 ''' start idx <= [//] < stop idx '''
+
+apply = "かあくりさがんと、う|ご|ざ|い|ま|す"
+
+print(apply[::2].replace("|", " :D ") + apply[::-2][::-1])
