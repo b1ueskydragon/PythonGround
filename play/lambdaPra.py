@@ -10,6 +10,7 @@ print(msg)
 
 '''
 以下、参考しましたー
+http://www.sejuku.net/blog/23677
 '''
 # lambda式を使わずに通常の関数を用いる場合
 def func(price, tax):
