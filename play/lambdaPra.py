@@ -7,6 +7,8 @@ print(msg)
 msg = (lambda msg: msg[1::2] + msg[::2])("いはっるてからさっんしーゃ、い")
 print(msg)
 
+print((lambda txt: txt[::-1][::2] + txt[1::2])(" -G_M-O"))
+
 
 '''
 以下、参考しましたー
