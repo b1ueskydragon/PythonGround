@@ -61,6 +61,9 @@ num_range = 0
 while num_range < (200000000 * 10):
     list = read_file(num_range)  # ソート前
     quick_sort(list, 0, len(list) - 1)  # ソート中
-    if isSorted(list):  # 正しい場合書き出す
-        write_file(list)
+
+    write_file(list)
+    list = []  # メモリ解放
+   # if isSorted(list):  # 正しい場合書き出す
+   #     write_file(list)
     num_range += 200000000
