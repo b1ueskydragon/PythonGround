@@ -9,6 +9,9 @@ print(msg)
 
 print((lambda txt: txt[::-1][::2] + txt[1::2])(" -G_M-O"))
 
+kbd = "新しいキーボードが届いたので試します。文字数は偶数なのかな?"
+print((lambda kbd: len(kbd) % 2 == 0)(kbd))
+
 
 '''
 以下、参考しましたー
