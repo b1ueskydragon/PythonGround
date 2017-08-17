@@ -8,7 +8,7 @@
 
 period = "."
 space = " "
-
+list = [1, 5, 6, 7, 8, 9, 15, 16, 19]
 
 def word_list(stc):
     stc = stc.split(space)
@@ -24,8 +24,7 @@ def quiz_4(word_list):
     dict = {}
     for idx in range(len(word_list)):
         num = idx + 1
-        # TODO 規則生はないのか | より良い書き方
-        if num is 1 or num is 5 or num is 6 or num is 7 or num is 8 or num is 9 or num is 15 or num is 16 or num is 19:
+        if num in list:
             dict[num] = word_list[idx][0]
         else:
             dict[num] = word_list[idx][0:2]
