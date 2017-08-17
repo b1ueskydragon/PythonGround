@@ -1,3 +1,5 @@
+import os.path as ospath
+
 # 200000000ずつファイル読み込み
 def read_file(num_range):
     open_path = path + "sort_median.txt"
@@ -56,14 +58,24 @@ def isSorted(list):
         return print("index [", i, "] and [", i + 1, "] are not sorted")
 
 
-path = "/Users/jang_inhwa/Desktop/"  # pathは適宜変えること
+path = "/Users/Inhwa_rg1/Desktop/MyWork/"  # pathは適宜変えること
 num_range = 0
+line_cnt = 1
 while num_range < (200000000 * 10):
+    print(line_cnt, "行目 start")
     list = read_file(num_range)  # ソート前
+
     quick_sort(list, 0, len(list) - 1)  # ソート中
 
     write_file(list)
+    print(line_cnt, "行目 written")
     list = []  # メモリ解放
-   # if isSorted(list):  # 正しい場合書き出す
-   #     write_file(list)
+    line_cnt += 1
     num_range += 200000000
+
+
+print(ospath.getsize(path + "sort_median_result.txt") / (10**9))
+
+# TODO import.time 処理時間測る
+# TODO import resource メモリ制限
+
