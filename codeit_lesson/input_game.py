@@ -3,14 +3,12 @@
 from random import randint as rd
 
 ans = rd(1, 20)
-#print(ans)
 cnt = 4
 
 
 class ZeroToTwenty(Exception):
     def message(self):
         print("Please re-enter your number between 1 to 20")
-        # pass は不要だった
 
 while cnt < 5:
     try:
@@ -32,6 +30,6 @@ while cnt < 5:
                 break
 
     except ValueError:
-        print("please input a number <class 'int'>.")
+        print("Please input a number <class 'int'>.")
     except ZeroToTwenty as e:
         e.message()
