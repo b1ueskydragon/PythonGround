@@ -18,10 +18,9 @@ def cipher(target_stc):
         if not s.isalnum():
             encrypt_stc += s
         else:
-            encrypt_stc += s.replace(s, "")
+            encrypt_stc += s.replace(s, str(219 - ord(s)))  # ord: アスキーコードを取得
     return encrypt_stc
 
 
 stc = "hello, b1ueskydragon!"
 print(cipher(stc))
-
