@@ -25,7 +25,8 @@ def make_str(i):
 # 方法2
 def __template__(x, y, z):
     rst = list(map(lambda i: str(i), [x, y, z]))
-    return rst[0] + "時の" + rst[1] + "は" + rst[2]
+    #return rst[0] + "時の" + rst[1] + "は" + rst[2]
+    return "{0}時の{1}は{2}".format(rst[0], rst[1], rst[2])
 
 
 print(__template__(12, "気温", 22.4))
