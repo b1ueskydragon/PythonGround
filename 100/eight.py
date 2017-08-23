@@ -8,16 +8,20 @@
 この関数を用い，英語のメッセージを暗号化・復号化せよ．
 '''
 
+import sys
+print(sys.getdefaultencoding())  # 現在の文字コードを調査
+
 
 def cipher(target_stc):
     encrypt_stc = ""
     for s in target_stc:
         if not s.isalnum():
-            encrypt_stc += s.replace(s, "@")
-        else:
             encrypt_stc += s
+        else:
+            encrypt_stc += s.replace(s, "")
     return encrypt_stc
 
 
 stc = "hello, b1ueskydragon!"
 print(cipher(stc))
+
