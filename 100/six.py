@@ -63,5 +63,5 @@ def __SETDIFF__(X, Y):
 print(__SETDIFF__(SET().X, SET().Y), "差集合")
 
 
-# 'se'というbi-gramがXおよびYに含まれるか
+# 'se'というbi-gramがXおよびYに含まれるか および？笑
 print("has'se' -> ", (lambda target, target_list: target in target_list)('se', __OR__(SET().X, SET().Y)))
