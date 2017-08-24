@@ -44,3 +44,16 @@ print("文字バイグラム")
 print(char_bigram(mojiretu))
 print("単語バイグラム")
 print(word_bigram(mojiretu))
+
+
+t="I am an NLPer"
+
+l1=iter(t.split())  # 改行コードと space がデフォルト
+l2=iter(t.split())  # 一個ずらし
+next(l2)
+print(list(zip(l1,l2)))
+
+l1=iter(t)
+l2=iter(t)
+next(l2)
+print(list(zip(l1,l2)))
