@@ -9,16 +9,16 @@
 '''
 
 import sys
-print(sys.getdefaultencoding())  # 現在の文字コードを調査
+print(sys.getdefaultencoding())  # 現在の文字コードを調査 (いらない)
 
 
 def cipher(target_stc):
     encrypt_stc = ""
     for s in target_stc:
-        if not s.isalnum():
+        if not s.islower():
             encrypt_stc += s
         else:
-            encrypt_stc += s.replace(s, str(219 - ord(s)))  # ord: アスキーコードを取得
+            encrypt_stc += s.replace(s, chr(219 - ord(s)))  # ord: アスキーコードを取得
     return encrypt_stc
 
 
