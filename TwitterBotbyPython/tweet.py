@@ -8,7 +8,7 @@ AS = Keys().ACCESSTOKENSECRET
 
 FROMBOT = " -- ちゃんbotより"
 
-# ツイート投稿用のURL
+# ツイート投稿用のURL -- エンドポイント
 url = "https://api.twitter.com/1.1/statuses/update.json"
 
 # ツイート本文
