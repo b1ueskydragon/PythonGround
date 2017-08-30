@@ -1,5 +1,5 @@
 from requests_oauthlib import OAuth1Session  # Requests-OAuthlib ライブラリ
-from TwitterBotSample.Keys.Keys import Keys
+from TwitterBotbyPython.Keys.Keys import Keys
 
 CK = Keys().CONSUMERKEY
 CS = Keys().CONSUMERSECRET
@@ -12,7 +12,7 @@ FROMBOT = " -- ちゃんbotより"
 url = "https://api.twitter.com/1.1/statuses/update.json"
 
 # ツイート本文
-params = {"status": "へびでちゃんbot!" + FROMBOT}
+params = {"status": "勝手につぶやいちゃう" + FROMBOT}
 
 # OAuth認証で POST method で投稿
 twitter = OAuth1Session(CK, CS, AT, AS)
