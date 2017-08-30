@@ -12,7 +12,7 @@ FROMBOT = " -- ちゃんbotより"
 url = "https://api.twitter.com/1.1/statuses/update.json"
 
 # ツイート本文
-params = {"status": "多言語でちゃんbot!" + FROMBOT}
+params = {"status": "へびでちゃんbot!" + FROMBOT}
 
 # OAuth認証で POST method で投稿
 twitter = OAuth1Session(CK, CS, AT, AS)
