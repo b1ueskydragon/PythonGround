@@ -20,23 +20,16 @@ import random
 
 def rdm_sort(stc):
     split_list = stc.split(" ")
-    str_list = []
-
+    result_list = []
     for i in split_list:
+        if len(i) >= 4:
+            ilist = list(i[0:len(i)-1])
+            random.shuffle(ilist)
+            result_list.append(','.join(ilist).replace(',',''))
+        else:
+            result_list.append(i)
 
-        if len(i) > 4:
-            str_list.append(i[1:len(i) - 1])  # 先頭と末尾の文字を覗く
-
-            for j in str_list:
-                lst = []
-
-                for r in j:
-                    lst.append(r)
-
-                random.shuffle(lst)
-
-
-    return split_list
+    return result_list
 
 
 target_stc = "I couldn't believe that I could actually understand what I was reading" \
