@@ -23,9 +23,12 @@ def rdm_sort(stc):
     result_list = []
     for i in split_list:
         if len(i) > 4:
-            ilist = list(i[1:len(i)-1])
-            random.shuffle(ilist)
-            result_list.append(','.join(ilist).replace(',', ''))
+            original = list(i[:])
+            body_list = list(i[1:len(i)-1])
+            random.shuffle(body_list)
+            body_list = original[0:1] + body_list + original[len(original)-1:len(original)]
+
+            result_list.append(','.join(body_list).replace(',', ''))
         else:
             result_list.append(i)
 
@@ -36,3 +39,5 @@ target_stc = "I couldn't believe that I could actually understand what I was rea
              " : the phenomenal power of the human mind ."
 
 print(rdm_sort(target_stc))
+print(target_stc)
+print(','.join(rdm_sort(target_stc)).replace(',', ' '))
