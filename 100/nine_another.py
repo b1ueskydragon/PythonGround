@@ -26,7 +26,7 @@ def rdm_sort(stc):
             original = list(i[:])
             body_list = list(i[1:len(i)-1])
             random.shuffle(body_list)
-            body_list = original[0:1] + body_list + original[len(original)-1:len(original)]
+            body_list = original[:1] + body_list + original[-1::]
 
             result_list.append(','.join(body_list).replace(',', ''))
         else:
