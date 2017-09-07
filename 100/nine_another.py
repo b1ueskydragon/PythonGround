@@ -22,10 +22,10 @@ def rdm_sort(stc):
     split_list = stc.split(" ")
     result_list = []
     for i in split_list:
-        if len(i) >= 4:
-            ilist = list(i[0:len(i)-1])
+        if len(i) > 4:
+            ilist = list(i[1:len(i)-1])
             random.shuffle(ilist)
-            result_list.append(','.join(ilist).replace(',',''))
+            result_list.append(','.join(ilist).replace(',', ''))
         else:
             result_list.append(i)
 
