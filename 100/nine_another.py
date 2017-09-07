@@ -24,7 +24,7 @@ def rdm_sort(stc):
     for i in split_list:
         if len(i) > 4:
             original = list(i[:])
-            body_list = list(i[1:len(i)-1])
+            body_list = list(i[1:-1])
             random.shuffle(body_list)
             body_list = original[:1] + body_list + original[-1::]
 
