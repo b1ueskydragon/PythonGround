@@ -20,14 +20,18 @@
 '''
 
 
+'''
 # 自然数でない場合の例外
 class NotNaturalError(Exception):
     def message(self):
         print("should be Natural number")
+'''
 
 
 # left から right までの回文数を求める
-def find_all(left, right):
+def find_all(csv_target):
+    left = int(csv_to_num(csv_target)[0])
+    right = int(csv_to_num(csv_target)[1])
     result = []
     target = left  # 出発
     while target <= right:
@@ -50,11 +54,18 @@ def find_center(result):
         return "-"
 
     if ln % 2 == 0:
-        return result[int(ln / 2) - 1], ctr
+        return ",".join([str(result[int(ln / 2) - 1]), str(ctr)])
     else:
         return ctr
 
 
+def csv_to_num(csv_target):
+    return csv_target.split(",")
+
+
+print(find_center(find_all(input())))
+
+'''
 try:
     print("ここから:")
     left = int(input())
@@ -70,3 +81,4 @@ except ValueError:
     print("Please input a <class 'int'>.")
 except NotNaturalError as e:
     e.message()
+'''
