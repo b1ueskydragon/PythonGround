@@ -82,3 +82,11 @@ except ValueError:
 except NotNaturalError as e:
     e.message()
 '''
+
+
+'''
+試したいアルゴリズム（大きい桁対策)
+①普通に左から右へ探索
+②center 軸から左右比較して false になったらストップ
+③それか再帰で生成（？）多きすぎる数字は最初から文字列として処理すべき？
+'''
