@@ -21,6 +21,7 @@ def isOdd(list_num):
     return len(list_num) % 2 != 0
 
 
+# refactoring
 # [center] から [0] へ  VS  [center] から [len -1] へ
 def find_and_move(list):
     # 奇数 len の場合
