@@ -8,8 +8,6 @@ if int(target) == int(new_target):
     print("a")
 '''
 
-import math
-
 
 # リスト化
 def num_to_list(num):
