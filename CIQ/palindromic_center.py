@@ -28,6 +28,9 @@ class NotNaturalError(Exception):
 '''
 
 
+import time
+
+
 # left から right までの回文数を求める
 def find_all(csv_target):
     left = int(csv_to_num(csv_target)[0])
@@ -35,7 +38,7 @@ def find_all(csv_target):
     result = []
     target = left  # 出発
     while target <= right:
-        if is_palindrom(target): result.append(target)
+        if is_palindrom(target): result += [target]
         target += 1
     return result
 
@@ -62,8 +65,10 @@ def find_center(result):
 def csv_to_num(csv_target):
     return csv_target.split(",")
 
-
+START = int(round(time.time()))
 print(find_center(find_all(input())))
+END = int(round(time.time()))
+print(END - START)
 
 '''
 try:
