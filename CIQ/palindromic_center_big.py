@@ -16,7 +16,7 @@ left = 28228056190
 right = 77331569708
 center = int((left + right) / 2)
 
-print(center) # TODO さらに半分にわける
+print(center) # TODO さらに半分にわける (基底caseは範囲が10_000になった時)
 
 # 回文数ですか?
 def is_palindrom(target):
