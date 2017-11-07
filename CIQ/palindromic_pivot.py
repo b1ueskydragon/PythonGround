@@ -3,11 +3,14 @@ def is_pal(target):
     return int(target) == int(str(target)[::-1])
 
 
+result = []
+
+
 # 探索だけする
 def find(x, y):
     while x <= y:
         if is_pal(x):
-            print(x)
+            result.append(x)
         x += 1
 
 
@@ -16,7 +19,7 @@ def center(a, b):
     return int((a + b) / 2)
 
 
-RANGE = 1_000_000
+RANGE = 200_000
 
 
 # move, pivot
@@ -39,13 +42,20 @@ start
 finish
 center
 '''
-s = 174517247652
-f = 237309752247
+s = 495630518704001
+f = 919719574970542
 c = center(s, f)
 
 calc_left(s, c)
 calc_right(c, f)
 
+print(result)
 
-# 28228056190, 77331569708 (expected 52779797725,52779897725)
-# 174517247652,237309752247 (expected 205912219502,205913319502)
+
+# 28228056190, 77331569708 (expected 52779797725,52779897725) RANGE = 200_000
+# 174517247652,237309752247 (expected 205912219502,205913319502) RANGE = 2_000_000
+# 495630518704001,919719574970542 (expected 707675040576707)
+
+
+# TODO RANGE 再調整
+# TODO 真ん中に限りなく収束しているが、ぎりぎりのところではない場所に値がある場合の考慮
