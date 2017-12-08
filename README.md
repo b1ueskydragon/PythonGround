@@ -1,4 +1,1 @@
-# PythonGround
-pythonで遊んでいます
-
-historyはpastPythonGroundへ。わけありで作り直し。
+#### 2017.06.21 ~
