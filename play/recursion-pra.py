@@ -55,15 +55,7 @@ def split_flip(lst):
     right_lst = lst[ctr_idx:]
     right_lst_reverse = flip_recursion(right_lst)
 
-    head_left = left_lst_reverse[:1]
-    head_right = right_lst_reverse[:1]
-
-    if head_left > head_right:
-        result = left_lst_reverse + right_lst_reverse
-    else:
-        result = right_lst_reverse + left_lst_reverse
-
-    return result
+    return right_lst_reverse + left_lst_reverse
 
 
-print(split_flip([1, 2, 3, 4, 5]))
+print(split_flip([10, 8, 5, 2, 0, 23, 3, 2, -1, 3, 5, 2, 11, 33]))
