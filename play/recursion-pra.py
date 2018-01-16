@@ -59,3 +59,16 @@ def split_flip(lst):
 
 
 print(split_flip([10, 8, 5, 2, 0, 23, 3, 2, -1, 3, 5, 2, 11, 33]))
+
+print('\n')
+
+
+def is_palindrome(lst):
+    if len(lst) < 2:
+        return True
+    else:
+        return lst[:1] == lst[-1:] and is_palindrome(lst[1:-1])
+
+
+print(is_palindrome([1, 2, 3, 2, 1]))
+print(is_palindrome([1, 4, 5, 6, 6, 5, 4, 1]))
