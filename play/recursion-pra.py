@@ -71,4 +71,4 @@ def is_palindrome(lst):
 
 
 print(is_palindrome([1, 2, 3, 2, 1]))
-print(is_palindrome([1, 4, 5, 6, 6, 5, 4, 1]))
+print(is_palindrome([int(x) for x in str(707675040576707)]))
