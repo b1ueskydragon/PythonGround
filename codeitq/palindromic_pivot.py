@@ -1,6 +1,6 @@
 # 回文数ですか?
-def is_pal(target):
-    return int(target) == int(str(target)[::-1])
+def is_pal(num):
+    return str(num) == str(num)[::-1]
 
 
 result = []
@@ -10,7 +10,8 @@ result = []
 def find(x, y):
     while x <= y:
         if is_pal(x):
-            result.append(x)
+            # result.append(x)
+            print(x)
         x += 1
 
 
@@ -19,6 +20,9 @@ def center(a, b):
     return int((a + b) / 2)
 
 
+# これを手動で設定しているのはキモイ
+# 回文数と次の回文数の間隔をどう決めるか
+# そもそも決められるのか
 RANGE = 200_000
 
 
@@ -42,14 +46,14 @@ start
 finish
 center
 '''
-s = 495630518704001
-f = 919719574970542
+s = 28228056190
+f = 77331569708
 c = center(s, f)
 
 calc_left(s, c)
 calc_right(c, f)
 
-print(result)
+#print(result)
 
 
 # 28228056190, 77331569708 (expected 52779797725,52779897725) RANGE = 200_000
