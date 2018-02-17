@@ -1,3 +1,8 @@
+"""
+WIP !
+since can't make a sense about unival subtrees yet
+"""
+
 # each node of a tree
 class Node():
     def __init__(self, data):
