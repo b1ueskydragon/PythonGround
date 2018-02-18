@@ -1,42 +1,17 @@
-"""
-@b1ueskydragon
-"""
-
-import math
-
-
-# リストを絞っていく
-def large_sum_non_adjacent(nums):
-    if len(nums) <= 2:
-        return max(nums)
-
-    buff = []
-    center = math.ceil(len(nums) / 2)
-
-    left_half = nums[:center]  # left half
-    find_helper(left_half, buff)
-
-    right_half = nums[center:]  # right half
-    find_helper(right_half, buff)
-
-    return buff
+# straightforward: O(2^N)
+def largest_non_adjacent(arr):
+    if len(arr) <= 2:
+        return max(arr)
+    a = largest_non_adjacent(arr[1:])
+    head = arr[0]
+    b = head + largest_non_adjacent(arr[2:])
+    return max(a, b)
 
 
-def find_helper(nums, buff):
-    if len(nums) <= 2:
-        buff.append(max(nums))
-    else:
-        find_helper(nums[2:], buff)
+# print(largest_non_adjacent([1, 8, 1, 5, 2, 4, 8, 7]))  # 8, 5, 4, 7
+# print(largest_non_adjacent([1, 8, 1, 5, 2, 4, 8, 7, 9]))  # 8, 5, 8, 9
 
 
-#print(large_sum_non_adjacent([2, 4, 6, 8]))  # 12
-#print(large_sum_non_adjacent([5, 1, 1, 5]))  # 10
-#print(large_sum_non_adjacent([5, 1, 1, 5, 2, 4, 8, 7]))  # 5, 8
-
-print(large_sum_non_adjacent([1, 8, 1, 5, 2, 4, 8, 7]))  # 8, 8
-
-
-# print(large_sum_non_adjacent([5, 1, 1, 5, 2, 4, 6, 8, 11]))  # .. ?
-
-# 総当たり O(n(n-1)/2) == O(n^2)
-# O(n) ?
+a = [1, 2, 3]
+print(max(a[1:]))
+print(a[0] + max(a[2:]))
