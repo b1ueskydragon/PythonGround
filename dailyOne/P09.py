@@ -19,7 +19,7 @@ def large_sum_non_adjacent(nums):
     right_half = nums[center:]  # right half
     find_helper(right_half, buff)
 
-    return buff[0] + buff[1]
+    return buff
 
 
 def find_helper(nums, buff):
@@ -29,12 +29,14 @@ def find_helper(nums, buff):
         find_helper(nums[2:], buff)
 
 
-print(large_sum_non_adjacent([2, 4, 6, 8]))  # 12
-print(large_sum_non_adjacent([5, 1, 1, 5]))  # 10
+#print(large_sum_non_adjacent([2, 4, 6, 8]))  # 12
+#print(large_sum_non_adjacent([5, 1, 1, 5]))  # 10
+#print(large_sum_non_adjacent([5, 1, 1, 5, 2, 4, 8, 7]))  # 5, 8
 
-print(large_sum_non_adjacent([5, 1, 1, 5, 2, 4, 8, 7]))  # 5, 8
+print(large_sum_non_adjacent([1, 8, 1, 5, 2, 4, 8, 7]))  # 8, 8
 
-print(large_sum_non_adjacent([5, 1, 1, 5, 2, 4, 6, 8, 11]))  # .. ?
+
+# print(large_sum_non_adjacent([5, 1, 1, 5, 2, 4, 6, 8, 11]))  # .. ?
 
 # 総当たり O(n(n-1)/2) == O(n^2)
 # O(n) ?
