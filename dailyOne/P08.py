@@ -1,7 +1,7 @@
 """
-WIP !
-since can't make a sense about unival subtrees yet
+ leaf nodes are always unival trees
 """
+
 
 # each node of a tree
 class Node():
@@ -10,12 +10,24 @@ class Node():
         self.left = None
         self.right = None
 
+    def get_node(self):
+        return self.data
 
-def add_tree():
-    tree = Node(4)  # root node
-    tree.left = Node(3)
+
+def a_tree():
+    tree = Node(5)  # root node
+    tree.left = Node(5)
+    tree.left.left = Node(5)
+    tree.left.right = Node(5)
     tree.right = Node(5)
+    tree.right.right = Node(5)
     return tree
 
 
-add_tree()
+def tree_sum(tree):
+    if tree is None:
+        return 0
+    return tree.get_node() + tree_sum(tree.left) + tree_sum(tree.right)
+
+
+print(tree_sum(a_tree()))
