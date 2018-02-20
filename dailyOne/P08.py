@@ -4,7 +4,7 @@
 
 
 # each node of a tree
-class Node():
+class Node:
     def __init__(self, data):
         self.data = data
         self.left = None
@@ -25,9 +25,20 @@ def a_tree():
 
 
 def tree_sum(tree):
-    if tree is None:
+    if tree:
+        return tree.get_node() + tree_sum(tree.left) + tree_sum(tree.right)
+    else:
         return 0
-    return tree.get_node() + tree_sum(tree.left) + tree_sum(tree.right)
 
 
 print(tree_sum(a_tree()))
+
+
+def tree_count(tree, i):
+    if tree:
+        print(tree.get_node(), "_" * i)
+        i += 1
+        return tree_count(tree.left, i)
+
+
+print(tree_count(a_tree(), 1))
