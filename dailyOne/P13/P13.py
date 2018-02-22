@@ -12,15 +12,10 @@ def longest_substring(str, kth):
         else:
             candidate = str[i - 1:]
 
-        return candidate
+    return candidate
 
 
 s = "abcba"
 k = 2
 
 print(longest_substring(s, k))
-
-longs = "abcbdbdbbdcdabd"
-kk = 2
-
-print(longest_substring(longs, kk))
