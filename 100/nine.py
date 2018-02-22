@@ -1,45 +1,22 @@
-'''
-Typoglycemia
+"""
+スペースで区切られた単語列に対して，各単語の先頭と末尾の文字は残し，それ以外の文字の順序をランダムに並び替える
+"""
 
-スペースで区切られた
-単語列に対して，
-各単語の先頭と末尾の文字は残し，
-それ以外の文字の順序をランダムに並び替える
-
-プログラムを作成せよ．
-
-ただし，長さが４以下の単語は並び替えないこととする．
-
-適当な英語の文
-（例えば "I couldn't believe that I could actually understand what I was reading : the phenomenal power of the human mind ."）
-を与え，その実行結果を確認せよ．
-'''
-
-import random
+import random as rd
 
 
-def rdm_sort(stc):
-    split_list = stc.split(" ")
-    str_list = []
-
-    for i in split_list:
-
-        if len(i) > 4:
-            str_list.append(i[1:len(i) - 1])  # 先頭と末尾の文字を覗く
-
-            for j in str_list:
-                lst = []
-
-                for r in j:
-                    lst.append(r)
-
-                random.shuffle(lst)
+def typoglycemia(words):
+    output = []
+    for word in words.split(" "):  # 長さ4超過の単語は並び替え
+        if len(word) > 4:
+            tmp_body = list(word[1:-1])
+            rd.shuffle(tmp_body)
+            word = word[0] + "".join(tmp_body) + word[-1]
+        output.append(word)
+    return " ".join(output)
 
 
-    return split_list
+words = "I couldn't believe that I could actually understand what I was reading" \
+        " : the phenomenal power of the human mind ."
 
-
-target_stc = "I couldn't believe that I could actually understand what I was reading" \
-             " : the phenomenal power of the human mind ."
-
-print(rdm_sort(target_stc))
+print(typoglycemia(words))
