@@ -35,3 +35,21 @@ print(use_cache(sample))
 
 print(largest_non_adjacent(sampleB))
 print(use_cache(sampleB))
+
+
+# simply one
+def incl_excl(nums):
+    include_previous_el = 0  # init
+    exclude_previous_el = 0  # init
+    for num in nums:
+        include_current_el = num + exclude_previous_el
+        exclude_current_el = max(include_previous_el, exclude_previous_el)
+
+        include_previous_el = include_current_el
+        exclude_previous_el = exclude_current_el
+
+    return max(include_current_el, exclude_current_el)
+
+
+print(incl_excl(sample))
+print(incl_excl(sampleB))
