@@ -18,7 +18,7 @@ def longest_substring(s, k):
             k_set.discard(mark)
             is_adjacent_same = buff[-1] == buff[-2]
             after_pu = buff[-1]
-            buff.append(pu) # TODO 同じ数列くっつける必要あり start, end
+            buff.append(pu) # TODO 同じ数列くっつける必要あり start, end map とか dic が必要そう( 'bbb' start , end point 決めるため)
             buff.append(after_pu)
             buff.append(current_look)
             mark = after_pu
