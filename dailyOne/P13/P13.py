@@ -1,21 +1,38 @@
 # should be O(N)
-def longest_substring(str, kth):
-    if kth >= len(str):
-        return str
+def longest_substring(s, k):
+    if k >= len(s):
+        return s
 
-    for i, v in enumerate(str, kth):
-        candidate = str[:kth]
-        candidate += str[i]
-        s = set(candidate)
-        if len(s) < kth:
-            candidate += str[i]
+    # init settings
+    k_set = set(s[0])
+    buff = [s[0]]
+    i = 1
+    mark = buff[0]  # element which remove from set
+    pu = '#'  # punctuation
+
+    while i <= len(s) - 1:
+        current_look = s[i]
+        k_set.add(current_look)
+
+        if len(k_set) > k:
+            k_set.discard(mark)
+            is_adjacent_same = buff[-1] == buff[-2]
+            after_pu = buff[-1]
+            buff.append(pu) # TODO 同じ数列くっつける必要あり
+            buff.append(after_pu)
+            buff.append(current_look)
+            mark = after_pu
         else:
-            candidate = str[i - 1:]
+            buff.append(current_look)
 
-    return candidate
+        i += 1
+
+    result = "".join(buff).split(pu)
+
+    return buff
 
 
-s = "abcba"
+s = "aabbccddd"
 k = 2
 
 print(longest_substring(s, k))
