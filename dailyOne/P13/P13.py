@@ -10,18 +10,29 @@ def longest_substring(s, k):
     mark = buff[0]  # element which remove from set
     pu = '#'  # punctuation
 
+    table = {s[0] : 1}
+
     while i <= len(s) - 1:
         current_look = s[i]
         k_set.add(current_look)
 
+        if current_look in table:
+            table.update({current_look: table.get(current_look) + 1})
+        else:
+            table.update({current_look: 1})
+
         if len(k_set) > k:
             k_set.discard(mark)
-            is_adjacent_same = buff[-1] == buff[-2]
-            after_pu = buff[-1]
-            buff.append(pu) # TODO 同じ数列くっつける必要あり start, end map とか dic が必要そう( 'bbb' start , end point 決めるため)
-            buff.append(after_pu)
+
+            end_point_value = buff[-1]
+
+            buff.append(pu)
+
+            buff.append(end_point_value)
+
             buff.append(current_look)
-            mark = after_pu
+
+            mark = end_point_value
         else:
             buff.append(current_look)
 
@@ -29,10 +40,10 @@ def longest_substring(s, k):
 
     result = "".join(buff).split(pu)
 
-    return result
+    return buff
 
 
-s = "aabbccddd"
+s = "aababcc"
 k = 2
 
 print(longest_substring(s, k))
