@@ -12,10 +12,9 @@ def longest_substring(s, k):
     for i, current_look in enumerate(s):
 
         if current_look in table:
-            table.update({current_look: table.get(current_look) + 1})
+            table[current_look] = table.get(current_look) + 1
         else:
-            table.update({current_look: 1})
-
+            table[current_look] = 1
         if len(table) > k:
             max_len = max(max_len, i - left)
 
@@ -25,7 +24,7 @@ def longest_substring(s, k):
                 if table.get(start_point) is 1:
                     table.pop(start_point)
                 else:
-                    table.update({start_point: table.get(start_point) - 1})
+                    table[start_point] = table.get(start_point) - 1
 
                 left += 1
 
@@ -34,6 +33,6 @@ def longest_substring(s, k):
     return max_len
 
 
-s = "aabbbbcc"
+s = "aabbbbccdddddddd"
 k = 2
 print(longest_substring(s, k))
