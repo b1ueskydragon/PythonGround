@@ -29,7 +29,7 @@ def longest_substring(s, k):
 
     result = "".join(buff).split(pu)
 
-    return buff
+    return result
 
 
 s = "aabbccddd"
