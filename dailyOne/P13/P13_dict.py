@@ -1,10 +1,9 @@
+# O(N*k)
 def longest_substring(s, k):
     if k >= len(s):
         return s
 
-    '''
-    init settings
-    '''
+    '''init settings'''
     table = {}  # {current_look, count}
     left = 0
     max_len = k
@@ -15,6 +14,7 @@ def longest_substring(s, k):
             table[current_look] = table.get(current_look) + 1
         else:
             table[current_look] = 1
+
         if len(table) > k:
             max_len = max(max_len, i - left)
 
@@ -33,6 +33,6 @@ def longest_substring(s, k):
     return max_len
 
 
-s = "aabbbbccdddddddd"
+s = "bbbbbbbbbbbbbccdddddddda"
 k = 2
 print(longest_substring(s, k))
