@@ -1,15 +1,29 @@
-def time_calc(s, t):
+def time_calc(s, m):
     """
-    range of min - s.
+    range of time by sec.
+
     :param s: second
-    :param t: minute
+    :param m: minute
     :return: (min - s) by sec
     """
-    m = t.split('.')
-    ms = int(m[0]) * 60 + int(m[1])
-    return ms - int(s)
+    s = min_to_sec(s)
+    m = min_to_sec(m)
+    return m - s
 
 
-s = input()  # 33sec: 33
+def min_to_sec(t):
+    """
+    convert min to sec.
+
+    :param t: time
+    :return: second
+    """
+    t = t.split('.')
+    return int(t[0]) * 60 + int(t[1])
+
+
+s = input()  # 33sec: 0.33
 m = input()  # 1m 19sec: 1.19
 print(time_calc(s, m))
+
+# TODO Exception Handling
