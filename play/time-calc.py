@@ -6,9 +6,7 @@ def time_calc(s, m):
     :param m: minute
     :return: (min - s) by sec
     """
-    s = min_to_sec(s)
-    m = min_to_sec(m)
-    return m - s
+    return min_to_sec(m) - min_to_sec(s)
 
 
 def min_to_sec(t):
