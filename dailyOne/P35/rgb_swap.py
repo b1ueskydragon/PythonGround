@@ -7,10 +7,10 @@ b = hash('B')
 # table = {'R': 1, 'G': 2, 'B': 3} # and use treeSet, sort
 
 
-def swap_in_place(ary):
+def find_and_swap(ary):
     swap_idx = 0
 
-    # linear searching `R`
+    # linear searching `R` and swap
     cnt = 0
     for e in ary:
         if hash(e) == r:
@@ -24,7 +24,7 @@ def swap_in_place(ary):
             if swap_idx == cnt:
                 break
 
-    # linear searching `G`
+    # linear searching `G` and swap
     cnt = 0
     for e in ary:
         if hash(e) == g:
@@ -38,7 +38,7 @@ def swap_in_place(ary):
             if swap_idx == cnt:
                 break
 
-    # linear searching `B`
+    # linear searching `B` and swap
     cnt = 0
     for e in ary:
         if hash(e) == b:
@@ -56,4 +56,4 @@ def swap_in_place(ary):
 
 
 ary = ['G', 'B', 'R', 'R', 'B', 'R', 'G']
-print(swap_in_place(ary))
+print(find_and_swap(ary))
