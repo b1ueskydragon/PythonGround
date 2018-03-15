@@ -4,7 +4,7 @@ b = hash('B')
 
 
 # TODO try another method (even if it ignore original rules :) )
-# table = {'R': 1, 'G': 2, 'B': 3}
+# table = {'R': 1, 'G': 2, 'B': 3} # and use treeSet, sort
 
 
 def swap_in_place(ary):
@@ -27,7 +27,7 @@ def swap_in_place(ary):
     # linear searching `G`
     cnt = 0
     for e in ary:
-        if hash(e) == r:
+        if hash(e) == g:
             cnt += 1
 
     for i, v in enumerate(ary):
@@ -41,7 +41,7 @@ def swap_in_place(ary):
     # linear searching `B`
     cnt = 0
     for e in ary:
-        if hash(e) == r:
+        if hash(e) == b:
             cnt += 1
 
     for i, v in enumerate(ary):
