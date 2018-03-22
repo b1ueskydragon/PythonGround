@@ -14,3 +14,18 @@ for i in rst:
     print(i)
     if i == 9:
         break
+
+
+# next() で実装
+def gene(a=0):
+    b = a
+    while True:
+        b = b + 1
+        yield b
+
+
+if __name__ == "__main__":
+    g = gene(1)
+    print(next(g))
+    print(next(g))
+    print(next(g))
