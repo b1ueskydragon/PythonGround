@@ -1,9 +1,9 @@
 # to graph
 graph = {
     's': {'1', '6', '8'},
-    '1': {'s', '2'},
+    '1': {'s', '2', '3'},
     '2': {'1', '10', '11'},
-    '3': {'1', '3', '12'},
+    '3': {'1', '4', '12'},
     '4': {'3', '5', '13'},
     '5': {'4', '6', '9'},
     '6': {'s', '5', '7'},
@@ -36,6 +36,8 @@ def depth_first_search(u):
             previous_visit[v] = u
             depth_first_search(v)
     visited[u] = 'black'
+
+    return previous_visit
 
 
 if __name__ == "__main__":
