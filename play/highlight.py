@@ -19,13 +19,46 @@ def highlight(target=input_sys()):
         curr_s = int(tail[n][0])
         curr_e = int(tail[n][1])
 
-        if prev_s <= curr_s and prev_e <= curr_e:
+        if prev_s < curr_s and prev_e < curr_e:
             curr_length = curr_e - prev_s + 1
-            # スタートそのまま
             prev_e = curr_e
+            prev_s = prev_s
 
-        elif prev_s <= curr_s and prev_e >= curr_e:
-            curr_length = curr_length - (curr_e - curr_s + 1)
+        elif prev_s < curr_s and prev_e > curr_e:
+            curr_length = curr_s - prev_s + prev_e - curr_e
+
+        elif prev_s < curr_s and prev_e == curr_e:
+            curr_length = curr_s - prev_s + 1
+            prev_s = prev_s
+            prev_e = curr_s
+
+        elif prev_s > curr_s and prev_e < curr_e:
+            curr_length = curr_e - curr_s + 1
+            prev_e = curr_e
+            prev_s = curr_s
+
+        elif prev_s > curr_s and prev_e > curr_e:
+            curr_length = prev_e - curr_s + 1
+            prev_e = prev_e
+            prev_s = curr_s
+
+        elif prev_s > curr_s and prev_e == curr_e:
+            curr_length = prev_e - curr_s + 1
+            prev_e = prev_e
+            prev_s = prev_s
+
+        elif prev_s == curr_s and prev_e < curr_e:
+            curr_length = curr_e - curr_s + 1
+            prev_e = curr_e
+            prev_s = prev_s
+
+        elif prev_s == curr_s and prev_e > curr_e:
+            curr_length = prev_e - curr_e + 1
+            prev_e = prev_e
+            prev_s = curr_e
+
+        elif prev_s == curr_s and prev_e == curr_e:
+            curr_length = curr_e - curr_s + 1
 
     return curr_length
 
