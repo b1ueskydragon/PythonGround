@@ -1,10 +1,6 @@
 # current length with space (list-len)
 def curr_len(words):
-    sum_all = 0
-    for word in words:
-        sum_all = sum_all + len(word) + 1
-    return sum_all - 1
-
+    return sum(len(word) for word in words) + len(words) - 1
 
 def break_text(s, k):
     words = s.split(' ')
