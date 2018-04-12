@@ -11,3 +11,14 @@ my_func = lambda s: next(v for k, v in my_tuple if re.match(k, s))
 
 print(my_func("t1"))
 print(my_func("t3"))
+
+my_dict = {
+    "a": "A",
+    "b": "B"
+}
+
+simple_func = lambda k: my_dict[k]
+
+print(simple_func("b"))
+
+print(my_dict["a"])
