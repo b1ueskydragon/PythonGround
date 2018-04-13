@@ -10,7 +10,7 @@ def power(x, n):
     if n is 0:  # exit case
         return 1
     if n % 2 is 0:  # n が偶数: 半分にして次は偶数か奇数に
-        return power(x ** 2, int(n / 2))
+        return power(x ** 2, n // 2)
     else:  # n が奇数: 1を引いて次は必ず偶数
         return x * power(x, n - 1)
 
