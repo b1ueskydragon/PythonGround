@@ -30,7 +30,7 @@ def power_a(x, y):
         return x * power_a(x ** 2, (y - 1) // 2)
 
 
-print(pow(3, 11))
+print(power_a(3, 11))
 
 
 # O(n)
