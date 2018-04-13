@@ -18,6 +18,19 @@ def power(x, n):
 print(power(3, 11))
 
 
+# O(logN) another
+def power_a(x, y):
+    if y is 0:
+        return 1
+    if y % 2 is 0:
+        return power_a(x ** 2, y // 2)
+    else:
+        return x * power_a(x ** 2, (y - 1) // 2)
+
+
+print(pow(3, 11))
+
+
 # O(n)
 def power_calc(x, n):
     if n % 2 == 0:
