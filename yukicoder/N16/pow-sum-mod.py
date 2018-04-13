@@ -7,6 +7,8 @@ mod = 1_000_003
 
 def pow_2(x, y):
     K = 1
+    if y is 0:
+        return 1
     while y > 1:
         if y % 2 == 0:
             x = x ** 2 % mod
