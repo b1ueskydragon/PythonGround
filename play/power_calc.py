@@ -7,6 +7,8 @@ def power(x, n):
     :param n: 乗
     :return:
     """
+    if n < 0:
+        return pow(1 / x, -n)  # 正数に変換
     if n is 0:  # exit case
         return 1
     if n % 2 is 0:  # n が偶数: 半分にして次は偶数か奇数に
@@ -15,7 +17,7 @@ def power(x, n):
         return x * power(x, n - 1)
 
 
-print(power(3, 11))
+print(power(3, -11))
 
 
 # O(logN) another
