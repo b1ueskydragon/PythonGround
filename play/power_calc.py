@@ -27,7 +27,7 @@ def power_a(x, y):
     if y % 2 is 0:
         return power_a(x ** 2, y // 2)
     else:
-        return x * power_a(x ** 2, (y - 1) // 2)
+        return x * power_a(x ** 2, y // 2)  # (y - 1) // 2 == y // 2
 
 
 print(power_a(3, 11))
