@@ -22,6 +22,16 @@ def power_set(origin):
         return current  # kept the same result
 
 
-print(power_set(['a', 'b']))
+print(power_set(['a', 'b', 'c']))
 
-# TODO Replace to list comprehension
+
+# list comprehension
+def power_set_(origin):
+    if not origin:
+        return [[]]
+
+    tail = power_set_(origin[1:])
+    return tail + [lst + [origin[0]] for lst in tail]
+
+
+print(power_set_(['a', 'b', 'c']))
