@@ -1,3 +1,8 @@
+"""
+TODO recursion with memoization
+"""
+
+
 def power(x, n):
     """
     高速累乗計算 O(log n)
