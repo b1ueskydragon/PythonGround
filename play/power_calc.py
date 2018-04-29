@@ -1,6 +1,5 @@
-"""
-TODO recursion with memoization
-"""
+from operator import mul
+from functools import reduce
 
 
 def power(x, n):
@@ -47,3 +46,23 @@ def power_calc(x, n):
 
 
 print(power_calc(3, 11))
+
+"""
+recursion with memoization?
+O(log n)
+"""
+memo, result = [], 1
+
+
+def power_r_memo(x, y):
+    if y is 0:
+        return 1
+    if y % 2 != 0:
+        memo.append(x)
+    power_r_memo(x ** 2, y // 2)
+
+    return reduce(mul, memo)
+
+
+print(power_r_memo(2, 20))
+print(memo)
