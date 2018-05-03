@@ -52,7 +52,7 @@ def isSorted(list):
         return print("index [", i, "] and [", i + 1, "] are not sorted")
 
 
-path = "/Users/jang_inhwa/PycharmProjects/PythonGround/Sort/"  # pathは適宜変えること
+path = "/Users/jang_inhwa/PycharmProjects/PythonGround/sort/"  # pathは適宜変えること
 list = read_file()  # ソート前
 print(list)
 quick_sort(list, 0, len(list) - 1)  # ソート中

@@ -1,5 +1,5 @@
 from requests_oauthlib import OAuth1Session  # Requests-OAuthlib ライブラリ
-from TwitterBotbyPython.Keys.Keys import Keys
+from twitter.Keys.Keys import Keys
 
 CK = Keys().CONSUMERKEY
 CS = Keys().CONSUMERSECRET
