@@ -10,3 +10,5 @@ def division(a, b):
 
 
 print(division(123456789, 3))
+
+# TODO Next step: Calc with Binary
