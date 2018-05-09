@@ -41,14 +41,19 @@ def division_binary_shift(a, b):
     q = ""  # quotient (binary)
     d = 32  # digit capacity max
     while a >= b:
+        pre_a = a
         a = a - (b << d)
         if a < 0:
-            a = a + (b << d)
+            a = pre_a  # revert dividend
             q += "0"
         else:
             q += "1"
         d -= 1
-    return q  # TODO make binary to decimal
+
+    if a > 0:
+        q += "0"
+
+    return int(q, 2)  # binary to decimal
 
 
-print(division_binary_shift(123456789, 3))
+print(division_binary_shift(1278911121, 3))
