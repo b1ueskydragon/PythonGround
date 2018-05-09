@@ -38,10 +38,17 @@ def division_binary_shift(a, b):
     :return: quotient
     """
 
-    a = a - (b << 2)
-    a = a - (b << 0)
+    q = ""  # quotient (binary)
+    d = 32  # digit capacity max
+    while a >= b:
+        a = a - (b << d)
+        if a < 0:
+            a = a + (b << d)
+            q += "0"
+        else:
+            q += "1"
+        d -= 1
+    return q  # TODO make binary to decimal
 
-    return a
 
-
-print(division_binary_shift(28, 5))
+print(division_binary_shift(123456789, 3))
