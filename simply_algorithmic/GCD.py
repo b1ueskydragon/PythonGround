@@ -11,26 +11,22 @@ a と b との最大公約数は b と r との最大公約数に等しいとい
 
 
 # Tail recursion
+# if a < b, swap automatically
 def gcd(a, b):
-    if a < 0 or b < 0:
-        return "-"
+    if a % b == 0:  # exit case
+        return b
 
-    mx = max(a, b)
-    mn = min(a, b)
-
-    if mx % mn == 0:  # exit case
-        return mn
-
-    return gcd(mn, mx % mn)  # standard case (pattern)
+    return gcd(b, a % b)  # standard case (pattern)
 
 
-print(gcd(32, 12))
+print(gcd(12, 32))
 
 
-def gcd_simple(a, b):
+# Tail recursion
+def gcd_a(a, b):
     if b == 0:
         return abs(a)
-    return gcd_simple(b, a % b)
+    return gcd_a(b, a % b)
 
 
-print(gcd_simple(12, 32))
+print(gcd_a(12, 32))
