@@ -2,7 +2,7 @@
 def read_file():
     opath = path + "testTarget.txt"
     buff = []
-    file = open(opath, "r", encoding="UTF-8")
+    file = open(opath, "r", encoding="UTF-8", buffering=128000000)  # TODO 128MB buffer
     for line in file:
         buff += [int(line)]
     else:
