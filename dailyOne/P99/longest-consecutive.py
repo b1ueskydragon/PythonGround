@@ -22,5 +22,29 @@ def count_length_sorted(nums):
     return max(cnt, tmp)
 
 
-given = [103, 104, 106, 4, 5, 7, 8, 9, 100, 2, 3, 101, 102]  # 5
-print(count_length_sorted(given))
+def count_length(nums):
+    """
+    O(N)
+    """
+    to_set = set(nums)  # to find in O(1)
+    cache = {}
+    cnt = 1  # include current num
+    for num in nums:
+        if cache.get(num) is 'visited':
+            cnt += 1
+
+        else:
+            if num in to_set:
+                if num + 1 in to_set:
+                    cache[num + 1] = 'visited'
+                if num - 1 in to_set:
+                    cache[num - 1] = 'visited'
+
+                cache[num] = 'visited'
+                cnt = 1  # reset
+
+    return cnt
+
+
+given = [103, 104, 106, 4, 5, 7, 8, 9, 100, 2, 3, 101, 102]
+print(count_length(given))
