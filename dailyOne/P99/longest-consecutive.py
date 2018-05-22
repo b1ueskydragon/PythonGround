@@ -25,25 +25,29 @@ def count_length_sorted(nums):
 def count_length(nums):
     """
     O(N)
+
+    mapping
+    {current start point(num) : length from start}
     """
     to_set = set(nums)  # to find in O(1)
     cache = {}
     cnt = 1  # include current num
     for num in nums:
         if cache.get(num) is 'visited':
+            continue
+
+        if num - 1 in to_set:
             cnt += 1
+            cache[num] = cnt
+            cache[num - 1] = 'visited'
+        if num + 1 in to_set:
+            cnt += 1
+            cache[num] = cnt
+            cache[num + 1] = 'visited'
 
-        else:
-            if num in to_set:
-                if num + 1 in to_set:
-                    cache[num + 1] = 'visited'
-                if num - 1 in to_set:
-                    cache[num - 1] = 'visited'
+        cnt = 1  # reset
 
-                cache[num] = 'visited'
-                cnt = 1  # reset
-
-    return cnt
+    return cache
 
 
 given = [103, 104, 106, 4, 5, 7, 8, 9, 100, 2, 3, 101, 102]
