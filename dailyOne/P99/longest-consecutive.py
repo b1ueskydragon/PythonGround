@@ -27,25 +27,26 @@ def count_length(nums):
     O(N)
 
     mapping
-    {current start point(num) : length from start}
+    {current start point(num) : nums seen so far}
     """
     to_set = set(nums)  # to find in O(1)
     cache = {}
+    visited = {}
     cnt = 1  # include current num
     for num in nums:
-        if cache.get(num) is 'visited':
+        if visited.get(num) is 'visited':
             continue
+        else:
+            cache[num] = {num}
+            visited[num] = 'visited'
 
-        if num - 1 in to_set:
-            cnt += 1
-            cache[num] = cnt
-            cache[num - 1] = 'visited'
-        if num + 1 in to_set:
-            cnt += 1
-            cache[num] = cnt
-            cache[num + 1] = 'visited'
+            if num - 1 in to_set:
+                cache.get(num).add(num - 1)
+                visited[num - 1] = 'visited'
 
-        cnt = 1  # reset
+            if num + 1 in to_set:
+                cache.get(num).add(num + 1)
+                visited[num + 1] = 'visited'
 
     return cache
 
