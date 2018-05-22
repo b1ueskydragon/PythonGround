@@ -3,28 +3,24 @@ find the length of the longest consecutive elements sequence in O(n).
 """
 
 
-def consecutive(given):
-    start, end = min(given), max(given)
-    to_set = set(given)
+def count_length_sorted(nums):
+    """
+    O(N logN)
+    """
+    nums = sorted(nums)
+    cnt, tmp = 1, 0
 
-    rst = []
-    for i in range(start, end + 1):
-        # is_continuity を入れるタイミング
-        if i in to_set:
-            rst.append(i)
-    return rst
+    for i, v in enumerate(nums, 1):
+        if i is len(nums):
+            break
+        if nums[i] - v == 1:
+            cnt += 1
+        else:
+            tmp = max(cnt, tmp)
+            cnt = 1  # reset
+
+    return max(cnt, tmp)
 
 
-given00 = [100, 4, 200, 1, 3, 2]
-given01 = [40000, 50, 4000, 40001, 40003, 40004, 40005]
-
-print(consecutive(given00))
-print(consecutive(given01))
-
-
-# ソート済みの ary が間隔 1 で離れているか
-def is_continuity(a):
-    if not a:
-        return True
-    last = len(a) - 1
-    return last is (a[last] - a[0])
+given = [103, 104, 106, 4, 5, 7, 8, 9, 100, 2, 3, 101, 102]  # 5
+print(count_length_sorted(given))
