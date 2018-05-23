@@ -32,7 +32,7 @@ def count_length(nums):
     to_set = set(nums)  # to find in O(1)
     cache = {}
     visited = {}
-    cnt = 1  # include current num
+    size = 0
     for num in nums:
         if visited.get(num) is 'visited':
             continue
@@ -52,4 +52,6 @@ def count_length(nums):
 
 
 given = [103, 104, 106, 4, 5, 7, 8, 9, 100, 2, 3, 101, 102]
+given01 = [100, 4, 200, 1, 3, 2]
 print(count_length(given))
+print(count_length(given01))
