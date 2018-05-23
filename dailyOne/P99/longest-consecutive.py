@@ -26,32 +26,35 @@ def count_length(nums):
     """
     O(N)
 
-    mapping
-    {current start point(num) : nums seen so far}
+    Using bound, update bound in-place.
+
+    mapping {current num : (left bound so far, right bound so far)}
     """
-    to_set = set(nums)  # to find in O(1)
-    cache = {}
-    visited = {}
-    size = 0
+    cache = {}  # find key in O(1)
+    size = 0  # current max
     for num in nums:
-        if visited.get(num) is 'visited':
+        if num in cache:
             continue
-        else:
-            cache[num] = {num}
-            visited[num] = 'visited'
 
-            if num - 1 in to_set:
-                cache.get(num).add(num - 1)
-                visited[num - 1] = 'visited'
+        left = num
+        right = num
 
-            if num + 1 in to_set:
-                cache.get(num).add(num + 1)
-                visited[num + 1] = 'visited'
+        if num - 1 in cache:  # 今まで見てきたなかで. so far.
+            left = cache[num - 1][0]
+        if num + 1 in cache:
+            right = cache[num + 1][1]
 
-    return cache
+        cache[num] = (left, right)
+        cache[left] = (left, right)
+        cache[right] = (left, right)
+
+        size = max(right - left + 1, size)
+
+    return size
 
 
-given = [103, 104, 106, 4, 5, 7, 8, 9, 100, 2, 3, 101, 102]
-given01 = [100, 4, 200, 1, 3, 2]
+given = [103, 104, 104, 106, 4, 5, 7, 8, 9, 100, 2, 3, 101, 102]
 print(count_length(given))
+
+given01 = [100, 4, 200, 1, 3, 2]
 print(count_length(given01))
