@@ -5,25 +5,24 @@ def division_binary_shift(a, b):
 
     :param a: dividend
     :param b: divisor
-    :return:
+    :return: quotient
     """
-    # d = 5  # digit capacity max
+
+    d = 5  # digit capacity max
+    q = 1
+    tmp = q
     # r = a  # remainder (init: まだ何も割ってない状態)
-    # b = b << d
-    tmp = b
-    q = 0
-    while a > b:
-        b = b << 1
-        while b < a:
-            b = b << 1
-            q += 1
+    while a >= b:
+        pre_a = a
+        a -= (b << d)
+        if a > 0:
+            q <<= 1
         else:
-            b = b >> 1
+            a = pre_a
 
-        a = a - b
-        b = tmp
+        d -= 1
 
-    return q, b << q
+    return q
 
 
 a, b = 100, 3
