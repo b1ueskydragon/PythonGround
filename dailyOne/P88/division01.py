@@ -7,24 +7,28 @@ def division_binary_shift(a, b):
     :param b: divisor
     :return: quotient
     """
+    q = 0
+    tmp_q = 1
+    tmp_b = b
+    while True:
+        while a >= b:
+            b <<= 1
+            if a >= b:
+                tmp_q <<= 1
+            else:
+                b >>= 1
+                break
+        a -= b
+        q += tmp_q
+        tmp_q = 1
+        b = tmp_b
 
-    d = 5  # digit capacity max
-    q = 1
-    tmp = q
-    # r = a  # remainder (init: まだ何も割ってない状態)
-    while a >= b:
-        pre_a = a
-        a -= (b << d)
-        if a > 0:
-            q <<= 1
-        else:
-            a = pre_a
-
-        d -= 1
+        if a < b:
+            break
 
     return q
 
 
-a, b = 100, 3
+a, b = 10, 3
 print(division_binary_shift(a, b))
 print(a // b)
