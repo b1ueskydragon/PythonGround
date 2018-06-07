@@ -1,3 +1,7 @@
+# import memory_profiler
+# python -m memory_profiler xxx.py
+
+# @profile
 def division_binary_shift(a, b):
     """
     do `division`
@@ -28,10 +32,6 @@ def division_binary_shift(a, b):
 
     return q
 
-
-a, b = 10, 3
-print(division_binary_shift(a, b))
-print(a // b)
 
 a, b = 121111323, 232322
 print(division_binary_shift(a, b))
