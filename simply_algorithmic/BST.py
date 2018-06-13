@@ -35,3 +35,20 @@ class BinaryTree:
             self.root = BinaryNode(value)
         else:
             self.root.add(value)
+
+    def __contains__(self, target):
+        """
+        二分探索木に目標値があるか調べる
+
+        平均 O(log n)
+        最悪 O(n)
+        """
+        node = self.root
+        while node:
+            if target < node.value:
+                node = node.left
+            elif target > node.value:
+                node = node.right
+            else:
+                return True
+        return False
