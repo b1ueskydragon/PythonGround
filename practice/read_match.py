@@ -5,6 +5,7 @@ yyyy-mm-dd hh:mm:ss,000 DEBUG [ajp-nio-9000-exec-00] [1234][5678] report.ReportS
 """
 import re
 import solutions.mypath as my
+from collections import OrderedDict
 
 r = re.compile("(\[)([0-9]+)(\])")
 POS = 4
@@ -38,3 +39,6 @@ for data in datum:
         table.update({data: 1})
 
 print(table)
+
+# Sort by a value (count of id)
+print(sorted(table.items(), key=lambda x: x[1]))
