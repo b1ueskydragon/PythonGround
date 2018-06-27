@@ -1,12 +1,19 @@
+"""
+File includes like:
+
+yyyy-mm-dd hh:mm:ss,000 DEBUG [ajp-nio-9000-exec-00] [1234][5678] report.ReportSiteUnitController (ClassName.java:000) MSGA　MSGB
+"""
 import re
+import solutions.mypath as my
 
 r = re.compile("(\[)([0-9]+)(\])")
 POS = 4
 IDPOS = 1
-PATH = ""
+PATH = my.REPORT_FILE
 
 
 def read_file():
+    datum = []
     file = open(PATH, 'r', encoding='UTF-8')
 
     for line in file:
@@ -14,14 +21,20 @@ def read_file():
             continue
         id = line.split(' ')[POS]
 
-        print(r.match(id).groups()[IDPOS])
+        datum.append(r.match(id).groups()[IDPOS])
 
     file.close()
 
+    return datum
 
-read_file()
 
-# sample
-# r = re.compile("([a-zA-Z]+)([0-9]+)")
-# strings = ['foofo21', 'bar432', 'foobar12345']
-# print([r.match(string).groups() for string in strings])
+datum = read_file()
+table = {}
+
+for data in datum:
+    if data in table:
+        table.update({data: table[data] + 1})
+    else:
+        table.update({data: 1})
+
+print(table)
