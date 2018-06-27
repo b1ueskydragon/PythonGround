@@ -2,10 +2,12 @@
 File includes like:
 
 yyyy-mm-dd hh:mm:ss,000 DEBUG [ajp-nio-9000-exec-00] [1234][5678] report.ReportSiteUnitController (ClassName.java:000) MSGA　MSGB
+
+extract id (position: [1234]) count, and sort.
 """
 import re
 import solutions.mypath as my
-from collections import OrderedDict
+from collections import OrderedDict  # Not used but sometime would be.
 
 r = re.compile("(\[)([0-9]+)(\])")
 POS = 4
@@ -40,5 +42,9 @@ for data in datum:
 
 print(table)
 
-# Sort by a value (count of id)
-print(sorted(table.items(), key=lambda x: x[1]))
+# Sort by a value (count of id) and extract
+extract = sorted(table.items(), key=lambda x: x[1])
+print(extract)
+
+for i, data in enumerate(reversed(extract)):
+    print(i, data[0])
