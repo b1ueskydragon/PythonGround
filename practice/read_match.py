@@ -7,7 +7,7 @@ extract id (position: [1234]) count, and sort.
 """
 import re
 import solutions.mypath as my
-from collections import OrderedDict  # Not used but sometime would be.
+from collections import OrderedDict
 
 r = re.compile("(\[)([0-9]+)(\])")
 POS = 4
@@ -40,11 +40,9 @@ for data in datum:
     else:
         table.update({data: 1})
 
-print(table)
-
 # Sort by a value (count of id) and extract
 extract = sorted(table.items(), key=lambda x: x[1])
-print(extract)
+print(len(extract))
 
 for i, data in enumerate(reversed(extract)):
-    print(i, data[0])
+    print(data[0])
