@@ -6,6 +6,11 @@ def division_binary_shift(a, b):
     """
     a // b
 
+    [note]
+    q += sq
+     since sq only could be 2^n  (n impls digit of quotient of each step),
+     using OR `|` is OK. e.g 11 + 1000 = 1011
+
     :param a: dividend
     :param b: divisor
     :return: quotient
