@@ -6,10 +6,10 @@ order does not matter.
 in linear time and constant space.
 """
 
-table = set()
-
 
 def find_two_once(ary):
+    table = set()
+
     for k in ary:
         be = len(table)
         table.add(k)
@@ -20,4 +20,5 @@ def find_two_once(ary):
 
 
 # given = [2, 4, 6, 8, 10, 2, 6, 10]
-print(find_two_once([int(input()) for i in range(int(input()))]))
+print(find_two_once([int(input()) for _ in range(int(input()))]))
+
