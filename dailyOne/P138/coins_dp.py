@@ -8,10 +8,10 @@ def count_min_dp(n):
     :param n: make n ¢
     :return:
     """
-    cache = [0 for _ in range(n + 1)]
+    memoied = [0 for _ in range(n + 1)]  # cache
     for u in units:
-        if u < len(cache):
-            cache[u] = 1
+        if u < len(memoied):
+            memoied[u] = 1
 
     for i in range(1, n + 1):
         '''
@@ -20,16 +20,19 @@ def count_min_dp(n):
 
         8¢ = 1¢ + f(7¢)
         8¢ = 5¢ + f(3¢)
+        
+        candidate of memoied[i] = unit + f(i - unit)
         '''
         # TODO migrate to for-comprehension
-        var = []
+        results = []
+        '''use cache in O(n)'''
         for u in units:
             if i >= u:
-                var.append(1 + cache[i - u])
+                results.append(1 + memoied[i - u])
 
-        cache[i] = min(var)
+        memoied[i] = min(results)
 
-    return cache[n]
+    return memoied[n]
 
 
 print(count_min_dp(n=int(input())))
