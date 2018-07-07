@@ -28,23 +28,3 @@ def three_partition(x, lst):
 
 x, lst = 10, [9, 12, 3, 5, 14, 10, 10]
 print(three_partition(x, lst))
-
-
-# TODO another: with BST
-class Node:
-    def __init__(self, value=None):
-        self.value = value
-        self.left = None
-        self.right = None
-
-    def add(self, val):
-        if val < self.value:
-            if self.left:
-                self.left.add(val)
-            else:
-                self.left = Node(val)
-        else:
-            if self.right:
-                self.right.add(val)
-            else:
-                self.right = Node(val)
