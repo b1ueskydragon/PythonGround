@@ -29,4 +29,12 @@ def three_partition(x, lst):
 
 x, lst = 10, [9, 12, 3, 5, 14, 10, 10]
 rst = three_partition(x, lst)
+
 # TODO
+print(rst.value)  # 10
+print(rst.left.value)  # 9
+print(rst.left.left.value)  # 3
+print(rst.left.left.right.value)  # 5
+print(rst.right.value)  # 12
+print(rst.right.left.value)  # 10
+print(rst.right.right.value)  # 14
