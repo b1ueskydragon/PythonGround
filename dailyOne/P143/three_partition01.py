@@ -1,4 +1,3 @@
-# TODO another: with BST
 class Node:
     def __init__(self, value=None):
         self.value = value
@@ -30,7 +29,7 @@ def three_partition(x, lst):
 x, lst = 10, [9, 12, 3, 5, 14, 10, 10]
 rst = three_partition(x, lst)
 
-# TODO
+# TODO add function for print tree
 print(rst.value)  # 10
 print(rst.left.value)  # 9
 print(rst.left.left.value)  # 3

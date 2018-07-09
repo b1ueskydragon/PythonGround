@@ -8,7 +8,7 @@ Ordering within a part can be arbitrary.
 def three_partition(x, lst):
     """
     Simply edition.
-    O(n)
+    O(n) time and O(n) space.
 
     :param x: pivot
     :param lst: list
