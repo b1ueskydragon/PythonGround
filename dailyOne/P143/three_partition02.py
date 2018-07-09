@@ -8,7 +8,7 @@ def three_partition(x, lst):
     left, right = 0, 0
     last = len(lst) - 1
 
-    while right < last:
+    while right <= last:
         if lst[right] == x:
             right += 1
         elif lst[right] < x:
@@ -26,6 +26,7 @@ def swap_value(lst, i1, i2):
     lst[i1], lst[i2] = lst[i2], lst[i1]
 
 
-# x, lst = 10, [9, 12, 3, 5, 14, 10, 10]
-x, lst = 2, [4, 1, 1, 2, 1, 1, 3]  # TODO Bug found
+x, lst = 10, [9, 12, 3, 5, 14, 10, 10]
+x1, lst1 = 2, [4, 1, 1, 2, 1, 1, 3]
 print(three_partition(x, lst))
+print(three_partition(x1, lst1))
