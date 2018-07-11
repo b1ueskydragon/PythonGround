@@ -17,10 +17,14 @@ def reverse(lst, i, j):
 
 def sort(lst, last):
     """
-    ある程度`正しい`場所を事前に決めて行う.
+    Decide beforehand `correct` position to a certain
+    (`max value should be positioned on last` in this case).
 
-    :param lst:
-    :return:
+    Time: O(n^n)
+    Space: O(1)
+
+    :param lst: list
+    :return: sorted list
     """
     if not last:  # exit case (last is 0)
         return lst
@@ -28,12 +32,12 @@ def sort(lst, last):
     left, right = 0, last
     while left < right:
         if lst[left] > lst[right]:
-            lst = reverse(lst, left, right)
+            reverse(lst, left, right)
         else:
             if lst[right] > lst[last]:  # keep max value on last.
                 lst[right], lst[last] = lst[last], lst[right]
             right -= 1
-    return sort(lst, last - 1)
+    return sort(lst, last - 1)  # move last idx instead of body slicing
 
 
 # lst = [3, 1, 2, 5, 4]
