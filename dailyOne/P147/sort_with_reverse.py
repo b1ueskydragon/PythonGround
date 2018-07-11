@@ -1,25 +1,25 @@
 def reverse(lst, i, j):
     """
-    WIP: Implement first to use result.
+    care only [i:j+1]. 他範囲は気にしない.
 
     :param lst: list
     :param i: idx1
     :param j: idx2
     :return: reversed list
     """
-    if j < i:
-        i, j = j, i
-
-    rlst = [k for k in reversed(lst[i:j + 1])]
-
-    if i is 0:
-        return rlst + lst[j + 1:]
-    elif j is len(lst) - 1:
-        return lst[:i] + rlst
-    else:
-        return lst[:i] + rlst + lst[j + 1:]
+    while i < j:
+        lst[i], lst[j] = lst[j], lst[i]
+        i += 1
+        j -= 1
+    return lst
 
 
+lst = [3, 1, 2, 6, 8, 7, 9]
+i, j = 2, 4
+print(reverse(lst, i, j))
+
+
+# TODO use more space
 def sort_with_reverse(lst):
     left, right = 0, len(lst) - 1
     while left < right:
@@ -29,7 +29,3 @@ def sort_with_reverse(lst):
             right -= 1
 
     return lst
-
-
-lst = [3, 1, 2, 5, 4]
-print(sort_with_reverse(lst))
