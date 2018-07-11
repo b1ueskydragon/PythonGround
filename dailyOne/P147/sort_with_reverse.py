@@ -15,16 +15,17 @@ def reverse(lst, i, j):
     return lst
 
 
-def sort(lst):
+def sort(lst, last):
     """
     ある程度`正しい`場所を事前に決めて行う.
 
     :param lst:
     :return:
     """
-    last = len(lst) - 1
-    left, right = 0, last
+    if not last:  # exit case (last is 0)
+        return lst
 
+    left, right = 0, last
     while left < right:
         if lst[left] > lst[right]:
             lst = reverse(lst, left, right)
@@ -32,9 +33,10 @@ def sort(lst):
             if lst[right] > lst[last]:  # keep max value on last.
                 lst[right], lst[last] = lst[last], lst[right]
             right -= 1
-    return lst
+    return sort(lst, last - 1)
 
 
 # lst = [3, 1, 2, 5, 4]
-lst = [3, 1, 2, 6, 8, 5, 7]
-print(sort(lst))
+# lst = [3, 1, 2, 6, 8, 5, 7]
+lst = [1, 2, 3, 6, 5, 4, 1, 2, 7, 1]
+print(sort(lst, len(lst) - 1))
