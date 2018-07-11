@@ -13,12 +13,20 @@ def max_idx(lst):
 
 
 def sort(lst):
-    """sort using `reverse` in-place"""
-    # TODO
+    """
+    sort using `reverse` in-place
+
+    Time: O(n^2)
+    Space: O(1)
+
+    探索 range を1ずつ縮めていきながら,
+    もっとも大きい value を一度先頭に送り, 末尾に来させる.
+    """
+    for idx in reversed(range(len(lst))):
+        reverse(lst, 0, max_idx(lst[:idx + 1]))
+        reverse(lst, 0, idx)
     return lst
 
 
-lst = [9, 8, 1, 2, 8, 7, 4, 5, 8, 6, 1, 2]
-print(len(lst))
-print(max_idx(lst))
+lst = [2, 5, 3, 1, 4]
 print(sort(lst))
