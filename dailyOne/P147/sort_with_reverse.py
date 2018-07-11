@@ -1,6 +1,7 @@
 def reverse(lst, i, j):
     """
-    care only [i:j+1]. 他範囲は気にしない.
+    focus on only [i:j+1]
+    do not focus the others.
 
     :param lst: list
     :param i: idx1
