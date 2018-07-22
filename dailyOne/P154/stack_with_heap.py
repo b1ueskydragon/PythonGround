@@ -1,29 +1,36 @@
 """
 Implement a stack API using only a heap.
+
+(memo) most recently := largest
 """
 
 
 class Stack:
     def __init__(self):
+        self.key = Heap()
+        self.idx = 0
         self.stack = []
-        self.heap = Heap()
 
     def push(self, item):
         """
         adds an element to the stack.
         :param item:
         """
+        self.key.push(self.idx)
         self.stack.append(item)
+        self.idx += 1
 
     def pop(self):
         """
         removes and returns the most recently added element.
         """
-        if not self.stack:
+        if not self.key or not self.stack:
             raise TypeError('nothing on the stack')
 
-        value = self.stack[-1]
+        value = self.stack[self.key.pop()]
         self.stack.remove(value)
+        self.idx -= 1
+
         return value
 
 
@@ -49,15 +56,20 @@ class Heap:
 
 
 # Test
-heap = Heap()
-heap.push(3)
-heap.push(7)
-heap.push(5)
-rst = heap.pop()
-print(rst)
+# heap = Heap()
+# heap.push(3)
+# heap.push(7)
+# heap.push(5)
+# rst = heap.pop()
+# print(rst)
 
 stack = Stack()
 stack.push(2)
 stack.push(1)
 rst01 = stack.pop()
 print(rst01)
+stack.push(3)
+stack.push(4)
+rst02 = stack.pop()
+print(rst02)
+print(stack.stack)
