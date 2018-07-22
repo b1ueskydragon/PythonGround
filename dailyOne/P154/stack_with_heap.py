@@ -5,21 +5,26 @@ Implement a stack API using only a heap.
 
 class Stack:
     def __init__(self):
-        pass
+        self.stack = []
+        self.heap = Heap()
 
     def push(self, item):
         """
         adds an element to the stack.
         :param item:
         """
-        pass
+        self.stack.append(item)
 
     def pop(self):
         """
         removes and returns the most recently added element.
-        (or throws an error if there is nothing on the stack)
         """
-        pass
+        if not self.stack:
+            raise TypeError('nothing on the stack')
+
+        value = self.stack[-1]
+        self.stack.remove(value)
+        return value
 
 
 class Heap:
@@ -50,3 +55,9 @@ heap.push(7)
 heap.push(5)
 rst = heap.pop()
 print(rst)
+
+stack = Stack()
+stack.push(2)
+stack.push(1)
+rst01 = stack.pop()
+print(rst01)
