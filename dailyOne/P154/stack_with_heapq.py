@@ -7,8 +7,7 @@ class Stack:
         pass
 
 
-# TODO Rename `Heap`: make more specific
-class Heap:
+class PriorityHeapq:
     """
     Impl a `Heap` with making value a pair (Tuple).
     """
@@ -35,12 +34,12 @@ class Heap:
 
 
 # Test
-heap = Heap()
-heap.push('c', 0)
-print(heap.heap)  # [(0, 'c')]
-heap.push('a', 1)
-print(heap.heap)  # [(-1, 'a'), (0, 'c')]
-heap.push('b', 2)
-print(heap.heap)  # [(-2, 'b'), (0, 'c'), (-1, 'a')]
-print(heap.pop())  # b
-print(heap.heap)  # [(-1, 'a'), (0, 'c')]
+phq = PriorityHeapq()
+phq.push('c', 0)
+print(phq.heap)  # [(0, 'c')]
+phq.push('a', 1)
+print(phq.heap)  # [(-1, 'a'), (0, 'c')]
+phq.push('b', 2)
+print(phq.heap)  # [(-2, 'b'), (0, 'c'), (-1, 'a')]
+print(phq.pop())  # b
+print(phq.heap)  # [(-1, 'a'), (0, 'c')]
