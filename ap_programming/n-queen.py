@@ -9,10 +9,10 @@ AP 2012 A 2
 init
 """
 N = 8
-col = ['free' for _ in range(1, N + 1)]  # size N
-upwd = ['free' for _ in range(1, 2 * N)]  # size N+(N-1)
-downwd = ['free' for _ in range(1, 2 * N)]  # size N+(N-1)
-pos = [0 for _ in range(1, N + 1)]  # その行に配置したクイーンの位置(列番号 - 横から数える番号)を記録
+col = ['free' for _ in range(0, N)]  # size N
+upwd = ['free' for _ in range(0, 2 * N - 1)]  # size N+(N-1)
+downwd = ['free' for _ in range(0, 2 * N - 1)]  # size N+(N-1)
+pos = [0 for _ in range(0, N)]  # その行に配置したクイーンの位置(列番号 - 横から数える番号)を記録
 
 
 def search(i):
