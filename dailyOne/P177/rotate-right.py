@@ -35,12 +35,15 @@ class LinkedList:
         unlink non-null node
         and get last value before removed
         """
-        if not self.last or not self.head:
-            raise NotImplementedError
+        if not self.last:
+            raise NotImplementedError('Empty list')
         else:
             tmp = self.last
-            self.last = tmp.prev
-            self.last.next = None  # TODO if size == 1 ...
+            if not tmp.prev:  # self.size is 1
+                self.head = None
+            else:
+                self.last = tmp.prev
+                self.last.next = None
             self.size -= 1
         return tmp.value
 
