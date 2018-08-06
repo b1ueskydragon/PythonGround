@@ -1,4 +1,9 @@
 class Node:
+    """
+    a node holds an element (value),
+    and two pointers (prev, next)
+    """
+
     def __init__(self, value):
         self.value = value
         self.prev = None
@@ -12,7 +17,10 @@ class LinkedList:
         self.last = None
 
     def add_last(self, el):
-        tmp_lst = self.last
+        """
+        link non-null node as last
+        """
+        tmp_lst = self.last  # keep current last
         node = Node(el)  # new Node
         self.last = node
         if not tmp_lst:
@@ -22,29 +30,55 @@ class LinkedList:
             tmp_lst.next = node
         self.size += 1
 
-    def remove_and_get_last(self):
-        if not self.last:
+    def remove_and_get_element(self):
+        """
+        unlink non-null node
+        and get last value before removed
+        """
+        if not self.last or not self.head:
             raise NotImplementedError
         else:
             tmp = self.last
-            self.last = None
+            self.last = tmp.prev
+            self.last.next = None  # TODO if size == 1 ...
             self.size -= 1
-        return tmp
+        return tmp.value
+
+    def add_first(self, el):
+        """
+        link non-null node as first
+        """
+        tmp_head = self.head  # keep current head
+        node = Node(el)  # new Node
+        self.head = node
+        if not tmp_head:
+            self.last = node
+        else:
+            tmp_head.prev = node
+            self.head.next = tmp_head
+        self.size += 1
 
 
 if __name__ == '__main__':
     given = LinkedList()
+    size = int(input())
+    for _ in range(size):
+        given.add_last(int(input()))
+    k = int(input())
 
-    # TODO impl with input
-    given.add_last(1)
-    given.add_last(2)
-    given.add_last(3)
-    given.add_last(4)
-    given.add_last(5)
-    k = 3
-    # 1,2,3,4,5 (ori)
 
-    # 5,1,2,3,4
-    # 4,5,1,2,3
-    # 3,4,5,1,2 (res)
-    print(given.head.next.prev.next.next.prev.prev is given.head)
+    def output_datum(nodes):
+        out = []
+        node = nodes.head
+        while node:
+            out.append(node.value)
+            node = node.next
+        print(out)
+
+
+    output_datum(given)
+
+    for _ in range(k):
+        given.add_first(given.remove_and_get_element())
+
+    output_datum(given)
