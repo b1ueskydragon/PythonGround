@@ -10,10 +10,17 @@ def interleave_half(stack):
 
     S [1,5,2,4,3]
     """
-    q = Queue
+    tmpq = Queue()
     size = len(stack)
     pivot = size // 2
 
-    # TODO use a `Queue`
+    while stack:
+        tmpq.put(stack.pop())
 
     return stack
+
+
+given_odd = [1, 2, 3, 4, 5]
+given_even = [1, 2, 3, 4]
+
+print(interleave_half(given_odd))
