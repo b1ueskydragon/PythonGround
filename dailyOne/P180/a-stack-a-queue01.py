@@ -6,16 +6,18 @@ def interleave_half(stack):
     """
     -1th
     S [3,2,1]
-    Q [5,4]
+    Q (5,4)
 
     S [1,5,2,4,3]
     """
-    tmpq = Queue()
+    qu = Queue()
     size = len(stack)
-    pivot = size // 2
 
     while stack:
-        tmpq.put(stack.pop())
+        qu.put(stack.pop())
+
+    for _ in range(int(size / 2)):
+        qu.put(qu.get())
 
     return stack
 
