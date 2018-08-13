@@ -5,32 +5,19 @@ Given n numbers, find the greatest common denominator between them.
 
 def find_gcd(given):
     """
-    O(k*N)
-    k = a size of head element of given list
-    N = an length of given list
+    reducing (folding)
     """
-
-    return 1
-
-
-def is_prime(num):
-    if num < 2 or (num is not 2 and num % 2 is 0):
-        return False
-    for _ in range(3, num, 2):
-        if num % _ is 0:
-            return False
-        else:
-            continue
-    return True
+    head = given[0]
+    for _ in given[1:]:
+        head = gcd(head, _)
+    return head
 
 
-def primes(num):
-    return [i for i in reversed(range(num + 1)) if is_prime(i)]
+def gcd(a, b):
+    if b is 0:
+        return abs(a)
+    return gcd(b, a % b)
 
-print(primes(42))
 
-# isPrime ? (return 1 if, all of elements are prime)
-# primes ? (else, division with primes continuously)
-
-given = [42, 56, 14]
+given = [42, 56, 14, 21]
 print(find_gcd(given))
