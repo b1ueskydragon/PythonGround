@@ -9,7 +9,7 @@ def find_gcd(given):
     """
     head = given[0]
     for _ in given[1:]:
-        head = gcd(head, _)
+        head = gcd_(head, _)
     return head
 
 
@@ -17,6 +17,15 @@ def gcd(a, b):
     if b is 0:
         return abs(a)
     return gcd(b, a % b)
+
+
+def gcd_(a, b):
+    """
+    memory-efficient (bottom up)
+    """
+    while b:
+        a, b = b, a % b
+    return a
 
 
 given = [42, 56, 14, 21]
