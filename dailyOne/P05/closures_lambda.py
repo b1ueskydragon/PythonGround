@@ -21,4 +21,4 @@ def cdr(pair):
 
 print(car(cons(3, 4)))
 print(cdr(cons(3, 4)))
-print(cdr(cdr(cons(3, cons(3, 4)))))
+print(car(cdr(cons(3, cons(3, 4)))))
