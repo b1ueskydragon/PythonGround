@@ -33,10 +33,17 @@ def find_balance(given):
 
 def find_balance01(given):
     left, right = "(", ")"
-    given = list(given)
-    last = len(given) - 1
+    given, last = list(given), len(given) - 1
 
-    # TODO minimum
+    # head'(' and last')' are be required anyway (maybe).
+    if given[0] is not left:
+        given.insert(0, left)
+        last += 1
+    if given[last] is not right:
+        last += 1
+        given.insert(last, right)
+
+    # TODO minimum count ?
     for i, p in enumerate(given):
         if i is last:
             break
