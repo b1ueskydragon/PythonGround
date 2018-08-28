@@ -7,10 +7,11 @@ Given "))()(", you could return "()()()()".
 """
 
 
-def find_balance(given):
+def find_balance_pre(given):
     left, right = "(", ")"
     one = "()"
     ln, rn = 0, 0
+    count = 0
 
     for p in given:
         if p is left:
@@ -24,24 +25,29 @@ def find_balance(given):
     while ln > rn:
         given += right
         rn += 1
+        count += 1
     while ln < rn:
         given += left
         ln += 1
+        count += 1
 
-    return given
+    return given, count
 
 
-def find_balance01(given):
+def find_balance(given):
     left, right = "(", ")"
     given, last = list(given), len(given) - 1
+    count = 0
 
     # head'(' and last')' are be required anyway (maybe).
     if given[0] is not left:
         given.insert(0, left)
         last += 1
+        count += 1
     if given[last] is not right:
         last += 1
         given.insert(last, right)
+        count += 1
 
     # TODO minimum count ?
     for i, p in enumerate(given):
@@ -50,19 +56,27 @@ def find_balance01(given):
 
         if p is right and given[i + 1] is right:
             given[i] = ''
+            count += 1
         if p is left and given[i + 1] is left:
             given[i + 1] = right
+            count += 1
 
-    return ''.join(given)
+    return ''.join(given), count
 
 
 parentheses00 = "(()"
 parentheses01 = "))()("
 parentheses02 = "(((("
+
+print(find_balance_pre(parentheses00))  # "(())"  "()"  "()()"
+print(find_balance_pre(parentheses01))  # "()()"  "()()()()"
+print(find_balance_pre(parentheses02))  # "(((())))"
+print()
 print(find_balance(parentheses00))  # "(())"  "()"  "()()"
 print(find_balance(parentheses01))  # "()()"  "()()()()"
-print(find_balance(parentheses02))  # "(((())))"
+print(find_balance(parentheses02))
 print()
-print(find_balance01(parentheses00))  # "(())"  "()"  "()()"
-print(find_balance01(parentheses01))  # "()()"  "()()()()"
-print(find_balance01(parentheses02))
+
+parentheses03 = "((((()()((())))((()()()()()())))))))(("
+print(find_balance_pre(parentheses03))
+print(find_balance(parentheses03))
