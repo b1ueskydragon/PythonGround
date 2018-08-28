@@ -31,9 +31,31 @@ def find_balance(given):
     return given
 
 
+def find_balance01(given):
+    left, right = "(", ")"
+    given = list(given)
+    last = len(given) - 1
+
+    # TODO minimum
+    for i, p in enumerate(given):
+        if i is last:
+            break
+
+        if p is right and given[i + 1] is right:
+            given[i] = ''
+        if p is left and given[i + 1] is left:
+            given[i + 1] = right
+
+    return ''.join(given)
+
+
 parentheses00 = "(()"
 parentheses01 = "))()("
 parentheses02 = "(((("
-print(find_balance(parentheses00))  # "(())"  "()"
+print(find_balance(parentheses00))  # "(())"  "()"  "()()"
 print(find_balance(parentheses01))  # "()()"  "()()()()"
-print(find_balance(parentheses02))
+print(find_balance(parentheses02))  # "(((())))"
+print()
+print(find_balance01(parentheses00))  # "(())"  "()"  "()()"
+print(find_balance01(parentheses01))  # "()()"  "()()()()"
+print(find_balance01(parentheses02))
