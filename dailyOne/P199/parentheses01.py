@@ -22,18 +22,10 @@ def find_balance(given):
             given[i] = ''
             count += 1
         if p is left and given[i + 1] is left:
-            given[i + 1] = right
+            given[i] = ''
             count += 1
 
     return ''.join(given), count
 
 
-parentheses00 = "(()"
-parentheses01 = "))()("
-parentheses02 = "(((("
-parentheses03 = "((((()()((())))((()()()()()())))))))(("
-
-print(find_balance(parentheses00))  # "(())"  "()"  "()()"
-print(find_balance(parentheses01))  # "()()"  "()()()()"
-print(find_balance(parentheses02))
-print(find_balance(parentheses03))
+print(find_balance(input()))
