@@ -13,15 +13,11 @@ def find_balance(given):
         given.insert(last, right)
         count += 1
 
-    # TODO minimum count ?
     for i, p in enumerate(given):
         if i is last:
             break
 
-        if p is right and given[i + 1] is right:
-            given[i] = ''
-            count += 1
-        if p is left and given[i + 1] is left:
+        if p is given[i + 1]:
             given[i] = ''
             count += 1
 
