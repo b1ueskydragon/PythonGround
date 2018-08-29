@@ -1,3 +1,8 @@
+"""
+For practice.
+"""
+
+
 def find_balance(given):
     left, right = "(", ")"
     one = "()"
@@ -25,12 +30,12 @@ def find_balance(given):
     return given, count
 
 
-parentheses00 = "(()"
-parentheses01 = "))()("
-parentheses02 = "(((("
+parentheses00 = "(()"  # "(())"  "()"  "()()"
+parentheses01 = "))()("  # "()()"  "()()()()"
+parentheses02 = "(((("  # "(((())))"
 parentheses03 = "((((()()((())))((()()()()()())))))))(("
 
-print(find_balance(parentheses00))  # "(())"  "()"  "()()"
-print(find_balance(parentheses01))  # "()()"  "()()()()"
-print(find_balance(parentheses02))  # "(((())))"
+print(find_balance(parentheses00))
+print(find_balance(parentheses01))
+print(find_balance(parentheses02))
 print(find_balance(parentheses03))
