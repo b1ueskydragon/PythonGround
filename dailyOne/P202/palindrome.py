@@ -5,10 +5,13 @@ digit = lambda k: int(math.log10(k))
 
 
 def is_palindrome(given):
-    backup = given # required ?
+    pivot = math.ceil(digit(given) / 2)
     acc = []
 
-    for _ in reversed(range(digit(given) + 1)):
+    for i, _ in enumerate(reversed(range(digit(given) + 1))):
+        if i == pivot:
+            break  # TODO reversed half
+
         d = (10 ** digit(given))
         k = given // (10 ** digit(given))
         given -= d * k
