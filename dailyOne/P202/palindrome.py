@@ -7,7 +7,7 @@ digit_len = lambda k: int(math.log10(k))
 def digit_to_list(given):
     ori_len = digit_len(given)
     acc = []
-    for _ in reversed(range(ori_len + 1)):
+    for _ in reversed(range(ori_len + 1)):  # TODO Over flow !
         if given is 0:
             break
 
