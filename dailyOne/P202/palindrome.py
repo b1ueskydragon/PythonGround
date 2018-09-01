@@ -25,10 +25,9 @@ def digit_to_list(given):
                 acc.append(0)
                 len_cnt -= 1
 
+    while len(acc) <= ori_len:
+        acc.append(0)
     return acc
-
-
-print(digit_to_list(90010000))
 
 
 def is_palindrome(dist):
@@ -47,4 +46,5 @@ def is_palindrome(dist):
 
     return acc == list(reversed(rcc))
 
-# print(is_palindrome(digit_to_list(int(input()))))
+
+print(is_palindrome(digit_to_list(int(input()))))
