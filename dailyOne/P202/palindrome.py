@@ -8,12 +8,27 @@ def digit_to_list(given):
     ori_len = digit_len(given)
     acc = []
     for _ in reversed(range(ori_len + 1)):
-        d = 10 ** digit_len(given)  # TODO math domain error when d is 0
+        if given is 0:
+            break
+
+        curr_len = digit_len(given)
+        d = 10 ** curr_len
         k = given // d
         given -= d * k
         acc.append(k)
 
+        # prevent domain error
+        if given is not 0:
+            next_len = digit_len(given)
+            len_cnt = curr_len - next_len
+            while len_cnt > 1:
+                acc.append(0)
+                len_cnt -= 1
+
     return acc
+
+
+print(digit_to_list(90010000))
 
 
 def is_palindrome(dist):
@@ -32,5 +47,4 @@ def is_palindrome(dist):
 
     return acc == list(reversed(rcc))
 
-
-print(is_palindrome(digit_to_list(int(input()))))
+# print(is_palindrome(digit_to_list(int(input()))))
