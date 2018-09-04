@@ -1,8 +1,5 @@
 import time
-
-given = 5
-
-print('[test00]')
+import subprocess
 
 
 def retry_test(given):
@@ -25,11 +22,6 @@ def retry_test(given):
             print(f"Retry {given} all times.")
 
 
-retry_test(given)
-
-print('[test01]')
-
-
 def retry_test_idx(given):
     flag = given  # Try input bound integers (given ± 1)
     for i, _ in enumerate(range(given), start=1):
@@ -48,4 +40,25 @@ def retry_test_idx(given):
             print(f"Retry {given} all times.")
 
 
-retry_test_idx(given)
+def retry_test_cmd(given):
+    for i, _ in enumerate(range(given), start=1):
+        try:
+            cmd = f"echo $(( 10 / {_} ))"  # Error happens only at first.
+            subprocess.run(cmd, shell=True, check=True)
+            break
+        except:
+            print('error')
+            time.sleep(1)
+
+        if i is given:
+            print(i)
+            print(f"Retry {given} all times.")
+
+
+datum = int(input())
+# print('test00')
+# retry_test(given=datum)
+# print('test01')
+# retry_test_idx(given=datum)
+# print('test02')
+retry_test_cmd(given=datum)
