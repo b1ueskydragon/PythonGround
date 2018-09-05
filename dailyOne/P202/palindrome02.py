@@ -13,12 +13,21 @@ def is_palindrome(num):
     while (num // digit) >= 10:
         digit *= 10
 
-    most = num // digit
-    least = num % 10
-    if most != least:
-        return False
+    while num:
+        most = num // digit
+        least = num % 10
+        if most != least:
+            return False, digit, num
 
-    return True
+        # Remove the first and last digit
+        # only remainder is required, so (most * digit) is redundant.
+        num = (num % digit) // 10
+
+        # Remove the digits too (first, last)
+        digit //= 100
+
+    return True, digit, num
 
 
 print(is_palindrome(909909))
+print(is_palindrome(990))
