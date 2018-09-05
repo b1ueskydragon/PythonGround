@@ -1,12 +1,16 @@
+import math
+
+
 def is_palindrome(num):
-    origin = num
-    stack = 0
+    rem = num % 10
+    num //= 10
 
-    while num:
-        stack = num % 10 + stack * 10
-        num //= 10
+    digit = int(math.log10(num))
+    rem = rem * (10 ** digit)
 
-    return stack == origin
+    num = num - rem
+
+    return rem, num
 
 
-print(is_palindrome(int(input())))
+print(is_palindrome(52325))
