@@ -55,10 +55,27 @@ def retry_test_cmd(given):
             print(f"Retry {given} all times.")
 
 
-datum = int(input())
+def retry_test_file_exist(given):
+    for i, _ in enumerate(range(given), start=1):
+        try:
+            cmd = f"cd ~/PythonGround/; ! ls ./practice/retry-test-flag"  # if exists return 1, else 0.
+            subprocess.run(cmd, shell=True, check=True)
+            print('not exists')
+            break
+        except:
+            print('exists yet')
+            time.sleep(1)
+
+        if i is given:
+            print(i)
+            print(f"Retry {given} all times but yet exists.")
+
+
+max_count = int(input())
 # print('test00')
-# retry_test(given=datum)
+# retry_test(given=max_count)
 # print('test01')
-# retry_test_idx(given=datum)
+# retry_test_idx(given=max_count)
 # print('test02')
-retry_test_cmd(given=datum)
+# retry_test_cmd(given=max_count)
+retry_test_file_exist(given=max_count)
