@@ -9,22 +9,23 @@ def flatten(pair):
     for key in pair.keys():
         value = pair.get(key)
         if type(value) is dict:  # TODO want fix condition
+            print(key)
             flatten(value)
         else:
-            print(value)
+            print(key, value)
 
     # return pair
 
 
 given = \
     {
-        "key": 3,
-        "foo": {
-            "a": 5,
-            "bar": {
-                "baz": 8
+        "A": 1,
+        "B": {
+            "C": 2,
+            "D": {
+                "E": 3
             }
         }
     }
 
-flatten(pair=given)
+flatten(pair=given)  # {"A":1, "B.C": 2, "B.D.E": 3}
