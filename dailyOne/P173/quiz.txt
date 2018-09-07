@@ -1,0 +1,21 @@
+Given the following dictionary:
+
+{
+    "key": 3,
+    "foo": {
+        "a": 5,
+        "bar": {
+            "baz": 8
+        }
+    }
+}
+
+it should become:
+
+{
+    "key": 3,
+    "foo.a": 5,
+    "foo.bar.baz": 8
+}
+
+Keys do not contain dots in them, i.e. no clobbering will occur.
