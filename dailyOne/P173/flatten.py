@@ -1,11 +1,4 @@
 def flatten(pair):
-    for key in pair.keys():
-        is_end(pair.get(key))
-
-    # return nested
-
-
-def is_end(value):
     """
     Depth-first-search w/t Recursion.
 
@@ -13,13 +6,14 @@ def is_end(value):
         - 'key' is not a target
         - 'foo' is a target
     """
-    if type(value) is dict:  # TODO want fix
-        for key in value.keys():
-            print(value.get(key))
-    else:
-        print(value)
+    for key in pair.keys():
+        value = pair.get(key)
+        if type(value) is dict:  # TODO want fix condition
+            flatten(value)
+        else:
+            print(value)
 
-    return True
+    # return pair
 
 
 given = \
@@ -33,4 +27,4 @@ given = \
         }
     }
 
-print(flatten(pair=given))
+flatten(pair=given)
