@@ -6,15 +6,15 @@ def flatten(pair):
         - 'key' is not a target
         - 'foo' is a target
     """
+
+    flatted = {}  # TODO in-place
+
     for key in pair:
         value = pair.get(key)
-        if type(value) is dict:  # TODO want fix condition
-            print(key)
+        try:  # TODO without exception handling
             flatten(value)
-        else:
+        except:
             print(key, value)
-
-    # return pair
 
 
 given = \
