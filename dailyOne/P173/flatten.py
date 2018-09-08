@@ -1,4 +1,4 @@
-def flatten(key_mem, pair):
+def flatten(res_pair, key_mem, pair):
     """
     Depth-first-search w/t Recursion.
 
@@ -11,13 +11,11 @@ def flatten(key_mem, pair):
         value = pair.get(key)
         # TODO replace to the other condition
         if type(value) is dict:  # Horizontal find
-            print('not end')
-            key_mem.append(key)
-            flatten(key_mem, value)  # Vertical find
+            flatten(res_pair, key + '.' + key_mem, value)  # Vertical find
         else:
-            print('end')
+            res_pair.update({key_mem + key: value})
 
-    return key_mem
+    return res_pair
 
 
 given = \
@@ -31,5 +29,5 @@ given = \
         }
     }
 
-res = flatten(key_mem=[], pair=given)  # {"A":1, "B.C": 2, "B.D.E": 3}
+res = flatten(res_pair={}, key_mem='', pair=given)  # {"A":1, "B.C": 2, "B.D.E": 3}
 print(res)
