@@ -6,7 +6,7 @@ def flatten(pair):
         - 'key' is not a target
         - 'foo' is a target
     """
-    for key in pair.keys():
+    for key in pair:
         value = pair.get(key)
         if type(value) is dict:  # TODO want fix condition
             print(key)
