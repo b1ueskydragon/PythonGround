@@ -10,6 +10,9 @@ def find_x(nums, x):
     for i in range(len(nums)):
         curr = 0  # candidate of sum result in this list
         for num in nums[i:]:
+            if num is x:
+                return num, cnt
+
             inc_next = curr + num  # select next
             exc_next = curr  # not select next
 
@@ -35,5 +38,5 @@ def find_x(nums, x):
     return cache, cnt
 
 
-given, target = list(reversed(sorted([10, 34, 55, 77]))), 100  # [55 + 34 + 10]
+given, target = list(reversed(sorted([1, 34, 55, 99, 77]))), 77
 print(find_x(given, target))
