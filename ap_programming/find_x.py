@@ -4,6 +4,8 @@ Arranged edition of `treeSearoh`
 
 
 def find_x(nums, x):
+    cnt = 0
+
     cache = 0  # candidate of sum result on overall
     for i in range(len(nums)):
         curr = 0  # candidate of sum result in this list
@@ -19,13 +21,18 @@ def find_x(nums, x):
             else:
                 curr = inc_next
 
+            if curr >= x:
+                break
+
+            cnt += 1
+
         # select cache vs res_sum
         cache_error = abs(x - cache)
         res_error = abs(x - curr)
         if cache_error > res_error:
             cache = curr
 
-    return cache
+    return cache, cnt
 
 
 given, target = list(reversed(sorted([10, 34, 55, 77]))), 100  # [55 + 34 + 10]
