@@ -10,6 +10,9 @@ e.g.)
 
 
 # TODO (後回し) 枝切り, refactor
+# 遠く離れているのは選びづらくなっているので
+# e.g) 1 を選び続ける
+# そもそもの abs 比較ロジック修正
 
 
 def find_x(nums, x, cache):
@@ -17,20 +20,10 @@ def find_x(nums, x, cache):
     incl_next = res + nums[1]
     excl_next = res
 
-    incl_err = abs(x - incl_next)
-    excl_err = abs(x - excl_next)
-    if incl_err > excl_err:
-        res = excl_next
-    else:
-        res = incl_next
-    for i in range(1, len(nums) - 1):
-        cache_err = abs(x - cache)
-        curr_err = abs(x - res)
-        if cache_err > curr_err:
-            cache = res
-        return find_x(nums[i:], x, cache)
+    find_x(nums, x, incl_next)
+    find_x(nums, x, excl_next)
 
-    return cache
+    return res
 
 
 given, target = [1, 3, 5, 7, 9], 10
