@@ -19,12 +19,7 @@ def find_x(nums, x, i=0, cache=0):
     return compare(x, incl, excl)
 
 
-def compare(x, a, b):
-    if abs(x - a) > abs(x - b):
-        return b
-    else:
-        return a
-
+compare = lambda x, a, b: b if abs(x - a) > abs(x - b) else a
 
 given, target = [1, 34, 55, 99, 77], 134
 print(find_x(given, target))
