@@ -1,3 +1,5 @@
+from queue import Queue
+
 """
 With Queue (BFS)
 
@@ -10,20 +12,21 @@ e.g.)
 
 
 def find_x(nums, x, i=0, cache=0):
-    incl = 0
-    excl = 0
+    queue = Queue()
+    incl, excl = 0, 0
 
-    # TODO with queue
+    while not queue.empty():
+        excl = queue.get()
+        incl = excl + nums[i]
+
+        for num in nums:
+            queue.put(excl)
+            queue.put(incl)
 
     return compare(x, incl, excl)
 
 
-def compare(x, a, b):
-    if abs(x - a) > abs(x - b):
-        return b
-    else:
-        return a
-
+compare = lambda x, a, b: b if abs(x - a) > abs(x - b) else a
 
 given, target = [1, 34, 55, 99, 77], 134
 print(find_x(given, target))
