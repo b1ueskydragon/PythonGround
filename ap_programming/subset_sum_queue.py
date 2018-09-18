@@ -11,21 +11,25 @@ e.g.)
 """
 
 
-def find_x(nums, x, cache=0):
+def find_x(nums, x, i=1, cache=0):
     queue = Queue()
     queue.put(nums[0])
-    for i, _ in enumerate(nums, start=1):
-        while not queue.empty():
-            excl = queue.get()
-            incl = excl + nums[i]
-            queue.put(compare(x, incl, excl))
 
-            cache = compare(x, cache, queue.get())
+    while not queue.empty():
+        curr = queue.get()
+        cache = compare(x, cache, curr)
+
+        if i < len(nums):
+            excl = nums[i]
+            incl = excl + nums[i]
+            queue.put(excl)
+            queue.put(incl)
+            i += 1
 
     return cache
 
 
 compare = lambda x, a, b: b if abs(x - a) > abs(x - b) else a
 
-given, target = [3, 5, 7, 9, 11], 18
+given, target = [3, 5, 7, 9, 11], 16
 print(find_x(given, target))
