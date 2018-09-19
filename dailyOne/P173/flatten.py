@@ -1,4 +1,4 @@
-def flatten(res_pair, key_mem, pair):
+def flatten(pair, res_pair={}, key_mem=''):
     """
     Depth-first-search w/t Recursion.
 
@@ -9,9 +9,9 @@ def flatten(res_pair, key_mem, pair):
 
     for key in pair:
         value = pair.get(key)
-        # TODO replace to the other condition
-        if type(value) is dict:  # Horizontal find
-            flatten(res_pair, key_mem + key + '.', value)  # Vertical find
+        # TODO other possible condition
+        if isinstance(value, dict):  # Horizontal find
+            flatten(value, res_pair, key_mem + key + '.')  # Vertical find
         else:
             res_pair.update({key_mem + key: value})
 
@@ -24,11 +24,11 @@ given = \
         "B": {
             "C": 2,
             "D": {
-                "E": 3 # TODO if value is {} ...
+                "E": 3
             }
         }
     }
 
-# TODO Try in-place && less params
-res = flatten(res_pair={}, key_mem='', pair=given)  # {"A":1, "B.C": 2, "B.D.E": 3}
+# TODO Try in-place
+res = flatten(pair=given)  # {"A":1, "B.C": 2, "B.D.E": 3}
 print(res)
