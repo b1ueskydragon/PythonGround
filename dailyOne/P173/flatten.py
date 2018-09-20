@@ -13,7 +13,7 @@ def flatten(pair, res_pair={}, key_mem=''):
         if isinstance(value, dict):  # Horizontal find
             flatten(value, res_pair, key_mem + key + '.')  # Vertical find
         else:
-            res_pair.update({key_mem + key: value})
+            res_pair[key_mem + key] = value
 
     return res_pair
 
