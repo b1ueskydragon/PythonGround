@@ -1,19 +1,26 @@
 def standardize(path):
-    dirs = path.split('/')[:-1]
+    dirs = path.split('/')[1:-1]
     parent, current = "..", "."
 
     cursor = 0  # current position == cursor
-    res = []
+    pair = []
 
     for dir in dirs:
         if dir == parent:
             cursor -= 1
         elif dir != current:
-            res.append(dir)
             cursor += 1
+            pair.append((cursor, dir))
 
-    return '/'.join(res[:cursor])
+    return pair, cursor
+
+    # res = ''
+    # for n, d in pair:
+    #     if n != cursor:
+    #         res += '/' + d
+    #     else:
+    #         return res
 
 
-given = "/usr/bin/../bin/./scripts/../"  # "/usr/bin"
+given = "/usr/bin/../bin/bin/./scripts/../"  # /usr/bin/bin
 print(standardize(path=given))
