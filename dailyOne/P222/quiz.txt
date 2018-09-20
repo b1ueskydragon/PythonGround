@@ -1,0 +1,6 @@
+Given an absolute pathname that may have . or .. as part of it,
+return the shortest standardized path
+
+e.g)
+"/usr/bin/../bin/./scripts/../"
+return "/usr/bin/"
