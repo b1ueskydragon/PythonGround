@@ -17,3 +17,4 @@ print(standardize(path="/usr/bin/../bin/./scripts/../"))  # /usr/bin/
 print(standardize(path="/usr/bin/../bin/bin/./scripts/../scripts/"))  # /usr/bin/bin/scripts/
 print(standardize(path="/usr/../"))  # /
 print(standardize(path="/usr/../../"))  # /
+print(standardize(path="/usr/../../bin/"))  # /
