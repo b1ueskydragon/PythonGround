@@ -1,4 +1,8 @@
 def find_min(nums):
+    """
+    Do it O(log N) time
+     - Use binary search
+    """
     size = len(nums)
     pivot = size // 2
     head = 0
