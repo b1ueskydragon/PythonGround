@@ -1,24 +1,26 @@
 def find_min(nums):
     """
-    Another edition.
     O(log N)
+    Another edition.
+    Move only a cursor (Not split given nums)
     """
-    # TODO call binary_search
+
+    def binary_search(num, low, high):
+        if low == high:
+            return num[low]  # exit case
+
+        pivot = (low + high) // 2
+        if nums[pivot] > nums[high]:
+            low = pivot + 1
+        else:
+            high = pivot
+
+        return binary_search(nums, low, high)
+
+    return binary_search(nums, 0, len(nums) - 1)
 
 
-def binary_search(arr, low, high):
-    if low == high:
-        return arr[low]
-
-    pivot = (low + high) // 2
-    if arr[pivot] < arr[high]:
-        high = pivot
-    else:
-        low = pivot + 1
-
-    return binary_search(arr, low, high)
-
-# given = [_ for _ in range(1000, 2000)] + [_ for _ in range(400, 402)] + [_ for _ in range(500, 900)]
-# print(find_min(given))
-# given = [_ for _ in range(50, 200)]
-# print(find_min(given))
+given = [_ for _ in range(1000, 2000000)] + [_ for _ in range(400, 402)] + [_ for _ in range(500, 900)]
+print(find_min(given))
+given = [_ for _ in range(50, 200)]
+print(find_min(given))
