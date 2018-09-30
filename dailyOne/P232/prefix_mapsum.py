@@ -1,21 +1,27 @@
 class PrefixMapSum:
     def __init__(self):
         self.map = {}
-        # self.enroll = {} # TODO memoing existing search result
+        self.enroll = {}  # memoing existing search result globally.
 
     def insert(self, key, value):
         self.map[key] = value
 
     def sum(self, prefix):
-        # should be local variables (Do not setting with params)
-        local_res, local_cache = set(), 0
+        if prefix in self.enroll:
+            local_hit = self.enroll[prefix]
+        else:
+            local_hit = set()
+
+        local_cache = 0
 
         for key in self.map.keys():
             if key.startswith(prefix):
-                local_res.add(key)
+                local_hit.add(key)
 
-        for hit in local_res:
+        for hit in local_hit:
             local_cache += self.map[hit]
+
+        self.enroll[prefix] = local_hit
 
         return local_cache
 
@@ -31,3 +37,7 @@ print(mapsum.sum("A"))  # 0
 mapsum.insert("Alex", 1)
 print(mapsum.sum("A"))  # 1
 print(mapsum.sum("col"))  # 5
+mapsum.insert("columnar", 4)
+print(mapsum.sum("col"))  # 6
+
+print(mapsum.map, mapsum.enroll)
