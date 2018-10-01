@@ -11,8 +11,8 @@ C(l,p) idx of elem (k,h)
 
 # TODO with numpy
 def sum(i, h, m, l):
-    for j in range(m + 1):
-        for k in range(l + 1):
+    for j in range(1, m + 1):
+        for k in range(1, l + 1):
             print(i, j, k, h)
 
 
