@@ -68,7 +68,32 @@ def calc2(matrix1, matrix2):
     return res
 
 
+def calc3(matrix1, matrix2):
+    res = []
+    inner = [0 for _ in range(len(matrix1) * len(matrix2[0]))]
+    cnt = 0
+
+    for i, a in enumerate(matrix1):
+        for j, b in enumerate(matrix2):
+            cnt += 1
+            if cnt <= len(matrix2):
+                inner[0] += a[j] * b[0]
+            else:
+                inner[1] += a[j] * b[0]
+
+    res.append([inner[0]])
+    res.append([inner[1]])
+
+    return res
+
+
 AB = calc1(A, B)  # (2 x 2)
 BC = calc2(B, C)  # (3 x 1)
 print(AB)
 print(BC)
+
+AB_C = calc3(AB, C)  # (2 x 3) x (3 x 1)
+A_BC = calc3(A, BC)  # (2 x 2) x (2 x 1)
+
+print(AB_C)
+assert AB_C == A_BC
