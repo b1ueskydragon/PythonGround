@@ -3,16 +3,26 @@ class PrefixMapSum:
         self.map = {}
 
     def insert(self, key, value):
+        """
+        O(1)
+        """
         self.map[key] = value
 
+    # def sum(self, prefix):
+    #     local_hit = set()
+    #
+    #     for key in self.map.keys():
+    #         if key.startswith(prefix):
+    #             local_hit.add(key)
+    #
+    #     return sum([self.map[_] for _ in local_hit])
+
     def sum(self, prefix):
-        local_hit = set()
-
-        for key in self.map.keys():
-            if key.startswith(prefix):
-                local_hit.add(key)
-
-        return sum([self.map[_] for _ in local_hit])
+        """
+        O(N*k)
+          - k is the length of the prefix.
+        """
+        return sum([val for key, val in self.map.items() if key.startswith(prefix)])
 
 
 mapsum = PrefixMapSum()
