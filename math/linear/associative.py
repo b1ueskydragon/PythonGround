@@ -30,6 +30,10 @@ C = [
 ]
 
 
+# A(BC) = (2 x 3) x (3 x 1)
+# (AB)C = (2 x 2) x (2 x 1)
+
+
 def calc1(matrix1, matrix2):
     res = []
     inner = [0 for _ in range(len(matrix1) * len(matrix2[0]))]
@@ -64,5 +68,7 @@ def calc2(matrix1, matrix2):
     return res
 
 
-print(calc1(A, B))
-print(calc2(B, C))
+AB = calc1(A, B)  # (2 x 2)
+BC = calc2(B, C)  # (3 x 1)
+print(AB)
+print(BC)
