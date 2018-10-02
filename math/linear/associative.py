@@ -1,5 +1,3 @@
-import numpy as np
-
 """
 Q: p.08 (10)
 
@@ -10,38 +8,40 @@ B(m,l) idx of elem (j,k)
 C(l,p) idx of elem (k,h)
 """
 
-A = np.array([
+A = [
     [1, 2, 3],
     [4, 5, 6]
-])
+]
 
-B = np.array([
+B = [
     [1, 2],
     [3, 4],
     [5, 6]
-])
+]
 
-C = np.array([
+C = [
     [1, 2, 3]
-])
+]
 
 
-def res(matrix1, matrix2):
-    sum1, sum2, sum3, sum4 = [], [], [], []
+def calc(matrix1, matrix2):
+    res = [0 for _ in range(len(matrix1) * len(matrix2[0]))]
+    pivot = len(res) // 2
+    cnt = 0
 
     for i, a in enumerate(matrix1):
         for j, b in enumerate(matrix2):
-            if len(sum1) < 3:
-                sum1.append(a[j] * b[0])
-                sum2.append(a[j] * b[1])
+            cnt += 1
+            if cnt <= len(matrix2):
+                # TODO loop
+                res[0] += a[j] * b[0]
+                res[1] += a[j] * b[1]
             else:
-                sum3.append(a[j] * b[0])
-                sum4.append(a[j] * b[1])
+                res[2] += a[j] * b[0]
+                res[3] += a[j] * b[1]
 
-    return np.array([
-        [sum(sum1), sum(sum2)],
-        [sum(sum3), sum(sum4)]
-    ])
+    return res  # TODO make not flatted
 
 
-print(res(A, B))
+print(calc(A, B))
+
