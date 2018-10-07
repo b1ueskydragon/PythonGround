@@ -2,11 +2,12 @@
 Using prefix tree (trie) edition
   - k is the length of the prefix.
 """
+from collections import defaultdict
 
 
 class Trie:
     def __init__(self):
-        self.chars = {}
+        self.chars = defaultdict(dict)
         self.total = 0
 
 
@@ -28,19 +29,28 @@ class PrefixMapSum:
             curr = curr.chars.setdefault(char, Trie())  # if char does not exist, return Trie() to default
             curr.total += value
 
-    def sum(self, prefix: str):
+    def sum(self, prefix: str) -> int:
         """
         O(k)
         """
-        return
+        curr = self.root
+        for char in prefix:
+            curr = curr.chars[char]
+        return curr.total if curr else 0
 
 
 mapsum = PrefixMapSum()
 mapsum.insert("columnar", 3)
+print(mapsum.sum("col"))  # 3
 mapsum.insert("column", 2)
-mapsum.insert("col", 9)
 mapsum.insert("cool", 4)
-mapsum.insert("Alex", 1)
+print(mapsum.sum("co"))  # 9
+print(mapsum.sum("col"))  # 5
+print(mapsum.sum("A"))  # 0
+mapsum.insert("Alex", 1)  # TODO 'dict' object has no attribute 'total'
+print(mapsum.sum("A"))  # 1
+print(mapsum.sum("col"))  # 5
 mapsum.insert("columnar", 4)
+print(mapsum.sum("col"))  # 6
 
 print(mapsum.map)
