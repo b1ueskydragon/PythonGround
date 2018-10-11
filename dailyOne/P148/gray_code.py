@@ -12,7 +12,7 @@ def gray_code(bit: int) -> list:
     max_n = 2 ** bit
 
     # make an XOR between k and 1bit right shifted k
-    res = [k ^ (k >> 1) for k in range(max_n)]
+    res = [f'{k ^ (k >> 1):0{bit}b}' for k in range(max_n)]
 
     return res
 
