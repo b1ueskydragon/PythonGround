@@ -36,4 +36,4 @@ print(gray_code(2))
 print(gray_code(3))
 print(gray_code(4))
 
-# TODO Try with XOR
+# TODO Try with shift op
