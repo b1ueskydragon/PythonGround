@@ -8,6 +8,10 @@ e.g) 2 bit
 
 
 def gray_code(bit: int) -> list:
+    """
+    O(2^n) time
+    """
+
     # Maximum digit could be taken
     max_n = 2 ** bit
 
