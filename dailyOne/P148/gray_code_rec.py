@@ -6,6 +6,10 @@ Tip
 
 
 def gray_code(bit: int):
+    """
+    O(2^n)
+    """
+
     # empty handling
     if not bit:
         return []
@@ -21,10 +25,15 @@ def gray_code(bit: int):
     """
 
     prev = gray_code(bit - 1)
-    curr = prev + list(reversed(prev))
+    prev_f = [f'0{k}' for k in prev]
+    curr = prev_f + [f'1{k}' for k in list(reversed(prev))]
 
     return curr
 
 
 print(gray_code(1))
 print(gray_code(2))
+print(gray_code(3))
+print(gray_code(4))
+
+# TODO Try with XOR
