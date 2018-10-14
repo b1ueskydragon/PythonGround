@@ -20,3 +20,5 @@ def gray_code(bit: int) -> list:
 print(gray_code(bit=2))
 print(gray_code(bit=3))
 print(gray_code(bit=4))
+
+# TODO Try memoization
