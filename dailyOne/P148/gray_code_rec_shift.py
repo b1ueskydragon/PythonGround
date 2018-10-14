@@ -24,12 +24,13 @@ def gray_code(bit: int):
       - mirror-reversing and add a 1 to prefix.
     """
 
-    prev = gray_code(bit - 1)
+    cache = gray_code(bit - 1)
 
     # shift left prefix 1 for make a digit, then add value
-    curr = prev + [(1 << (bit - 1)) + k for k in list(reversed(prev))]
+    for k in list(reversed(cache)):
+        cache.append((1 << (bit - 1)) + k)
 
-    return curr
+    return cache
 
 
 print(gray_code(1))
