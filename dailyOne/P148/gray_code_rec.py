@@ -20,8 +20,8 @@ def gray_code(bit: int):
 
     """
     standard case
-      - duplicate prev status at first and add a 0 to prefix.
-      - mirror-reversing and add a 1 to prefix.
+      - Duplicate previous status, then set 0 to most significant bit.
+      - Reverse list like a mirror, then set 1 to most significant bit.
     """
 
     prev = gray_code(bit - 1)
