@@ -3,21 +3,21 @@ Convert base10 to base2
 """
 
 
-def convert2(num):
+def convert2(k):
     """
-    :param num: dividend
+    :param k: dividend
     :return: base2 converted
     """
+    msb = 1 if k else 0  # digit
 
-    cache = []
-    msb = 1  # digit
+    cache = 0  # output
 
-    while num > 0:
-        cache.append(num % 2)
-        num //= 2
-        # msb *= 10
+    while k > 0:
+        cache += msb * (k % 2)
+        k //= 2
+        msb *= 10
 
-    return cache  # TODO reverse
+    return cache
 
 
 num = 9215
