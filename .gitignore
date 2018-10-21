@@ -1,2 +1,3 @@
 .idea/
 solutions/
+*/__pycache__/
