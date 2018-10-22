@@ -1,12 +1,24 @@
 """
 AP 2018 A 3
+
+キー値のビット列を左から1ビットずつ順番に見ていき, キー値の元になった文字列から
+そのビットに対応する文字を, ビットの値が0の場合(左)とビットの値が1の場合(右)とで分けて取り出し
+それぞれの文字を順番に並べて新たな文字列を作成する.
+
+取り出した文字列の中の文字が2種類以上の場合は, その文字列に対応する新たなノードを生成し,
+左(または右)の子ノードにする.
+
+1種類の場合は, 子ノードは生成せず, 処理を終了する.
 """
 
 """
-文字 : 符号 のペア. 
+A pair of (string : code)
 
-C : 01 の場合, 
-C に該当する符号 01 の 0がキー, 1がキーの値 
+If the pair is (C : 01),
+code of string C is 01,
+
+0 is a `key`
+1 is a `value` of a key 
 """
 code_map: dict = {'A': '00', 'C': '01', 'G': '10', 'T': '11'}
 
@@ -72,18 +84,6 @@ class WaveletMatrix:
         self.root = None
 
     def create_node(self, codes):
-        """
-        TODO
-
-        キー値のビット列を左から1ビットずつ順番に見ていき, キー値の元になった文字列から
-        そのビットに対応する文字を, ビットの値が0の場合(左)とビットの値が1の場合(右)とで分けて取り出し
-        それぞれの文字を順番に並べて新たな文字列を作成する.
-
-        取り出した文字列の中の文字が2種類以上の場合は, その文字列に対応する新たなノードを生成し,
-        左(または右)の子ノードにする.
-
-        1種類の場合は, 子ノードは生成せず, 処理を終了する.
-        """
         if not self.root:
             self.root = Node(codes)
         else:
@@ -93,11 +93,39 @@ class WaveletMatrix:
 datum_target = "CTCGAGAGTA"
 datum_codes = convert(datum_target)
 
-tree = WaveletMatrix()
 
-tree.create_node(datum_codes)
+# tree = WaveletMatrix()
+#
+# tree.create_node(datum_codes)
+#
+# print(tree.root.codes)
+# tree.create_node(datum_codes)  # ['01', '11', '01', '10', '00', '10', '00', '10', '11', '00']
+# print(tree.root.left.codes)  # ['01', '01', '00', '00', '00'] == CCAAA
+# print(tree.root.right.codes)  # ['11', '10', '10', '10', '11'] == TGGGT
 
-print(tree.root.codes)
-tree.create_node(datum_codes)  # ['01', '11', '01', '10', '00', '10', '00', '10', '11', '00']
-print(tree.root.left.codes)  # ['01', '01', '00', '00', '00'] == CCAAA
-print(tree.root.right.codes)  # ['11', '10', '10', '10', '11'] == TGGGT
+
+def create_nodes(codes, curr, tree):
+    """
+
+    :param codes: String converted to code.
+    :param curr: current point (a Node).
+    :param tree: this tree.
+    :return: Completed tree.
+    """
+    if not tree.root:
+        """ create a root """
+        tree.create_node(codes)
+        curr = tree.root
+
+    if len(set(codes)) > 1:
+        """ standard case (DFS) """
+        # TODO create_node すること.
+        create_nodes(curr.codes, curr.left, tree)
+        create_nodes(curr.codes, curr.right, tree)
+    else:
+        """ base case (1種類の場合は, 子ノードは生成せず, 処理を終了する) """
+        return tree
+
+
+w_tree = WaveletMatrix()
+create_nodes(datum_codes, w_tree.root, w_tree)
