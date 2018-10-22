@@ -104,28 +104,35 @@ datum_codes = convert(datum_target)
 # print(tree.root.right.codes)  # ['11', '10', '10', '10', '11'] == TGGGT
 
 
-def create_nodes(codes, curr, tree):
+def create_nodes(codes, tree):
     """
+    その都度の最上位ノードが root となる
+    その都度の Node が current point となる
 
     :param codes: String converted to code.
-    :param curr: current point (a Node).
     :param tree: this tree.
     :return: Completed tree.
     """
-    if not tree.root:
-        """ create a root """
-        tree.create_node(codes)
-        curr = tree.root
+
+    tree.create_node(codes)
 
     if len(set(codes)) > 1:
-        """ standard case (DFS) """
-        # TODO create_node すること.
-        create_nodes(curr.codes, curr.left, tree)
-        create_nodes(curr.codes, curr.right, tree)
-    else:
-        """ base case (1種類の場合は, 子ノードは生成せず, 処理を終了する) """
-        return tree
+        """ 
+        standard case 
+        (DFS)
+         """
+        create_nodes(tree.root.left.codes, tree)
+
+    """    
+    base case is NOP
+    (1種類の場合は, 子ノードは生成せず, 処理を終了する)
+    """
+    return tree
 
 
 w_tree = WaveletMatrix()
-create_nodes(datum_codes, w_tree.root, w_tree)
+creature = create_nodes(datum_codes, w_tree)
+
+print(creature.root.codes)
+print(creature.root.left)
+print(creature.root.right)
