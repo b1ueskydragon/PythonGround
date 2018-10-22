@@ -20,6 +20,8 @@ def convert(string):
     return res
 
 
+# TODO revert code to string if needed.
+
 def extract_key(code):
     return ''.join([code[i] for i in range(len(code)) if i % 2 == 0])
 
@@ -42,20 +44,27 @@ class Node:
         self.right = None
 
     def add(self, codes):
+        cache_left, tmp_right = [], []
+
         for code in codes:
             # ビットのキーが0の場合
             if code[0] == '0':
                 if not self.left:
                     self.left = Node(code)
+                    cache_left.append(code)
                 else:
-                    self.left.codes += code
+                    cache_left.append(code)
 
             # ビットのキーが1の場合
             else:
                 if not self.right:
                     self.right = Node(code)
+                    tmp_right.append(code)
                 else:
-                    self.right.codes += code
+                    tmp_right.append(code)
+
+        self.left = Node(cache_left)
+        self.right = Node(tmp_right)
 
 
 class WaveletMatrix:
@@ -83,15 +92,12 @@ class WaveletMatrix:
 
 datum_target = "CTCGAGAGTA"
 datum_codes = convert(datum_target)
-print(datum_codes)
 
 tree = WaveletMatrix()
 
 tree.create_node(datum_codes)
+
 print(tree.root.codes)
-
-tree.create_node(datum_codes)
-print(tree.root.left.codes)
-print(tree.root.right.codes)
-
-
+tree.create_node(datum_codes)  # ['01', '11', '01', '10', '00', '10', '00', '10', '11', '00']
+print(tree.root.left.codes)  # ['01', '01', '00', '00', '00'] == CCAAA
+print(tree.root.right.codes)  # ['11', '10', '10', '10', '11'] == TGGGT
