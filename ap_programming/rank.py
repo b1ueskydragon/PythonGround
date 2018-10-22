@@ -2,11 +2,6 @@
 AP 2018 A 3
 """
 
-"""
-文字 : 符号 のペア. C : 01 の場合, 0がキー, 1がキーの値
-"""
-codes: dict = {'A': '00', 'C': '01', 'G': '10', 'T': '11'}
-
 
 def rank(root, m, r):
     """
@@ -42,35 +37,3 @@ def rank(root, m, r):
         d += 1
 
     return n
-
-
-def convert(string):
-    """
-    Convert string to code.
-    """
-    res = []
-    for c in string:
-        if c in codes:
-            res.append(codes[c])
-    return ''.join(res)
-
-
-target = "CTCGAGAGTA"
-
-
-# root = convert("CTCGAGAGTA")
-# left1 = convert("CCAAA")
-# right1 = convert("TGGGT")
-# left21 = convert("AAA")
-# right22 = convert("CC")
-# left23 = convert("GGG")
-# right24 = convert("TT")
-
-
-class Node:
-    def __init__(self, key=None):
-        self.key = key
-        self.left = None
-        self.right = None
-
-# TODO Implement Wavelet Matrix(Tree)
