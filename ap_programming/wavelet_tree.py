@@ -2,17 +2,22 @@
 AP 2018 A 3
 """
 
-""" 文字 : 符号 のペア. C : 01 の場合, 0がキー, 1がキーの値 """
-codes: dict = {'A': '00', 'C': '01', 'G': '10', 'T': '11'}
+"""
+文字 : 符号 のペア. 
+
+C : 01 の場合, 
+C に該当する符号 01 の 0がキー, 1がキーの値 
+"""
+code_map: dict = {'A': '00', 'C': '01', 'G': '10', 'T': '11'}
 
 
 def convert(string):
     """ Convert string to code. """
     res = []
     for c in string:
-        if c in codes:
-            res.append(codes[c])
-    return ''.join(res)
+        if c in code_map:
+            res.append(code_map[c])
+    return res
 
 
 def extract_key(code):
@@ -31,30 +36,33 @@ image>
 
 
 class Node:
-    def __init__(self, key=None):
-        self.key = int(key)
+    def __init__(self, codes=None):
+        self.codes = codes
         self.left = None
         self.right = None
 
-    def add(self, key):
-        key = int(key)
-        if key <= self.key:
-            if not self.left:
-                self.left = Node(key)
+    def add(self, codes):
+        for code in codes:
+            # ビットのキーが0の場合
+            if code[0] == '0':
+                if not self.left:
+                    self.left = Node(code)
+                else:
+                    self.left.codes += code
+
+            # ビットのキーが1の場合
             else:
-                self.left.add(key)
-        else:
-            if not self.right:
-                self.right = Node(key)
-            else:
-                self.right.add(key)
+                if not self.right:
+                    self.right = Node(code)
+                else:
+                    self.right.codes += code
 
 
 class WaveletMatrix:
     def __init__(self):
         self.root = None
 
-    def add(self, key_string):
+    def create_node(self, codes):
         """
         TODO
 
@@ -67,20 +75,23 @@ class WaveletMatrix:
 
         1種類の場合は, 子ノードは生成せず, 処理を終了する.
         """
-        for key in key_string:
-            if not self.root:
-                self.root = Node(key_string)
-            else:
-                self.root.add(key)
+        if not self.root:
+            self.root = Node(codes)
+        else:
+            self.root.add(codes)
 
 
-target = "CTCGAGAGTA"
-code = convert(target)
-key_string = extract_key(code)
-print(code)
-print(key_string)
+datum_target = "CTCGAGAGTA"
+datum_codes = convert(datum_target)
+print(datum_codes)
 
 tree = WaveletMatrix()
-tree.add(key_string)
 
-tree  # for Debug
+tree.create_node(datum_codes)
+print(tree.root.codes)
+
+tree.create_node(datum_codes)
+print(tree.root.left.codes)
+print(tree.root.right.codes)
+
+
