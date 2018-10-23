@@ -2,6 +2,8 @@
 AP 2018 A 3
 """
 
+DEPTH = 2  # 文字の符号化に必要な最初ビット数. 今回は2bit.
+
 
 def rank(root, m, r):
     """
@@ -20,9 +22,9 @@ def rank(root, m, r):
     while nodep:
         count = 0
 
-        x = 1 << 1  # 桁増やし
+        x = 1 << (DEPTH - d)  # 桁増やし
         x = x & r
-        b = x >> 1  # 桁減らし (キーだけ残す)
+        b = x >> (DEPTH - d)  # 桁減らし (キーだけ残す)
 
         for i in range(1, n + 1):  # range[1, n]
             if b == nodep.key[i]:
@@ -33,7 +35,7 @@ def rank(root, m, r):
         else:
             nodep = nodep.right
 
-        n -= 1
+        n = count
         d += 1
 
     return n
