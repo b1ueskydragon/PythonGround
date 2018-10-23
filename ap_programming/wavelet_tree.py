@@ -32,7 +32,13 @@ def convert(string):
     return res
 
 
-# TODO revert code to string if needed.
+def revert(codes: list, pairs: dict = code_map) -> dict:
+    """
+    revert(['01', '01', '00', '00', '00']) == 'CCAAA'
+    """
+    revert_map = {v: k for k, v in pairs.items()}
+    return ''.join([revert_map[code] for code in codes if code in revert_map])
+
 
 def extract_key(code):
     return ''.join([code[i] for i in range(len(code)) if i % 2 == 0])
