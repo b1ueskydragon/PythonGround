@@ -1,3 +1,5 @@
+import math
+
 """
 AP 2018 A 3
 
@@ -103,12 +105,16 @@ class WaveletMatrix:
         self.root = None
         self.depth = depth
 
-    def create_node(self, codes):
+    def _create_node(self, codes):
         for i in range(self.depth):
             if not self.root:
                 self.root = Node(codes, i)
             else:
                 self.root.add(i)
+
+    def create_nodes(self, codes):
+        for i in range(self.depth):
+            self._create_node(codes)
 
 
 def printr(codes):
@@ -126,12 +132,11 @@ right ['11', '10', '10', '10', '11'] == TGGGT
 
 datum_target = "CTCGAGAGTA"
 datum_codes = convert(datum_target)
-DEPTH = 2
+DEPTH = int(math.log2(len(code_map)))
 
-tree = WaveletMatrix(DEPTH)
+tree = WaveletMatrix(DEPTH)  # ビット列の長さ == log2文字の種類
 
-tree.create_node(datum_codes)
-tree.create_node(datum_codes)
+tree.create_nodes(datum_codes)
 
 printr(tree.root.codes)
 
