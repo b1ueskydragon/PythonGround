@@ -56,33 +56,38 @@ image>
 
 
 class Node:
-    def __init__(self, codes=None):
+    def __init__(self, codes):
+        # for create a each node
         self.codes = codes
+        self.cache_left = []
+        self.cache_right = []
+
         self.left = None
         self.right = None
 
-    def add(self, codes):
-        cache_left, tmp_right = [], []
+        self._concat(codes)
 
+    def _concat(self, codes):
         for code in codes:
             # ビットのキーが0の場合
             if code[0] == '0':
-                if not self.left:
-                    self.left = Node(code)
-                    cache_left.append(code)
-                else:
-                    cache_left.append(code)
-
+                self.cache_left.append(code)
             # ビットのキーが1の場合
             else:
-                if not self.right:
-                    self.right = Node(code)
-                    tmp_right.append(code)
-                else:
-                    tmp_right.append(code)
+                self.cache_right.append(code)
 
-        self.left = Node(cache_left)
-        self.right = Node(tmp_right)
+    def add(self):
+        if self.cache_left:
+            if self.left:
+                self.left.add()
+            else:
+                self.left = Node(self.cache_left)
+
+        if self.cache_right:
+            if self.right:
+                self.right.add()
+            else:
+                self.right = Node(self.cache_right)
 
 
 class WaveletMatrix:
@@ -93,52 +98,30 @@ class WaveletMatrix:
         if not self.root:
             self.root = Node(codes)
         else:
-            self.root.add(codes)
+            self.root.add()
 
+
+"""
+e.g.)
+
+root ['01', '11', '01', '10', '00', '10', '00', '10', '11', '00']
+
+left ['01', '01', '00', '00', '00'] == CCAAA
+right ['11', '10', '10', '10', '11'] == TGGGT
+"""
 
 datum_target = "CTCGAGAGTA"
 datum_codes = convert(datum_target)
 
+tree = WaveletMatrix()
 
-# tree = WaveletMatrix()
-#
-# tree.create_node(datum_codes)
-#
-# print(tree.root.codes)
-# tree.create_node(datum_codes)  # ['01', '11', '01', '10', '00', '10', '00', '10', '11', '00']
-# print(tree.root.left.codes)  # ['01', '01', '00', '00', '00'] == CCAAA
-# print(tree.root.right.codes)  # ['11', '10', '10', '10', '11'] == TGGGT
+tree.create_node(datum_codes)
+print(tree.root.codes)
 
+tree.create_node(datum_codes)
+print(tree.root.left.codes)
+print(tree.root.right.codes)
 
-def create_nodes(codes, tree):
-    """
-    その都度の最上位ノードが root となる
-    その都度の Node が current point となる
-
-    :param codes: String converted to code.
-    :param tree: this tree.
-    :return: Completed tree.
-    """
-
-    tree.create_node(codes)
-
-    if len(set(codes)) > 1:
-        """ 
-        standard case 
-        (DFS)
-         """
-        create_nodes(tree.root.left.codes, tree)
-
-    """    
-    base case is NOP
-    (1種類の場合は, 子ノードは生成せず, 処理を終了する)
-    """
-    return tree
-
-
-w_tree = WaveletMatrix()
-creature = create_nodes(datum_codes, w_tree)
-
-print(creature.root.codes)
-print(creature.root.left)
-print(creature.root.right)
+# ここ?で右に1シフトして, 新たなキーを作る
+tree.create_node(['10', '10', '00', '00', '00'])
+print(tree.root.left.left)
