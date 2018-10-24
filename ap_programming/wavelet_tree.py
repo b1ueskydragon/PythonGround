@@ -32,7 +32,7 @@ def convert(string):
     return res
 
 
-def revert(codes: list, pairs: dict = code_map) -> dict:
+def revert(codes: list, pairs: dict = code_map):
     """
     revert(['01', '01', '00', '00', '00']) == 'CCAAA'
     """
@@ -40,8 +40,8 @@ def revert(codes: list, pairs: dict = code_map) -> dict:
     return ''.join([revert_map[code] for code in codes if code in revert_map])
 
 
-def extract_key(code):
-    return ''.join([code[i] for i in range(len(code)) if i % 2 == 0])
+# def extract_key(code):
+#     return ''.join([code[i] for i in range(len(code)) if i % 2 == 0])
 
 
 """
@@ -56,7 +56,7 @@ image>
 
 
 class Node:
-    def __init__(self, codes):
+    def __init__(self, codes, i):
         # for create a each node
         self.codes = codes
         self.cache_left = []
@@ -65,40 +65,54 @@ class Node:
         self.left = None
         self.right = None
 
-        self._concat(codes)
+        self._concat(codes, i)
 
-    def _concat(self, codes):
+    def _concat(self, codes, i):
+        """
+        ノードの深さに応じて決まるビット一のビットの値を取り出し,
+        文字の並びと同じ順番で並べてビット列として構成したものを
+        キー値としてノードに登録する.
+
+        :param codes: ビット列
+        :param i: キーとなる文字の index
+        """
         for code in codes:
             # ビットのキーが0の場合
-            if code[0] == '0':
+            if code[i] == '0':
                 self.cache_left.append(code)
             # ビットのキーが1の場合
             else:
                 self.cache_right.append(code)
 
-    def add(self):
+    def add(self, i):
         if self.cache_left:
             if self.left:
-                self.left.add()
+                self.left.add(i)
             else:
-                self.left = Node(self.cache_left)
+                self.left = Node(self.cache_left, i)
 
         if self.cache_right:
             if self.right:
-                self.right.add()
+                self.right.add(i)
             else:
-                self.right = Node(self.cache_right)
+                self.right = Node(self.cache_right, i)
 
 
 class WaveletMatrix:
-    def __init__(self):
+    def __init__(self, depth):
         self.root = None
+        self.depth = depth
 
     def create_node(self, codes):
-        if not self.root:
-            self.root = Node(codes)
-        else:
-            self.root.add()
+        for i in range(self.depth):
+            if not self.root:
+                self.root = Node(codes, i)
+            else:
+                self.root.add(i)
+
+
+def printr(codes):
+    print(revert(codes))
 
 
 """
@@ -112,16 +126,20 @@ right ['11', '10', '10', '10', '11'] == TGGGT
 
 datum_target = "CTCGAGAGTA"
 datum_codes = convert(datum_target)
+DEPTH = 2
 
-tree = WaveletMatrix()
-
-tree.create_node(datum_codes)
-print(tree.root.codes)
+tree = WaveletMatrix(DEPTH)
 
 tree.create_node(datum_codes)
-print(tree.root.left.codes)
-print(tree.root.right.codes)
+tree.create_node(datum_codes)
 
-# ここ?で右に1シフトして, 新たなキーを作る
-tree.create_node(['10', '10', '00', '00', '00'])
-print(tree.root.left.left)
+printr(tree.root.codes)
+
+printr(tree.root.left.codes)
+printr(tree.root.right.codes)
+
+printr(tree.root.left.left.codes)
+printr(tree.root.left.right.codes)
+
+printr(tree.root.right.left.codes)
+printr(tree.root.right.right.codes)
