@@ -132,7 +132,7 @@ right ['11', '10', '10', '10', '11'] == TGGGT
 
 datum_target = "CTWCGAGAGTAXYZ"
 datum_codes = convert(datum_target)
-DEPTH = int(math.log2(len(code_map)))
+DEPTH = int(math.log2(len(code_map)))  # TODO len(code_map) or len(set(datum_target))
 
 tree = WaveletMatrix(DEPTH)  # ビット列の長さ == log2文字の種類
 
