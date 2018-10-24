@@ -22,7 +22,7 @@ code of string C is 01,
 0 is a `key`
 1 is a `value` of a key 
 """
-code_map: dict = {'A': '00', 'C': '01', 'G': '10', 'T': '11'}
+code_map: dict = {'A': '000', 'C': '001', 'G': '010', 'T': '011', 'X': '100', 'Y': '101', 'Z': '110', 'W': '111'}
 
 
 def convert(string):
@@ -130,7 +130,7 @@ left ['01', '01', '00', '00', '00'] == CCAAA
 right ['11', '10', '10', '10', '11'] == TGGGT
 """
 
-datum_target = "CTCGAGAGTA"
+datum_target = "CTWCGAGAGTAXYZ"
 datum_codes = convert(datum_target)
 DEPTH = int(math.log2(len(code_map)))
 
@@ -138,7 +138,7 @@ tree = WaveletMatrix(DEPTH)  # ビット列の長さ == log2文字の種類
 
 tree.create_nodes(datum_codes)
 
-printr(tree.root.codes)
+printr(tree.root.codes)  # 根は深さ0
 
 printr(tree.root.left.codes)
 printr(tree.root.right.codes)
@@ -146,5 +146,17 @@ printr(tree.root.right.codes)
 printr(tree.root.left.left.codes)
 printr(tree.root.left.right.codes)
 
+printr(tree.root.left.left.left.codes)
+printr(tree.root.left.left.right.codes)
+
+printr(tree.root.left.right.left.codes)
+printr(tree.root.left.right.right.codes)
+
 printr(tree.root.right.left.codes)
 printr(tree.root.right.right.codes)
+
+printr(tree.root.right.left.left.codes)
+printr(tree.root.right.left.right.codes)
+
+printr(tree.root.right.right.left.codes)
+printr(tree.root.right.right.right.codes)
