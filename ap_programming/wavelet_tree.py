@@ -138,6 +138,8 @@ tree = WaveletMatrix(DEPTH)  # ビット列の長さ == log2文字の種類
 
 tree.create_nodes(datum_codes)
 
+# TODO Make a function to draw a whole tree dynamically.
+
 printr(tree.root.codes)  # 根は深さ0
 
 printr(tree.root.left.codes)
