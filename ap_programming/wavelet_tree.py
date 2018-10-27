@@ -117,10 +117,6 @@ class WaveletMatrix:
             self._create_node(codes)
 
 
-def printr(codes):
-    print(revert(codes))
-
-
 """
 e.g.)
 
@@ -138,27 +134,56 @@ tree = WaveletMatrix(DEPTH)  # ビット列の長さ == log2文字の種類
 
 tree.create_nodes(datum_codes)
 
-# TODO Make a function to draw a whole tree dynamically.
+"""
+CTWCGAGAGTAXYZ
+CTCGAGAGTA
+WXYZ
+CCAAA
+TGGGT
+AAA
+CC
+GGG
+TT
+XY
+WZ
+X
+Y
+Z
+W
+"""
 
-printr(tree.root.codes)  # 根は深さ0
 
-printr(tree.root.left.codes)
-printr(tree.root.right.codes)
+def print_tree(node: Node, side='root', stage=0):
+    if node and stage <= DEPTH:
+        print(revert(node.codes), side, stage)
+        print_tree(node.left, 'left', stage + 1)  # `if node.left` is redundant
+        print_tree(node.right, 'right', stage + 1)  # `if node.right` is redundant
 
-printr(tree.root.left.left.codes)
-printr(tree.root.left.right.codes)
 
-printr(tree.root.left.left.left.codes)
-printr(tree.root.left.left.right.codes)
+print_tree(tree.root)
 
-printr(tree.root.left.right.left.codes)
-printr(tree.root.left.right.right.codes)
+# def printr(codes):
+#     print(revert(codes))
 
-printr(tree.root.right.left.codes)
-printr(tree.root.right.right.codes)
-
-printr(tree.root.right.left.left.codes)
-printr(tree.root.right.left.right.codes)
-
-printr(tree.root.right.right.left.codes)
-printr(tree.root.right.right.right.codes)
+# printr(tree.root.codes)  # 根は深さ0
+#
+# printr(tree.root.left.codes)
+# printr(tree.root.right.codes)
+#
+# printr(tree.root.left.left.codes)
+# printr(tree.root.left.right.codes)
+#
+# printr(tree.root.left.left.left.codes)
+# printr(tree.root.left.left.right.codes)
+#
+# printr(tree.root.left.right.left.codes)
+# printr(tree.root.left.right.right.codes)
+#
+# printr(tree.root.right.left.codes)
+# printr(tree.root.right.right.codes)
+#
+# printr(tree.root.right.left.left.codes)
+# printr(tree.root.right.left.right.codes)
+#
+# printr(tree.root.right.right.left.codes)
+# printr(tree.root.right.right.right.codes)
