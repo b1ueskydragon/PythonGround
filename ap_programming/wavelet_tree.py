@@ -135,28 +135,44 @@ tree = WaveletMatrix(DEPTH)  # ビット列の長さ == log2文字の種類
 tree.create_nodes(datum_codes)
 
 
-# TODO: Improvement. Try: caching side + stage
-# TODO: Replace to BFS
-def print_tree(node: Node, side='root', stage=0):
-    """ DFS """
+# TODO: 無駄な処理は削る
+def cache_node(node: Node, side='root', stage=0, cache=[]):
+    """ DFS (preprocessing) """
     if node and stage <= DEPTH:
-        print(revert(node.codes), side, stage)
-        print_tree(node.left, 'left', stage + 1)  # `if node.left` is redundant
-        print_tree(node.right, 'right', stage + 1)  # `if node.right` is redundant
+        cache.append((revert(node.codes), side, stage))
+        cache_node(node.left, 'left', stage + 1)  # `if node.left` is redundant
+        cache_node(node.right, 'right', stage + 1)  # `if node.right` is redundant
+    return cache
 
 
-print_tree(tree.root)
+# TODO: Refactor, Improvement.
+def print_tree(nodes=cache_node(tree.root), curr=0, g_queue=[]):
+    """
+    BFS-like
+
+    :param nodes: cached nodes
+    :param curr: current stage
+    :param g_queue: global queue
+    """
+
+    size = len(datum_target) // 2
+
+    while curr <= DEPTH:
+        l_queue, b_queue = [], []  # local queue, local branch queue
+        for node in nodes:
+            codes, side, stage = node
+            if stage == curr:
+                l_queue.append(" " * (size - stage))  # helping print clearly
+                l_queue.append(codes)
+                l_queue.append(" " * (-stage))  # helping print clearly
+                b_queue.append(f'{" " * (size - stage)}/{" " * (size - stage)}\\')
+        g_queue.append(l_queue)
+        if curr < DEPTH:
+            g_queue.append(b_queue)
+        curr += 1
+
+    for _ in g_queue:
+        print(''.join(_))
 
 
-# Print only a left side with DFS.
-# def print_tree(node: Node, stage=0):
-#     """ DFS """
-#     if node and stage <= DEPTH:
-#         curr = revert(node.codes)
-#         print(curr)
-#         if stage < DEPTH:
-#             print('/', ' ' * (len(curr) - 3), '\\')
-#         print_tree(node.left, stage + 1)
-#
-#
-# print_tree(tree.root)
+print_tree()
