@@ -136,6 +136,7 @@ tree.create_nodes(datum_codes)
 
 
 # TODO: Improvement. Try: caching side + stage
+# TODO: Replace to BFS
 def print_tree(node: Node, side='root', stage=0):
     """ DFS """
     if node and stage <= DEPTH:
@@ -145,3 +146,17 @@ def print_tree(node: Node, side='root', stage=0):
 
 
 print_tree(tree.root)
+
+
+# Print only a left side with DFS.
+# def print_tree(node: Node, stage=0):
+#     """ DFS """
+#     if node and stage <= DEPTH:
+#         curr = revert(node.codes)
+#         print(curr)
+#         if stage < DEPTH:
+#             print('/', ' ' * (len(curr) - 3), '\\')
+#         print_tree(node.left, stage + 1)
+#
+#
+# print_tree(tree.root)
