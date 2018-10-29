@@ -22,3 +22,13 @@ def convert2(k):
 
 num = 9215
 print(convert2(num))  # 10001111111111
+
+num = 2147483647
+print(convert2(num))
+
+num = 0xffffffff
+print(convert2(num))
+
+byte = 5
+num = (2 ** (byte * 8)) >> 8
+print(convert2(num))
