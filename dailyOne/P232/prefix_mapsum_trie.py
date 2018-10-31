@@ -39,28 +39,12 @@ class PrefixMapSum:
         return curr.total if curr else 0
 
 
-'''
-Case : 
-    Rarely be inserting new words, 
-    and need sum retrieval to be very efficient.
-'''
+# words example from https://en.wikipedia.org/wiki/Trie
 mapsum = PrefixMapSum()
-mapsum.insert("columnar", 3)
-print(mapsum.sum("col"))  # 3
-mapsum.insert("column", 2)
-mapsum.insert("cool", 4)
-print(mapsum.sum("co"))  # 9
-print(mapsum.sum("col"))  # 5
-print(mapsum.sum("A"))  # 0
-
-'''
-Trouble :
-    if new word comes, 'dict' object has no attribute 'total'
-'''
-# mapsum.insert("Alex", 1)
-# print(mapsum.sum("A"))  # 1
-# print(mapsum.sum("col"))  # 5
-# mapsum.insert("columnar", 4)
-# print(mapsum.sum("col"))  # 6
-
-print(mapsum.map)
+mapsum.insert("A", 15)
+mapsum.insert("to", 7)
+mapsum.insert("tea", 3)
+mapsum.insert("ted", 4)
+mapsum.insert("ten", 12)
+mapsum.insert("i", 11)
+mapsum.insert("in", 5)
