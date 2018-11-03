@@ -8,8 +8,8 @@ Trie should be
 
               ●
          /         \
-        /           \
-      0/             \1
+       0/           \1
+       /             \
      ("0")           ●
       \1            0/
        ●          ("10")
@@ -51,10 +51,34 @@ def insert(root: Node, word: str):
     node.word_finished = True  # Mark end
 
 
-# TODO find prefix
+def find_prefix(root: Node, prefix: str):
+    # TODO debug
+    node = root
+
+    if not root.children:
+        return False
+
+    for char in prefix:
+        char_not_found = True
+        for child in node.children:
+            if child.char == char:
+                char_not_found = False
+                node = child
+                break
+
+        if char_not_found:
+            return False
+
+    return True, node.appeared_counter
+
 
 my_trie = Node()
 insert(my_trie, "1011")
 insert(my_trie, "10")
 insert(my_trie, "011")
 insert(my_trie, "100")
+
+print(find_prefix(my_trie, '0'))
+print(find_prefix(my_trie, '1011'))
+print(find_prefix(my_trie, '1'))
+print(find_prefix(my_trie, '1001'))
