@@ -34,16 +34,15 @@ class Node:
 
 
 def insert(root: Node, word: str):
+    # TODO debug
     node = root
     for char in word:
-        found = False
         for child in node.children:
             if child.char == char:
                 child.appeared_counter += 1
                 node = child
-                found = True
                 break
-        if not found:
+        else:  # child was not found in the present node(child).
             new_child = Node(char)
             node.children.append(new_child)
             node = new_child
@@ -56,20 +55,17 @@ def find_prefix(root: Node, prefix: str):
     node = root
 
     if not root.children:
-        return False
+        return 0
 
     for char in prefix:
-        char_not_found = True
         for child in node.children:
             if child.char == char:
-                char_not_found = False
                 node = child
                 break
+        else:  # return anyway if char was not found
+            return 0
 
-        if char_not_found:
-            return False
-
-    return True, node.appeared_counter
+    return node.appeared_counter
 
 
 my_trie = Node()
@@ -82,3 +78,7 @@ print(find_prefix(my_trie, '0'))
 print(find_prefix(my_trie, '1011'))
 print(find_prefix(my_trie, '1'))
 print(find_prefix(my_trie, '1001'))
+print(find_prefix(my_trie, '100'))
+print(find_prefix(my_trie, '1'))
+print(find_prefix(my_trie, '11'))
+print(find_prefix(my_trie, '011'))
