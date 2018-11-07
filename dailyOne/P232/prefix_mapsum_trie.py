@@ -40,6 +40,7 @@ class PrefixMapSum:
 
 
 # words example from https://en.wikipedia.org/wiki/Trie
+# retrieval speed is depends on `length of a target key` regardless of the total size of trie.
 mapsum = PrefixMapSum()
 mapsum.insert("A", 15)
 mapsum.insert("to", 7)
