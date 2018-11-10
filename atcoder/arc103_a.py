@@ -1,13 +1,15 @@
 # https://beta.atcoder.jp/contests/arc103/tasks/arc103_a
 
 """
-improvement space - more less variables
-            time  - use collections, avoid using list length or for-loop
+improvement space - more less variables (doesn't make any temporary lists)
+            time  - use collections,
+                    avoid using list length(even if it is O(1)) or for-loop
 """
 
 from collections import Counter
 
 
+# noinspection PyDefaultArgument
 def solve(size=int(input()), ary=list(map(int, input().split()))):
     even, odd = Counter(ary[::2]), Counter(ary[1::2])
     """ 
