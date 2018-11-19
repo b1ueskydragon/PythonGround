@@ -1,6 +1,6 @@
-def solve(ary):
-    # TODO: input with pow
-    ary = [_ ** 2 for _ in ary]
+def solve():
+    ary = sorted([int(input()) ** 2 for _ in range(int(input()))])
+    print(ary)
 
     for i, a in enumerate(ary, start=1):
         for b in ary[i:]:
@@ -10,5 +10,5 @@ def solve(ary):
     return False
 
 
-given = [1, 2, 3, 4, 5, 6]  # sorted
-print(solve(given))
+# given = [1, 2, 3, 4, 5, 6]  # sorted
+print(solve())
