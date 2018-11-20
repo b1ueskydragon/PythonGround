@@ -30,15 +30,15 @@ def skip_table(pattern):
     """
     matcher = [0] * len(pattern)
 
-    cnt = 0
+    pos = 0  # starting index of pattern
     for i in range(1, len(pattern)):
-        if pattern[i] == pattern[cnt]:
-            cnt += 1
-            matcher[i] = cnt
+        if pattern[i] == pattern[pos]:
+            pos += 1
+            matcher[i] = pos
 
         else:
-            while cnt != 0:
-                cnt = matcher[cnt - 1]
+            while pos != 0:
+                pos = matcher[pos - 1]
             matcher[i] = 0
 
     return matcher
