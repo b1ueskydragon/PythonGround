@@ -45,3 +45,19 @@ def skip_table(pattern):
 
 
 print(skip_table(pattern="ABABC"))
+
+
+def search(string, pattern):
+    matcher = skip_table(pattern)
+
+    s, p = 0, 0  # cursor of string, pattern
+    while s < len(string):
+        if string[s] == pattern[p]:
+            s += 1
+            p += 1
+
+            if p == len(pattern):
+                return s - p
+
+        else:
+            p = matcher[p]  # restart position
