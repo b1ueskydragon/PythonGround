@@ -26,7 +26,7 @@ A B A B C
 def skip_table(pattern):
     """
     O(k)
-      - k is the length of the pattern
+      - k is the length of the pattern.
     """
     matcher = [0] * len(pattern)
 
@@ -48,16 +48,28 @@ print(skip_table(pattern="ABABC"))
 
 
 def search(string, pattern):
+    """
+    O(N)
+      - N is the length of the string.
+      - Make a huge skip range as much as possible.
+        (with a partial match table)
+    """
     matcher = skip_table(pattern)
 
-    s, p = 0, 0  # cursor of string, pattern
-    while s < len(string):
-        if string[s] == pattern[p]:
-            s += 1
-            p += 1
+    n, i = 0, 0  # cursor of string, pattern
+    while n < len(string):
+        if string[n] == pattern[i]:  # matched, go forward
+            n += 1
+            i += 1
 
-            if p == len(pattern):
-                return s - p
+            if i == len(pattern):  # pattern matched
+                return n - i
 
-        else:
-            p = matcher[p]  # restart position
+        else:  # not matched, set restart position
+            if i > 0:
+                i = matcher[i - 1]
+            else:  # head of string != head of pattern
+                n += 1
+
+
+print(search("ABABABABC", "ABABC"))
