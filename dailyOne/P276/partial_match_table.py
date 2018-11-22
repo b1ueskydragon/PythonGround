@@ -28,7 +28,7 @@ def skip_table(pattern):
     O(k)
       - k is the length of the pattern.
     """
-    matcher = [0] * len(pattern)
+    matcher = [0] * len(pattern)  # list of restart position of each index in string
 
     pos = 0  # starting index of pattern
     for i in range(1, len(pattern)):
