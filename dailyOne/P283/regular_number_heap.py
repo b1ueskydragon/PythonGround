@@ -29,7 +29,7 @@ def solve(n):
     :return:
     """
     nums = [1]
-    prev = 0
+    prev = 0  # the number that yielded last
     count = 0
 
     while count < n:  # until yielding N nums
