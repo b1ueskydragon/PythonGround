@@ -9,6 +9,13 @@ def heapify(ary):
         _heapify(ary, i)
 
 
+def heappop(heap):
+    """
+    Pop the smallest item off the heap.
+    """
+    # TODO
+
+
 def _heapify(ary, i):
     """
     array to heap
