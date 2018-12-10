@@ -5,20 +5,18 @@
 
 
 def heapify(ary):
+    """
+    array to heap, in-place.
+
+    O(N) time
+    """
     for i in reversed(range(len(ary) // 2)):
         _heapify(ary, i)
 
 
-def heappop(heap):
-    """
-    Pop the smallest item off the heap.
-    """
-    # TODO
-
-
 def _heapify(ary, i):
     """
-    array to heap
+    helper method of heapify. recursive.
 
     :param ary: array
     :param i: index
@@ -41,6 +39,19 @@ def _heapify(ary, i):
         _heapify(ary, largest)
 
 
+def heappop_max(heap):
+    """
+    Pop the largest item off the heap and re-heapify.
+    """
+    last = heap.pop()
+    if heap:
+        head = heap[0]
+        heap[0] = last
+        _heapify(heap, 0)  # start from root-position
+        return head
+    return last
+
+
 ary = [8, 11, 9, 2, 10, 16]
 heapify(ary)
 
@@ -51,3 +62,7 @@ heapify(ary)
 
 """
 print(ary)  # [16, 11, 9, 2, 10, 8]
+print(heappop_max(ary))  # 16
+print(ary)  # [11, 10, 9, 2, 8]
+print(heappop_max(ary))  # 11
+print(ary)  # [10, 8, 9, 2]
