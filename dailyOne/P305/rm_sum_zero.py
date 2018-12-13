@@ -6,30 +6,30 @@ TODO:
 
 
 def solve(lst):
-    # jump to next head.
+    def _solve(lst):
+        # jump to next head.
+        start = 0
 
-    start = 0
-    res = []
-    while start < len(lst):
-        curr = start
-        acc = 0
-        skip = False
+        while start < len(lst):
+            curr = start
+            acc = 0
+            skip = False
 
-        while curr < len(lst):
-            acc += lst[curr]
-            if acc == 0:
-                start = curr
-                skip = True
-                break
+            while curr < len(lst):
+                acc += lst[curr]
+                if acc == 0:
+                    start = curr
+                    skip = True
+                    break
 
-            curr += 1
+                curr += 1
 
-        if not skip:
-            res.append(lst[start])  # printout
+            if not skip:
+                yield lst[start]
 
-        start += 1
+            start += 1
 
-    return res
+    return list(_solve(lst))
 
 
 # linked list
