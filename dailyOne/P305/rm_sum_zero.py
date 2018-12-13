@@ -1,32 +1,35 @@
 """
 TODO:
   Replace to LinkedList and a Node
-  that has value itself and, prev and next pointers.
+  that has value itself and, next pointers.
 """
 
 
 def solve(lst):
-    # jump to next head. not necessary remove elements.
+    # jump to next head.
 
-    if not lst:
-        return []
+    start = 0
+    res = []
+    while start < len(lst):
+        curr = start
+        acc = 0
+        skip = False
 
-    acc = 0
-    head = 0
-    i = head + 1
+        while curr < len(lst):
+            acc += lst[curr]
+            if acc == 0:
+                start = curr
+                skip = True
+                break
 
-    if lst[head] == 0:
-        return solve(lst[head + 1:])
+            curr += 1
 
-    while i < len(lst):
-        acc += lst[i]
-        i += 1
-        if acc == 0:
-            return solve([lst[head]] + lst[i:])
-        if acc + lst[head] == 0:
-            return solve(lst[i:])
+        if not skip:
+            res.append(lst[start])  # printout
 
-    return lst
+        start += 1
+
+    return res
 
 
 # linked list
@@ -49,4 +52,4 @@ given04 = [0, 1, -1]
 print(solve(given04))  # []
 
 given05 = [1, 2, 3, 4, -3, -1]
-print(solve(given05))  # bug
+print(solve(given05))  # 1, 2, 3
