@@ -1,22 +1,31 @@
-"""
-- A node that has a child(ren), is same or larger than it's child(ren).
-- Add a child, left to right.
-"""
-
-
-def heapify(ary):
+def heappop_max(heap):
     """
-    array to heap, in-place.
+    Pop the largest item off the heap and re-heapify.
+    """
+    last = heap.pop()
+    if heap:
+        head = heap[0]
+        heap[0] = last
+        heapify(heap, 0)  # start from root-position
+        return head
+    return last
+
+
+def build_max_heap(ary):
+    """
+    Array to heap, in-place.
 
     O(N) time
     """
     for i in reversed(range(len(ary) // 2)):
-        _heapify(ary, i)
+        heapify(ary, i)
 
 
-def _heapify(ary, i):
+def heapify(ary, i):
     """
-    helper method of heapify. recursive.
+    A node that has a child(ren), is same or larger than it's child(ren).
+      - Add a child, left to right.
+      - recursive and in-place.
 
     :param ary: array
     :param i: index
@@ -36,33 +45,17 @@ def _heapify(ary, i):
 
     if largest != i:
         ary[i], ary[largest] = ary[largest], ary[i]
-        _heapify(ary, largest)
+        heapify(ary, largest)
 
-
-def heappop_max(heap):
-    """
-    Pop the largest item off the heap and re-heapify.
-    """
-    last = heap.pop()
-    if heap:
-        head = heap[0]
-        heap[0] = last
-        _heapify(heap, 0)  # start from root-position
-        return head
-    return last
-
-
-ary = [8, 11, 9, 2, 10, 16]
-heapify(ary)
 
 """
+ary = [8, 11, 9, 2, 10, 16]
+build_max_heap(ary) 
+
+# [16, 11, 9, 2, 10, 8]
+
        16
     11     9
   2  10     8
 
 """
-print(ary)  # [16, 11, 9, 2, 10, 8]
-print(heappop_max(ary))  # 16
-print(ary)  # [11, 10, 9, 2, 8]
-print(heappop_max(ary))  # 11
-print(ary)  # [10, 8, 9, 2]
