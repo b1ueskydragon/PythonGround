@@ -21,7 +21,7 @@ def gray_code(bit: int):
     """standard case"""
     cache = gray_code(bit - 1)
     # shift left 1(MSB) for make a digit, then add value
-    for k in list(reversed(cache)):
+    for k in reversed(cache):
         cache.append((1 << (bit - 1)) + k)
 
     return cache

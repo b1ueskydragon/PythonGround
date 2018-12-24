@@ -26,7 +26,7 @@ def gray_code(bit: int):
 
     prev = gray_code(bit - 1)
     prev_f = [f'0{k}' for k in prev]
-    curr = prev_f + [f'1{k}' for k in list(reversed(prev))]
+    curr = prev_f + [f'1{k}' for k in reversed(prev)]
 
     return curr
 
