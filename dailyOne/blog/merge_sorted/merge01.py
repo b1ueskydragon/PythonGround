@@ -27,12 +27,14 @@ test cases
 """
 print(merge([10, 15, 30], [12, 15, 20]))
 
-given = [10, 15, 30], [12, 15, 20], [17, 20, 32]
+given = [[10, 15, 30], [12, 15, 20], [17, 20, 32]]
 given01 = [[3], [1, 2]]
 given02 = [[1], []]
-given03 = []
+given03 = [[]]
+given04 = [[1], [1, 3, 5], [1, 10, 20, 30, 40]]
 
 print(solve(given, len(given) - 1))
 print(solve(given01, len(given01) - 1))
 print(solve(given02, len(given02) - 1))
 print(solve(given03, len(given03) - 1))
+print(solve(given04, len(given04) - 1))
