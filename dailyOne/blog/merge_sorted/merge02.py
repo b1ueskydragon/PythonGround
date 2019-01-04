@@ -12,9 +12,9 @@ def solve(ls, res=[]):
         v, i, e = heapq.heappop(heap)
         res.append(v)
 
-        if e + 1 < len(ls[i]):
-            nxt = (ls[i][e + 1], i, e + 1)
-            heapq.heappush(heap, nxt)
+        en = e + 1
+        if en < len(ls[i]):
+            heapq.heappush(heap, (ls[i][en], i, en))
 
     return res
 
