@@ -1,11 +1,3 @@
-"""
-TODO:
-with binary num (bitwise op)
-`+` = `XOR` that has carry
-0nnn.. == M or 1nnn.. == M
-"""
-
-
 def solve(m, n):
     """
     Brute force.
@@ -31,6 +23,20 @@ def solve_(m, n):
             print((a, m - a))
 
 
+def solve__(m, n):
+    """"
+    bitwise op
+
+    a + b = M
+    a ^ b = N
+
+    a + b = (a ^ b) + ((a & b) << 1)
+    M     = N       + 2(a & b)
+    a & b = (M - N) // 2
+    """
+
+
 M, N = 300, 10
-solve(M, N)
+# solve(M, N)
 solve_(M, N)
+solve__(M, N)
