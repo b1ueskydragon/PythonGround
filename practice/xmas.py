@@ -1,19 +1,9 @@
 import re
 
-xmas = 'Merry-Christmas'
+msg = 'Merry-Christmas'
 pattern = r"[a-zA-Z ]"
 
+ints = [ord(s) for s in msg if re.match(pattern, s)]
 
-def mixed(target):
-    list = []
-    for i in range(len(target)):
-        if re.match(pattern, target[i]):
-            list.append(ord(target[i]))
-
-    return list
-
-
-print(mixed(xmas))
-
-
-print(''.join(list(map(lambda s: chr(s), [77, 101, 114, 114, 121, 67, 104, 114, 105, 115, 116, 109, 97, 115]))))
+print(ints)
+print(''.join(list(map(lambda s: chr(s), ints))))
