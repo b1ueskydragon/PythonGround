@@ -1,4 +1,13 @@
+"""
+Not correct.
+"""
+
+
 def solve(bs):
+    """
+    O(n) time,
+    more than O(n) memories (?)
+    """
     blocks = list(bs)
     changed = 0
 
@@ -13,7 +22,7 @@ def solve(bs):
     change = changed // 2
 
     # <-
-    # loop の中で 最初の blocks は変わらない
+    # given `blocks` in for-loop, might be not modified while looping
     for i, b in reversed(list(enumerate(blocks, start=-1))):
         if b == "L":
             if blocks[i] == ".":
