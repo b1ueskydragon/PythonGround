@@ -21,7 +21,7 @@ def boundaries(blocks):
 
     # edge case
     if not res:
-        return  # TODO
+        res.append((low, high))
     if res[-1][-1] != len(blocks) - 1:
         res.append((low, high))
 
@@ -34,49 +34,70 @@ def solve(blocks, res=""):
     for section in sections:
         l, r = section
         start, end = blocks[l], blocks[r]
+        times = r - l
 
         # section, excludes `end` in all cases
         # case 1
         if start == "." and end == "L":
-            res += "L" * (r - l)
+            print(1)
+            res += "L" * (times + 1)
 
         # case 2
         elif start == "." and end == "R":
-            res += "." * (r - l - 1)
+            print(2)
+            res += "." * times
 
         # case 3
         elif start == "L" and end == "R":
-            res += "." * (r - l - 1)
+            print(3)
+            res += "." * (times - 1)
 
         # case 4
         elif start == "R" and end == "L":
-            c = (r - l) // 2
-            res += "R" * c + "." * (c % 2) + "L" * c
+            print(4)
+            c1 = (times + 1) // 2
+            c2 = (times + 1) % 2
+            res += "R" * c1 + "." * c2 + "L" * c1
 
         # case 5
         elif start == "L" and end == ".":
-            res += "." * (r - l - 1)
+            print(5)
+            res += "L" + "." * times
 
         # case 6
-        elif start == "L" and end == ".":
-            res += "R" * (r - l)
+        elif start == "R" and end == ".":
+            print(6)
+            res += "R" * (times + 1)
 
-        # # case 7
-        # elif start == "L" and end == "L":
-        #     res += "L" * (r - l)
-        #
-        # # case 8
-        # elif start == "R" and end == "R":
-        #     res += "R" * (r - l)
+        # case 7
+        elif start == "L" and end == "L":
+            print(7)
+            res += "L" * times
 
-        res += end
+        # case 8
+        elif start == "R" and end == "R":
+            print(8)
+            res += "R" * times
 
     return res
 
 
-# given = ".L.R....L"  # LL.RRRLLL
-given = "..R...L.L"  # ..RR.LLLL
-# given = "......L"  # LLLLLLL
-# given = "L......"
-print(boundaries(given))
-print(solve(given))
+given1 = ".L.R....L"  # LL.RRRLLL
+given2 = "..R...L.L"  # ..RR.LLLL
+given3 = "......L"  # LLLLLLL
+given4 = "L......"  # L......
+given5 = "R......"  # RRRRRRR
+given6 = "LRLRLR"  # ?
+
+print(boundaries(given1))
+print(solve(given1))
+print(boundaries(given2))
+print(solve(given2))
+print(boundaries(given3))
+print(solve(given3))
+print(boundaries(given4))
+print(solve(given4))
+print(boundaries(given5))
+print(solve(given5))
+print(boundaries(given6))
+print(solve(given6))
