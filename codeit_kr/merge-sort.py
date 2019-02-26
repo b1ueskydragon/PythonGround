@@ -1,14 +1,17 @@
-def merge(list1, list2, merged=[]):
+def merge(list1, list2):
     """
     merge binary lists.
     each lists should be sorted.
 
+    this yields a new merged list.
+
     :param list1: sorted list
     :param list2: sorted list
-    :param merged: result
     :return: merged list
     """
-    while len(list1) > 0 and len(list2) > 0:
+    merged = []
+
+    while list1 and list2:
         if list1[0] <= list2[0]:
             merged.append(list1.pop(0))
         else:
@@ -24,9 +27,26 @@ def merge(list1, list2, merged=[]):
 
 
 def merge_sort(my_list):
-    pivot = len(my_list) // 2
-    
+    # edge case
+    if len(my_list) < 2:
+        return my_list
 
-# print(merge([1, 3, 4], [-5, -4, -3, -2, 2, 8]))
+    # Divide recursively
+    pivot = len(my_list) // 2
+    lows = my_list[:pivot]
+    # print(lows)
+    highs = my_list[pivot:]
+    # print(highs)
+
+    # Conquer recursively
+    return merge(merge_sort(lows), merge_sort(highs))
+
+
+# test merge
+print(merge([1, 3, 4], [-5, -4, -3, -2, 2, 8]))
+print(merge([2], [1]))
+print(merge([], [-1]))
+
+# test merge_sort
 some_list = [11, 3, 6, 4, 12, 1, 2]
 print(merge_sort(some_list))
