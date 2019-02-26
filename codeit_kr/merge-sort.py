@@ -8,33 +8,25 @@ def merge(list1, list2, merged=[]):
     :param merged: result
     :return: merged list
     """
-    ran = min(len(list1), len(list2))
-    i1 = i2 = 0
-    while i1 < ran and i2 < ran:
-        if list1[i1] <= list2[i2]:
-            merged.append(list1[i1])
-            i1 += 1
+    while len(list1) > 0 and len(list2) > 0:
+        if list1[0] <= list2[0]:
+            merged.append(list1.pop(0))
         else:
-            merged.append(list2[i2])
-            i2 += 1
+            merged.append(list2.pop(0))
 
-    while i1 < ran:
-        merged.append(list1[i1])
-        i1 += 1
+    while list1:
+        merged.append(list1.pop(0))
 
-    while i2 < ran:
-        merged.append(list2[i2])
-        i2 += 1
+    while list2:
+        merged.append(list2.pop(0))
 
     return merged
 
 
-print(merge([1, 3, 4], [2, 2, 3, 5]))
-
-
 def merge_sort(my_list):
-    return
+    pivot = len(my_list) // 2
+    
 
-
+# print(merge([1, 3, 4], [-5, -4, -3, -2, 2, 8]))
 some_list = [11, 3, 6, 4, 12, 1, 2]
 print(merge_sort(some_list))
