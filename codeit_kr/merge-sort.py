@@ -26,6 +26,32 @@ def merge(list1, list2):
     return merged
 
 
+def merge_index(list1, list2):
+    """
+    same as `merge`
+    not pop, with index traverse
+    """
+    merged = []
+    i1, i2 = 0, 0
+
+    while i1 < len(list1) and i2 < len(list2):
+        if list1[i1] <= list2[i2]:
+            merged.append(list1[i1])
+            i1 += 1
+        else:
+            merged.append(list2[i2])
+            i2 += 1
+
+    while i1 < len(list1):
+        merged.append(list1[i1])
+        i1 += 1
+    while i2 < len(list2):
+        merged.append(list2[i2])
+        i2 += 1
+
+    return merged
+
+
 def merge_sort(my_list):
     # edge case
     if len(my_list) < 2:
@@ -44,7 +70,11 @@ def merge_sort(my_list):
 
 # test merge
 print(merge([1, 3, 4], [-5, -4, -3, -2, 2, 8]))
+print(merge_index([1, 3, 4], [-5, -4, -3, -2, 2, 8]))
 print(merge([2], [1]))
+print(merge_index([2], [1]))
+
+print(merge([], [-1]))
 print(merge([], [-1]))
 
 # test merge_sort
