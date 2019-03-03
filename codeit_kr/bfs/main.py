@@ -1,4 +1,5 @@
 from codeit_kr.bfs import station as new
+from codeit_kr.bfs import bfs as f
 
 """
 파일의 데이터를 정리하여 각 역에 해당하는 Station 인스턴스를 만들고,
@@ -24,13 +25,17 @@ for ln in in_file:
 
 in_file.close()
 
-# # Test
-# start_name = "이태원"
-# goal_name = "잠원"
-#
-# start = stations[start_name]
-# goal = stations[goal_name]
-#
-# path = bfs(start, goal)
-# for station in path:
-#     print(station.name)
+# Test
+# for k, v in stations.items():
+#     print(k, [st.name for st in v.neighbors])
+
+# Test
+start_name = "이태원"
+goal_name = "잠원"
+
+start = stations[start_name]
+goal = stations[goal_name]
+
+path = f.bfs(start, goal)
+for station in path:
+    print(station.name)
