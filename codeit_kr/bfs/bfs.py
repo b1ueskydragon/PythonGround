@@ -16,11 +16,12 @@ def bfs(start, goal):
                 lookup.append(st)
                 memo[st] = current
 
-    path = [goal]
-    curr = goal
+    if current == goal:
+        path = [goal]
+        curr = goal
 
-    while memo[curr]:
-        curr = memo[curr]
-        path.append(memo[curr])
+        while memo[curr]:
+            curr = memo[curr]
+            path.append(memo[curr])
 
-    return path
+        return path

@@ -11,17 +11,19 @@ stations = {}
 in_file = open('stations.txt')
 
 for ln in in_file:
-    line = [_ for _ in ln.split() if _ != '-']
-    l, r = -1, 1
-    for st in line:
-        ins = new.Station(st)
-        if l > -1 and line[l]:
-            ins.add_connection(new.Station(line[l]))
-        if r < len(line) and line[r]:
-            ins.add_connection(new.Station(line[r]))
-        l += 1
-        r += 1
-        stations[st] = ins
+    prev = None
+    lines = ln.strip().split('-')
+    for station in lines:
+        name = station.strip()
+        if name not in stations.keys():  # 名前が辞書に無い時のみ new instance
+            st = new.Station(name)
+            stations[name] = st
+        else:
+            st = stations[name]
+
+        if prev:
+            st.add_connection(prev)
+        prev = st
 
 in_file.close()
 
