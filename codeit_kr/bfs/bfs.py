@@ -22,6 +22,6 @@ def bfs(start, goal):
 
         while memo[curr]:
             curr = memo[curr]
-            path.append(memo[curr])
+            path.append(curr)
 
         return path
