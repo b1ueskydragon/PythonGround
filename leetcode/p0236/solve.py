@@ -1,3 +1,8 @@
+"""
+Binary Tree
+"""
+
+
 def solve(root, p, q):
     # All of the nodes' values will be unique.
     l, r = root.index(p), root.index(q)
