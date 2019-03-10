@@ -13,11 +13,12 @@ class Node:
 
 
 def ans(root: Node, p: Node, q: Node) -> Node:
-    if p.val == root.val or q.val == root.val:
-        return root.val
+    # additional O(N) space
+    queue = deque([root])
 
-    queue = deque([root])  # additional O(N) space
-    pair = {}  # All of the nodes' values will be unique. {curr : parent}
+    # All of the nodes' values will be unique. {curr : parent}
+    # init is root and itself
+    pair = {root.val: root}
 
     # BFS; O(N) time traversal from root
     while queue:
@@ -57,8 +58,8 @@ root.right.right = Node(8)
 root.left.right.left = Node(7)
 root.left.right.right = Node(4)
 
-print(ans(root, p=Node(7), q=Node(4)))
-print(ans(root, p=Node(4), q=Node(5)))
-print(ans(root, p=Node(3), q=Node(7)))
-print(ans(root, p=Node(6), q=Node(4)))
-print(ans(root, p=Node(1), q=Node(5)))  # !
+print(ans(root, p=Node(7), q=Node(4)))  # 2
+print(ans(root, p=Node(4), q=Node(5)))  # 5
+print(ans(root, p=Node(3), q=Node(7)))  # 3
+print(ans(root, p=Node(6), q=Node(4)))  # 5
+print(ans(root, p=Node(1), q=Node(5)))  # 3
