@@ -17,35 +17,32 @@ def ans(root: Node, p: Node, q: Node) -> Node:
     queue = deque([root])
 
     # All of the nodes' values will be unique. {curr : parent}
-    # init is root and itself
-    pair = {root: root}
+    parents_of = {}
 
     # BFS; O(N) time traversal from root
     while queue:
         curr = queue.popleft()
         if curr.left:
-            pair[curr.left] = curr
+            parents_of[curr.left] = curr
             queue.append(curr.left)  # if pop a parent, child be None too, so, revert
         if curr.right:
-            pair[curr.right] = curr
+            parents_of[curr.right] = curr
             queue.append(curr.right)
 
     # connect
-    pp = p
-    qq = q
-    parents = set()  # use O(1) time; Since All of the nodes' values will be unique.
-    while pair:
-        if pp in pair:
-            if pp in parents:
-                return pp
-            parents.add(pp)
-            pp = pair[pp]
+    current = p
+    lookup = set()  # looked up parents. use O(1) time; Since All of the nodes' values will be unique.
+    while current in parents_of:
+        lookup.add(current)  # add current itself too
+        current = parents_of[current]
+    else:
+        lookup.add(current)
 
-        if qq in pair:
-            if qq in parents:
-                return qq
-            parents.add(qq)
-            qq = pair[qq]
+    current = q
+    while current not in lookup:
+        current = parents_of[current]
+
+    return current
 
 
 root = Node(3)
@@ -63,3 +60,4 @@ print(ans(root, p=root.left.right.right, q=root.left).val)  # 5
 print(ans(root, p=root, q=root.left.right.left).val)  # 3
 print(ans(root, p=root.left.left, q=root.left.right.right).val)  # 5
 print(ans(root, p=root.right, q=root.left).val)  # 3
+print(ans(root, p=root.left, q=root.left.right.right).val)  # 5
