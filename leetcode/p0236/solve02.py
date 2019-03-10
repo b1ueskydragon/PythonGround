@@ -18,16 +18,16 @@ def ans(root: Node, p: Node, q: Node) -> Node:
 
     # All of the nodes' values will be unique. {curr : parent}
     # init is root and itself
-    pair = {root.val: root}
+    pair = {root: root}
 
     # BFS; O(N) time traversal from root
     while queue:
         curr = queue.popleft()
         if curr.left:
-            pair[curr.left.val] = curr
+            pair[curr.left] = curr
             queue.append(curr.left)  # if pop a parent, child be None too, so, revert
         if curr.right:
-            pair[curr.right.val] = curr
+            pair[curr.right] = curr
             queue.append(curr.right)
 
     # connect
@@ -35,17 +35,17 @@ def ans(root: Node, p: Node, q: Node) -> Node:
     qq = q
     parents = set()  # use O(1) time; Since All of the nodes' values will be unique.
     while pair:
-        if pp.val in pair:
-            if pp.val in parents:
-                return pp.val
-            parents.add(pp.val)
-            pp = pair[pp.val]
+        if pp in pair:
+            if pp in parents:
+                return pp
+            parents.add(pp)
+            pp = pair[pp]
 
-        if qq.val in pair:
-            if qq.val in parents:
-                return qq.val
-            parents.add(qq.val)
-            qq = pair[qq.val]
+        if qq in pair:
+            if qq in parents:
+                return qq
+            parents.add(qq)
+            qq = pair[qq]
 
 
 root = Node(3)
@@ -58,8 +58,8 @@ root.right.right = Node(8)
 root.left.right.left = Node(7)
 root.left.right.right = Node(4)
 
-print(ans(root, p=Node(7), q=Node(4)))  # 2
-print(ans(root, p=Node(4), q=Node(5)))  # 5
-print(ans(root, p=Node(3), q=Node(7)))  # 3
-print(ans(root, p=Node(6), q=Node(4)))  # 5
-print(ans(root, p=Node(1), q=Node(5)))  # 3
+print(ans(root, p=root.left.right.left, q=root.left.right.right).val)  # root=3, p=7, q=4 ans=2
+print(ans(root, p=root.left.right.right, q=root.left).val)  # 5
+print(ans(root, p=root, q=root.left.right.left).val)  # 3
+print(ans(root, p=root.left.left, q=root.left.right.right).val)  # 5
+print(ans(root, p=root.right, q=root.left).val)  # 3
