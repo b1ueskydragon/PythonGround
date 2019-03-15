@@ -8,15 +8,15 @@ O(k) space (k is a size of the keyset)
 
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
-        curr, l = 0, 0
-        pair = {}  # {start char : len}
+        l, curr = 0, 0
+        pair = {}
 
         for r, c in enumerate(s):
-            if c not in pair.keys():
-                curr = max(curr, r - l)
-                pair[c] = curr
-            else:
-                l += 1
+            if c in pair.keys():
+                l = max(l, pair[c])  # jump l at once
+
+            curr = max(curr, r - l + 1)
+            pair[c] = r + 1
 
         return curr
 
