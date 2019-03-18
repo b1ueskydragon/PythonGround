@@ -12,13 +12,7 @@ class Solution:
             # base case in odd len is p(i,i); in even len is p(i,i+1)
             odd_curr = self._valid_max(s, i, i)
             even_curr = self._valid_max(s, i, i + 1)
-
-            if len(odd_curr) > len(substr):
-                substr = odd_curr
-
-            if len(even_curr) > len(substr):
-                substr = even_curr
-
+            substr = max(substr, odd_curr, even_curr, key=len)
         return substr
 
 
