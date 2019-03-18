@@ -1,7 +1,12 @@
+"""
+len(s) <= 1000
+
+this prints length! .. not a substring lol.
+"""
+
+
 class Solution:
-    # len(s) <= 1000
-    # TODO deque
-    def longestPalindrome(self, s: str) -> str:
+    def longestPalindrome(self, s: str) -> int:
         curr = 0
         l, r = 0, len(s) - 1
         while l < r:
@@ -26,5 +31,6 @@ class Solution:
 
 if __name__ == '__main__':
     s = Solution()
-    # print(s.longestPalindrome(s="babad"))  # bab or aba
+    print(s.longestPalindrome(s="babad"))  # bab or aba
     print(s.longestPalindrome(s="cbbd"))  # bb
+    print(s.longestPalindrome(s="babadadadb"))  # dadad
