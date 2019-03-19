@@ -1,23 +1,17 @@
 class Solution:
-    def _valid(self, s: str, l: int, r: int):
-        """
-        l, r are center indices. expands.
-        """
-        # empty string
-        if s == "":
-            return True
-        # ()()...()()
-        while l >= 0 and r < len(s) and s[l] == "(" and s[r] == ")":
-            l -= 1
-            r += 1
-
-        #  ((...))
-
-    def minAddToMakeValid(self, S: str) -> int:
-        return
+    def minAddToMakeValid(self, s: str) -> int:
+        l, r = 0, 0
+        for c in s:
+            if c == "(":
+                r += 1
+            elif c == ")":
+                l += 1
+        return abs(r - l)
 
 
 if __name__ == '__main__':
     s = Solution()
-    print(s.minAddToMakeValid(S="())"))  # 1
-    print(s.minAddToMakeValid(S="((("))  # 3
+    print(s.minAddToMakeValid(s="())"))  # 1
+    print(s.minAddToMakeValid(s="((("))  # 3
+    print(s.minAddToMakeValid(s="))))))))))))))("))  # 15
+    print(s.minAddToMakeValid(s="(((((((((((((()"))  # 13
