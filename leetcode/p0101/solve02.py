@@ -1,8 +1,6 @@
 """
-Iteratively (queue)
+Iteratively (stack)
 """
-
-from collections import deque
 
 
 class TreeNode:
@@ -14,24 +12,23 @@ class TreeNode:
 
 class Solution:
     def isSymmetric(self, root: TreeNode) -> bool:
-        queue = deque()
-        queue.append(root)
-        queue.append(root)  # additional space O(N) required
+        stack = [root, root]
 
-        while queue:
-            # two nodes are extracted at Each time
-            l = queue.popleft()
-            r = queue.popleft()
+        while stack:
+            r = stack.pop()
+            l = stack.pop()
+
             if not l and not r:
                 continue
             if not l or not r:
                 return False
             if l.val != r.val:
                 return False
-            queue.append(l.left)
-            queue.append(r.right)
-            queue.append(l.right)
-            queue.append(r.left)
+
+            stack.append(r.right)
+            stack.append(l.left)
+            stack.append(r.left)
+            stack.append(l.right)
 
         return True
 
