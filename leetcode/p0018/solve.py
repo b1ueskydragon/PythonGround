@@ -10,13 +10,14 @@ class Solution:
         nums.sort()
 
         for i in range(len(nums) - 3):
-            if i > 0 and nums[i] == nums[i - 1]:
+            if i > 0 and nums[i] == nums[i - 1]:  # skip duplication
                 continue
             if nums[i] * 4 > target:  # since nums are sorted
                 break
 
             for j in range(i + 1, len(nums) - 2):
-                if j > i and nums[j] == nums[j - 1]:
+                # duplication already skipped, so i + 1
+                if j > i + 1 and nums[j] == nums[j - 1]:
                     continue
                 if nums[j] * 3 > target - nums[i]:
                     break
@@ -47,3 +48,4 @@ class Solution:
 if __name__ == '__main__':
     s = Solution()
     print(s.fourSum([1, 0, -1, 0, -2, 2], 0))
+    print(s.fourSum([0, 0, 0, 0], 0))
