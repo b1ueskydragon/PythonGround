@@ -16,10 +16,8 @@ def find_x(nums, x, i=0, cache=0):
     incl = find_x(nums, x, i + 1, cache + nums[i])
     excl = find_x(nums, x, i + 1, cache)
 
-    return compare(x, incl, excl)
+    return (incl, excl)[abs(x - incl) > abs(x - excl)]
 
-
-compare = lambda x, a, b: b if abs(x - a) > abs(x - b) else a
 
 given, target = [1, 34, 55, 99, 77], 134
 print(find_x(given, target))
