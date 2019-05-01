@@ -5,12 +5,12 @@ Times : O(k)
 """
 
 
-def partial_match_table(word, word_size):
-    table = [0] * (word_size + 1)
+def partial_match_table(word):
+    table = [0] * (len(word) + 1)
     table[0] = -1
     w, t = 0, 1
 
-    while t < word_size:
+    while t < len(word):
         if word[w] == word[t]:  # sub-pattern found
             w += 1
             t += 1
@@ -24,5 +24,26 @@ def partial_match_table(word, word_size):
     return table
 
 
+def kmp_search(text, word):
+    table = partial_match_table(word)
+
+    t, w = 0, 0  # cursor of text, word
+    while t != len(text) and w != len(word):
+        if text[t] == word[w]:  # only go forward, not backward
+            t += 1
+            w += 1
+        elif w == 0:  # not matched and there is no skip
+            t += 1
+        else:  # set restart position
+            w = table[w]
+
+    if w == len(word):  # cursor is on end
+        return t - w  # end pos - start pos
+
+    return -1
+
+
 pattern = "ABABC"
-print(partial_match_table(pattern, len(pattern)))
+sentence = "ABABABABC"
+print(partial_match_table(pattern))
+print(kmp_search(sentence, pattern))
