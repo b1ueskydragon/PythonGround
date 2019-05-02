@@ -29,7 +29,7 @@ def kmp_search(text, word):
 
     t, w = 0, 0  # cursor of text, word
     while t != len(text) and w != len(word):
-        if text[t] == word[w]:  # only go forward, not backward
+        if text[t] == word[w]:  # index `t` only go forward, not backward
             t += 1
             w += 1
         elif w == 0:  # not matched and there is no skip
