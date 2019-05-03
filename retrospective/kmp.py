@@ -41,9 +41,3 @@ def kmp_search(text, word):
         return t - w  # end pos - start pos
 
     return -1
-
-
-pattern = "ABABC"
-sentence = "ABABABABC"
-print(partial_match_table(pattern))
-print(kmp_search(sentence, pattern))
