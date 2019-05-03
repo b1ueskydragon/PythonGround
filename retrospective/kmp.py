@@ -28,7 +28,7 @@ def kmp_search(text, word):
     table = partial_match_table(word)
     i, p = 0, 0  # cursor of text, word
 
-    while i != len(text) and p != len(word):
+    while i < len(text) and p < len(word):
         if text[i] == word[p]:  # index `i` only go forward, not backward
             i += 1
             p += 1
