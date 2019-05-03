@@ -25,19 +25,16 @@ def partial_match_table(word):
 
 
 def kmp_search(text, word):
-    skip_table = partial_match_table(word)
+    table = partial_match_table(word)
+    i, p = 0, 0  # cursor of text, word
 
-    t, w = 0, 0  # cursor of text, word
-    while t != len(text) and w != len(word):
-        if text[t] == word[w]:  # index `t` only go forward, not backward
-            t += 1
-            w += 1
-        elif w == 0:  # not matched and there is no skip
-            t += 1
+    while i != len(text) and p != len(word):
+        if text[i] == word[p]:  # index `i` only go forward, not backward
+            i += 1
+            p += 1
+        elif p == 0:  # not matched and there is no skip
+            i += 1
         else:  # set restart position
-            w = skip_table[w]
+            p = table[p]
 
-    if w == len(word):  # cursor is on end
-        return t - w  # end pos - start pos
-
-    return -1
+    return (-1, i - p)[p == len(word)]
