@@ -2,7 +2,7 @@ import unittest
 from retrospective.minAddToMakeValid import *
 
 
-class KmpTest(unittest.TestCase):
+class MinAddToMakeValidTest(unittest.TestCase):
     _VALID = 0
 
     def test_min_add_to_make_valid_empty(self):
