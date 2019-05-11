@@ -8,43 +8,34 @@ class RemoveOuterParenthesesTest(unittest.TestCase):
         s = Solution()
 
         pattern = ""
-        expected = pattern
+        expected = ""
         actual = s.removeOuterParentheses(pattern)
 
         self.assertEqual(expected, actual)
 
-    def test_remove_outer_parentheses_balanced_closed_separated(self):
+    def test_remove_outer_parentheses_remove_all(self):
         s = Solution()
 
-        pattern = "(()(()))"
-        expected = pattern
+        pattern = "()()"
+        expected = ""
         actual = s.removeOuterParentheses(pattern)
 
         self.assertEqual(expected, actual)
 
-    def test_remove_outer_parentheses_only_open(self):
+    def test_remove_outer_parentheses_balanced_separated(self):
         s = Solution()
 
-        pattern = "((("
-        expected = 3
+        pattern = "(()())(())"
+        expected = "()()()"
         actual = s.removeOuterParentheses(pattern)
 
         self.assertEqual(expected, actual)
 
-    def test_remove_outer_parentheses_only_closed(self):
+    def test_remove_outer_parentheses_balanced_nested_separated(self):
         s = Solution()
 
-        pattern = "))"
-        expected = 2
-        actual = s.removeOuterParentheses(pattern)
-
-        self.assertEqual(expected, actual)
-
-    def test_remove_outer_parentheses_closed_first(self):
-        s = Solution()
-
-        pattern = ")))(()"
-        expected = 4
+        pattern = "(()())(())(()(()))"
+        expected = "()()()()(())"
         actual = s.removeOuterParentheses(pattern)
 
         self.assertEqual(expected, actual)
