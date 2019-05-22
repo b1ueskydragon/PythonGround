@@ -3,13 +3,6 @@ from retrospective.maximumSumOfNonAdjacentElements import *
 
 
 class MyTestCase(unittest.TestCase):
-    def test_maximum_sum_of_non_adjacent_elements(self):
-        nums = [8, 2, 4, 1, 3, 9]
-        expected = 21  # 8 + 4 + 9
-        actual = maximum_sum_of_non_adjacent_elements(nums)
-
-        self.assertEqual(expected, actual)
-
     def test_maximum_sum_of_non_adjacent_elements_has_same_num(self):
         nums = [5, 5, 10, 100, 10, 5]
         expected = 110
@@ -28,6 +21,13 @@ class MyTestCase(unittest.TestCase):
         nums = [1, 99, 3]
         expected = 99
         actual = maximum_sum_of_non_adjacent_elements(nums)
+
+        self.assertEqual(expected, actual)
+
+    def test_maximum_sum_of_non_adjacent_elements(self):
+        nums = [8, 2, 4, 1, 3, 9]
+        expected = 21  # 8 + 4 + 9
+        actual = maximum_sum_of_non_adjacent_elements_r(nums)
 
         self.assertEqual(expected, actual)
 
