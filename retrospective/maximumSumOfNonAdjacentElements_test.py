@@ -2,7 +2,7 @@ import unittest
 from retrospective.maximumSumOfNonAdjacentElements import *
 
 
-class MyTestCase(unittest.TestCase):
+class MaximumSumOfNonAdjacentElementsTest(unittest.TestCase):
     def test_maximum_sum_of_non_adjacent_elements_has_same_num(self):
         nums = [5, 5, 10, 100, 10, 5]
         expected = 110

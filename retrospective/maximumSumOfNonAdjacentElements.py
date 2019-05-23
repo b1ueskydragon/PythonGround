@@ -1,13 +1,10 @@
 def maximum_sum_of_non_adjacent_elements(nums):
-    incl, excl = 0, 0  # include current num or not
-    cache_in, cache_ex = 0, 0  # cache that include previous adjacent num or not
-
+    incl, excl = 0, 0
     for curr in nums:
-        incl = cache_ex + curr
-        excl = max(cache_in, cache_ex)  # since both are not adjacent elements of next curr
+        prev_incl = incl
 
-        cache_in = incl
-        cache_ex = excl
+        incl = curr + excl
+        excl = max(prev_incl, excl)
 
     return max(incl, excl)
 
