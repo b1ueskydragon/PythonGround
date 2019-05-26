@@ -3,6 +3,7 @@ Improve speed
 O(N) mem
 """
 
+
 class Solution:
     def findJudge(self, N: int, trust: [[int]]) -> int:
         citizen = {c for c, j in trust}
@@ -17,12 +18,3 @@ class Solution:
             return -1
 
         return judge
-
-
-if __name__ == '__main__':
-    s = Solution()
-    print(s.findJudge(N=1, trust=[]))  # 1
-    print(s.findJudge(N=2, trust=[[1, 2]]))  # 2
-    print(s.findJudge(N=3, trust=[[1, 3], [2, 3], [3, 1]]))  # judge trusts nobody, -1
-    print(s.findJudge(N=3, trust=[[1, 3], [2, 3], [2, 1]]))  # 3
-    print(s.findJudge(N=3, trust=[[1, 2], [2, 3]]))  # 1->3 not exists, -1

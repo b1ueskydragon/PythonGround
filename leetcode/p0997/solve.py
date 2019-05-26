@@ -16,11 +16,3 @@ class Solution:
             if len(list(filter(lambda _: _ == unq, b))) == N - 1:
                 return unq
         return -1
-
-
-if __name__ == '__main__':
-    s = Solution()
-    print(s.findJudge(N=1, trust=[]))
-    print(s.findJudge(N=3, trust=[[1, 3], [2, 3], [3, 1]]))
-    print(s.findJudge(N=3, trust=[[1, 2], [2, 3]]))  # 1->3 not exists, return -1
-    print(s.findJudge(N=4, trust=[[1, 3], [1, 4], [2, 3], [2, 4], [4, 3]]))
