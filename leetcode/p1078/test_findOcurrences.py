@@ -12,7 +12,10 @@ class FindOcurrencesTest(unittest.TestCase):
         second = "good"
         expected = ["girl", "student"]
 
-        self.assertEqual(expected, s.findOcurrences(text, first, second))
+        actual = s.findOcurrences(text, first, second)
+        actual_ = s.findOcurrences_(text, first, second)
+        self.assertEqual(expected, actual)
+        self.assertEqual(expected, actual_)
 
     def test_sample_double(self):
         s = Solution()
@@ -21,7 +24,10 @@ class FindOcurrencesTest(unittest.TestCase):
         second = "will"
         expected = ["we", "rock"]
 
-        self.assertEqual(expected, s.findOcurrences(text, first, second))
+        actual = s.findOcurrences(text, first, second)
+        actual_ = s.findOcurrences_(text, first, second)
+        self.assertEqual(expected, actual)
+        self.assertEqual(expected, actual_)
 
     def test_sample_repeat(self):
         s = Solution()
@@ -30,7 +36,10 @@ class FindOcurrencesTest(unittest.TestCase):
         second = "will"
         expected = ["we", "we"]
 
-        self.assertEqual(expected, s.findOcurrences(text, first, second))
+        actual = s.findOcurrences(text, first, second)
+        actual_ = s.findOcurrences_(text, first, second)
+        self.assertEqual(expected, actual)
+        self.assertEqual(expected, actual_)
 
 
 if __name__ == '__main__':
