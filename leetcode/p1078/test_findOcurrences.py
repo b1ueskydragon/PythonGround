@@ -14,12 +14,21 @@ class FindOcurrencesTest(unittest.TestCase):
 
         self.assertEqual(expected, s.findOcurrences(text, first, second))
 
-    def test_sample_repeat(self):
+    def test_sample_double(self):
         s = Solution()
         text = "we will we will rock you"
         first = "we"
         second = "will"
         expected = ["we", "rock"]
+
+        self.assertEqual(expected, s.findOcurrences(text, first, second))
+
+    def test_sample_repeat(self):
+        s = Solution()
+        text = "we will we will we will"
+        first = "we"
+        second = "will"
+        expected = ["we", "we"]
 
         self.assertEqual(expected, s.findOcurrences(text, first, second))
 
