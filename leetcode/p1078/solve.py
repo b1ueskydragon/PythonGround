@@ -2,8 +2,7 @@ class Solution:
     def findOcurrences(self, text: str, first: str, second: str) -> [str]:
         res = []
         words = text.split()
-        for i, word in enumerate(words, start=1):
-            if i < len(words) - 1 and word == first and words[i] == second:
-                res.append(words[i + 1])
-
+        for i in range(len(words) - 2):
+            if words[i] == first and words[i + 1] == second:
+                res.append(words[i + 2])
         return res
