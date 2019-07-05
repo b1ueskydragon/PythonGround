@@ -1,9 +1,7 @@
 class Solution:
     def lemonadeChange(self, bills: [int]) -> bool:
-        # TODO Numeric +=
         fives = []
         tens = []
-
         for b in bills:
             if b == 5:
                 fives.append(b)
