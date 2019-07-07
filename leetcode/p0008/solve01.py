@@ -1,28 +1,42 @@
 class Solution:
-    def myAtoi(self, target: str) -> int:
-        if not target.strip():
+    def myAtoi(self, str: str) -> int:
+        if not str.strip():
             return 0
 
-        head = target.strip().split()[0]
+        head = str.strip().split()[0]
         symbol = {'-', '+'}
-        num = ""
+        digits = ""
         for i, c in enumerate(head):
             if (i == 0 and c in symbol) or c.isdigit():
-                num += c
+                digits += c
             else:
-                num = head[:i]
+                digits = head[:i]
                 break
 
-        if not num or num in symbol:
+        if not digits or digits in symbol:
             return 0
 
-        num = int(num)
+        is_negate = False
+        if digits[0] in symbol:
+            if digits[0] == '-':
+                is_negate = True
+            digits = digits[1:]
 
-        # TODO digit factor (*10)
+        res = 0
+        for i, digit in enumerate(reversed(digits)):
+            digit = int(digit)
+            if i == 0:
+                res += digit
+            else:
+                res += 10 ** i * digit
+
+        if is_negate:
+            res = -res
+
         int_max, int_min = 2 ** 31 - 1, -2 ** 31
-        if num > int_max:
+        if res > int_max:
             return int_max
-        elif num < int_min:
+        elif res < int_min:
             return int_min
 
-        return num
+        return res
