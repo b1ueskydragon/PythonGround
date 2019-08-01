@@ -3,7 +3,7 @@ class Solution:
     Get one head and put two lasts.
     """
 
-    def subsets(self, nums: [int]) -> [int]:
+    def subsets(self, nums):
         from collections import deque
         queue = deque()
         queue.append(list())

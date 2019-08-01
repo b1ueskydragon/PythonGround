@@ -3,7 +3,7 @@ class Solution:
     Given a set of distinct integers.
     """
 
-    def subsets(self, nums: [int]) -> [int]:
+    def subsets(self, nums):
         res = []
 
         def _dfs(pos, node):
