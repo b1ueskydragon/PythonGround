@@ -37,3 +37,22 @@ class Solution:
             _dfs(i, [])
 
         return res
+
+    def subsets__(self, nums):
+        """
+        res                     : nums
+        [       []      ]       : []
+        [   [],      [1]]       : [1]
+        [[], [2], [1], [1,2]]   : [1,2]
+        ...                       ...
+        """
+        res = []
+        if nums:
+            for sub in self.subsets__(nums[:-1]):
+                res.append(sub)
+                new_sub = sub.copy()
+                new_sub.append(nums[-1])
+                res.append(new_sub)
+        else:
+            res.append([])
+        return res
