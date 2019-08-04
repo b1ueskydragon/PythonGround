@@ -56,3 +56,15 @@ class Solution:
         else:
             res.append([])
         return res
+
+    def subsets___(self, nums):
+        res = []
+        if nums:
+            for sub in self.subsets___(nums[:-1]):
+                new_sub = sub.copy()
+                new_sub.append(nums[-1])
+                res.append(new_sub)
+                res.append(sub)
+        else:
+            res.append([])
+        return res

@@ -55,6 +55,23 @@ class SubSetsCase(unittest.TestCase):
 
         self.assertEqual(expected, a.subsets__(nums))
 
+    def test_order_dfs_append_last_and_self(self):
+        a = DFS()
+
+        nums = [1, 2, 3]
+        expected = [
+            [1, 2, 3],
+            [1, 2],
+            [1, 3],
+            [1],
+            [2, 3],
+            [2],
+            [3],
+            []
+        ]
+
+        self.assertEqual(expected, a.subsets___(nums))
+
     def test_order_bfs(self):
         b = BFS()
 
