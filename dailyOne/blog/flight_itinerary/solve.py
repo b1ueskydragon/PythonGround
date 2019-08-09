@@ -12,8 +12,11 @@ def get_itinerary(flights: [(str, str)], current_itinerary: [str]) -> [str]:
     last_stop = current_itinerary[-1]  # goal
 
     for i, flight in enumerate(flights):
-        # TODO pruning
-        # TODO recursion in for loop
-        return get_itinerary(flights, current_itinerary)
+        start, stop = flight
+        current_itinerary.append(stop)
+        flights_not_used = flights[:i] + flights[i + 1:]
+        if last_stop == start:
+            return get_itinerary(flights_not_used, current_itinerary)
+        current_itinerary.pop()
 
     return current_itinerary
