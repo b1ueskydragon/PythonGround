@@ -10,6 +10,12 @@ class GetItineraryTest(unittest.TestCase):
         current_itinerary = ["YUL"]  # departure
         self.assertEqual(expected, get_itinerary(flights, get_itinerary(flights, current_itinerary)))
 
+    def test_return_none(self):
+        flights = [("HNL", "AKL"), ("YUL", "ORD"), ("ORD", "SFO"), ("SFO", "HNL")]
+        expected = []
+        current_itinerary = ["AKL"]  # departure
+        self.assertEqual(expected, get_itinerary(flights, get_itinerary(flights, current_itinerary)))
+
 
 if __name__ == '__main__':
     unittest.main()
