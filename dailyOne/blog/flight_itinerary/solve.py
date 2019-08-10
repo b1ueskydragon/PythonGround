@@ -18,5 +18,3 @@ def get_itinerary(flights: [(str, str)], itinerary: [str]) -> [str]:
         if last_stop == start:
             return get_itinerary(flights_not_used, itinerary)
         itinerary.pop()
-
-    return None
