@@ -16,11 +16,9 @@ def move(disks: int):
         """
         if n < 1:  # H(0) = 0
             return []
-        elif n == 1:
-            paths.append(f"{start} -> {to}")
         else:
             _move(n - 1, start, via, to)
-            _move(1, start, to, via)
+            paths.append(f"{n}, {start} -> {to}")  # H(1)
             _move(n - 1, via, to, start)
 
     _move(disks, x, y, z)
