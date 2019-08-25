@@ -4,12 +4,14 @@ class Solution:
         Do not return anything, modify matrix in-place instead.
         """
         size = len(matrix) - 1
-        row = 0
-        column = 0
+        i = 0  # row
+        j = 0  # column
+        tmp1 = matrix[j][size - i]  # 0, 1
+        tmp2 = matrix[size - i][size - j]  # 1, 1
+        tmp3 = matrix[size - j][i]  # 1,0
+        tmp4 = matrix[i][j]  # 0, 0
 
-        move_to = matrix[0][1]
-        matrix[0][1] = matrix[0][0]
-        next_move_to = matrix[1][1]
-        matrix[1][1] = move_to
-        matrix[0][0] = matrix[1][0]
-        matrix[1][0] = next_move_to
+        matrix[j][size - i] = tmp4
+        matrix[size - i][size - j] = tmp1
+        matrix[size - j][i] = tmp2
+        matrix[i][j] = tmp3
