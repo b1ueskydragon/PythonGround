@@ -1,6 +1,6 @@
 import unittest
 
-from leetcode.p0048.solve import Solution as A
+from leetcode.p0048.solve01 import Solution as A
 
 
 class RotateTest(unittest.TestCase):
