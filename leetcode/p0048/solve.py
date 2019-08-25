@@ -3,15 +3,15 @@ class Solution:
         """
         Do not return anything, modify matrix in-place instead.
         """
-        size = len(matrix) - 1
-        i = 0  # row
-        j = 0  # column
-        tmp1 = matrix[j][size - i]  # 0, 1
-        tmp2 = matrix[size - i][size - j]  # 1, 1
-        tmp3 = matrix[size - j][i]  # 1,0
-        tmp4 = matrix[i][j]  # 0, 0
+        edge = len(matrix) - 1
+        for i in range(len(matrix) // 2):
+            for j in range(i, edge - i):  # [0][0], [1][1] ...
+                tmp1 = matrix[j][edge - i]
+                tmp2 = matrix[edge - i][edge - j]
+                tmp3 = matrix[edge - j][i]
+                tmp4 = matrix[i][j]
 
-        matrix[j][size - i] = tmp4
-        matrix[size - i][size - j] = tmp1
-        matrix[size - j][i] = tmp2
-        matrix[i][j] = tmp3
+                matrix[j][edge - i] = tmp4
+                matrix[edge - i][edge - j] = tmp1
+                matrix[edge - j][i] = tmp2
+                matrix[i][j] = tmp3
