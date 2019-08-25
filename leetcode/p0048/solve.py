@@ -5,7 +5,7 @@ class Solution:
         """
         edge = len(matrix) - 1
         for i in range(len(matrix) // 2):
-            for j in range(i, edge - i):  # [0][0], [1][1] ...
+            for j in range(i, edge - i):
                 tmp1 = matrix[j][edge - i]
                 tmp2 = matrix[edge - i][edge - j]
                 tmp3 = matrix[edge - j][i]
