@@ -5,8 +5,15 @@ class Solution:
         :return: elements in column
         """
         res = self.pascal(rowIndex, [1] * (rowIndex + 1))
-        for i in range((rowIndex + 1) // 2):
-            res[-1 - i] = res[i]
+        i, j = 0, rowIndex
+        while i <= j:
+            if i == j:
+                res[i] *= 2
+            else:
+                res[-1 - i] = res[i]
+            i += 1
+            j -= 1
+
         return res
 
     def pascal(self, k, res):
