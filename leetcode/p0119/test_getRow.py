@@ -28,3 +28,8 @@ class RotateTest(unittest.TestCase):
         a = A()
         expected = [1, 4, 6, 4, 1]
         self.assertEqual(expected, a.getRow(4))
+
+    def test_getRow_5(self):
+        a = A()
+        expected = [1, 5, 10, 10, 5, 1]
+        self.assertEqual(expected, a.getRow(5))
