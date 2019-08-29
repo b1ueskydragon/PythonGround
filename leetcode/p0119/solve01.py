@@ -1,8 +1,3 @@
-"""
-use deque, since it provides pop or append both end efficiently.
-"""
-
-
 class Solution:
     def getRow(self, rowIndex):
         if rowIndex < 2:
@@ -10,6 +5,9 @@ class Solution:
         return self.pascal(self.getRow(rowIndex - 1), rowIndex)
 
     def pascal(self, prev_res, k):
+        """
+        Deque provides pop or append both end efficiently.
+        """
         from collections import deque
         queue = deque(prev_res)
         acc = 0
