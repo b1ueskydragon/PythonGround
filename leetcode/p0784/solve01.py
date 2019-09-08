@@ -12,5 +12,3 @@ class Solution:
             if curr.isalpha():
                 new_node = S[i].upper() if curr.islower() else curr.lower()
                 self._search(S, i + 1, node[:i] + new_node + node[i + 1:], res)
-            else:
-                continue
