@@ -6,13 +6,13 @@ class LetterCasePermutationTest(unittest.TestCase):
     def test_case01(self):
         a = A()
         S = "a1b2"
-        expected = ["a1b2", "a1B2", "A1b2", "A1B2"]
+        expected = ["A1B2", "A1b2", "a1B2", "a1b2"]
         self.assertEqual(expected, a.letterCasePermutation(S))
 
     def test_case02(self):
         a = A()
         S = "3z4"
-        expected = ["3z4", "3Z4"]
+        expected = ["3Z4", "3z4"]
         self.assertEqual(expected, a.letterCasePermutation(S))
 
     def test_case03(self):
