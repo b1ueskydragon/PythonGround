@@ -7,11 +7,10 @@ class Solution:
     def _search(self, S, depth, node, res):
         res.append(node)
         for i in range(depth, len(S)):
+            curr = S[i]
             # go deeper from current position
-            self._search(S, i + 1, node[:i] + S[i].upper() + node[i + 1:], res)
-
-
-if __name__ == '__main__':
-    x = Solution()
-    y = x.letterCasePermutation("ab")
-    print(y)
+            if curr.isalpha():
+                new_node = S[i].upper() if curr.islower() else curr.lower()
+                self._search(S, i + 1, node[:i] + new_node + node[i + 1:], res)
+            else:
+                continue

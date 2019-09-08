@@ -16,6 +16,11 @@ class LetterCasePermutationTest(unittest.TestCase):
         self.assertEqual(["3Z4", "3z4"], a.letterCasePermutation(S))
         self.assertEqual(["3z4", "3Z4"], b.letterCasePermutation(S))
 
+    def test_from_upper(self):
+        a, b = A(), B()
+        S = "A"
+        self.assertEqual(["A", "a"], a.letterCasePermutation(S))
+        self.assertEqual(["A", "a"], b.letterCasePermutation(S))
 
     def test_only_alpha(self):
         a, b = A(), B()
