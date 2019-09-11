@@ -24,7 +24,7 @@ class FindLongestWordTest(unittest.TestCase):
         s = "abpcplea"
         d = ["a", "b", "c"]
 
-        expected = "apple"
+        expected = "a"
         self.assertEqual(expected, a.findLongestWord(s, d))
 
 
