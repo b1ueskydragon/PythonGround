@@ -10,10 +10,12 @@ class Solution:
                     if word[i] == c:
                         curr_bit += 1
                         i += 1
-
+            if len(word) != i:
+                continue
             if curr_bit:
-                if curr_bit in bit_word:
-                    bit_word[curr_bit] = min(bit_word[curr_bit], word)
-                else:
-                    bit_word[curr_bit] = word
-        return bit_word[max(bit_word)] if len(bit_word) > 0 else ""
+                bit_word[curr_bit] = min(bit_word[curr_bit], word) if curr_bit in bit_word else word
+        # print(bit_word)
+        res = ""
+        for k, v in bit_word.items():
+            res = min(res, v) if len(res) == len(v) else max(res, v, key=len)
+        return res

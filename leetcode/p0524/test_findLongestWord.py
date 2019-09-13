@@ -49,6 +49,14 @@ class FindLongestWordTest(unittest.TestCase):
         self.assertEqual(expected, a.findLongestWord(s, d))
         self.assertEqual(expected, b.findLongestWord(s, d))
 
+    def test_only_contains_head_elements(self):
+        a, b = A(), B()
+        s = "aewfafwafjlwajflwajflwafj"
+        d = ["apple", "ewaf", "awefawfwaf", "awef", "awefe", "ewafeffewafewf"]
+        expected = "ewaf"
+        self.assertEqual(expected, a.findLongestWord(s, d))
+        self.assertEqual(expected, b.findLongestWord(s, d))
+
 
 if __name__ == '__main__':
     unittest.main()
