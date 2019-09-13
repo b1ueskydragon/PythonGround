@@ -1,14 +1,17 @@
 class Solution:
     def findLongestWord(self, s: str, d: [str]) -> str:
-        largest_bit = 0
-        word = "plea"
-        i = 0
-        for c in s:
-            largest_bit <<= 1
-            if i < len(word):
-                if word[i] == c:
-                    largest_bit += 1
-                    i += 1
+        curr_bit = largest_bit = 0
+        for i, word in enumerate(d):
+            i = 0
+            for c in s:
+                curr_bit <<= 1
+                if i < len(word):
+                    if word[i] == c:
+                        curr_bit += 1
+                        i += 1
+
+            largest_bit = max(largest_bit, curr_bit)
+            curr_bit = 0
 
         return bin(largest_bit)[2:]
 
