@@ -17,7 +17,7 @@ class PrefixMapSum:
     #
     #     return sum([self.map[_] for _ in local_hit])
 
-    def sum(self, prefix):
+    def _sum(self, prefix):
         """
         O(N*k)
           - k is the length of the prefix.
@@ -27,16 +27,16 @@ class PrefixMapSum:
 
 mapsum = PrefixMapSum()
 mapsum.insert("columnar", 3)
-print(mapsum.sum("col"))  # 3
+print(mapsum._sum("col"))  # 3
 mapsum.insert("column", 2)
 mapsum.insert("cool", 4)
-print(mapsum.sum("co"))  # 9
-print(mapsum.sum("col"))  # 5
-print(mapsum.sum("A"))  # 0
+print(mapsum._sum("co"))  # 9
+print(mapsum._sum("col"))  # 5
+print(mapsum._sum("A"))  # 0
 mapsum.insert("Alex", 1)
-print(mapsum.sum("A"))  # 1
-print(mapsum.sum("col"))  # 5
+print(mapsum._sum("A"))  # 1
+print(mapsum._sum("col"))  # 5
 mapsum.insert("columnar", 4)
-print(mapsum.sum("col"))  # 6
+print(mapsum._sum("col"))  # 6
 
 print(mapsum.map)

@@ -29,7 +29,7 @@ class PrefixMapSum:
             curr = curr.chars.setdefault(char, Trie())  # if char does not exist, return Trie() to default
             curr.total += value
 
-    def sum(self, prefix: str) -> int:
+    def _sum(self, prefix: str) -> int:
         """
         O(k)
         """
