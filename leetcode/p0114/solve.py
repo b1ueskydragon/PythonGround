@@ -12,8 +12,16 @@ class Solution:
         Given a binary tree, flatten it to a linked list in-place.
         Do not return anything, modify root in-place instead.
         """
+        if not root:
+            return None
 
-
-if __name__ == '__main__':
-    root = [1, 2, 5, 3, 4, None, 6]
-    expected = [1, None, 2, None, 3, None, 4, None, 5, None, 6]
+        if not root.left:
+            return
+        tmp = root.right
+        root.right = root.left
+        root.left = None
+        self.flatten(root.right)
+        while root.right:
+            root = root.right
+        else:
+            root.right = tmp
