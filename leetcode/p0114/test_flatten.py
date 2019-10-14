@@ -30,7 +30,7 @@ class FlattenBinaryTreeToLinkedListTest(unittest.TestCase):
         a.flatten(root)
         self.assertEqual(None, root)
 
-    def test_has_left(self):  # TODO
+    def test_has_left_to_search(self):
         a = A()
         # root = [1, None, 2, 3]
         root = TreeNode(1)
