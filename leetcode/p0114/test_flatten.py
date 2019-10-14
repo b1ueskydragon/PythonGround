@@ -24,6 +24,26 @@ class FlattenBinaryTreeToLinkedListTest(unittest.TestCase):
         self.assertEqual(5, root.right.right.right.right.val)
         self.assertEqual(6, root.right.right.right.right.right.val)
 
+    def test_empty_root(self):
+        a = A()
+        root = None
+        a.flatten(root)
+        self.assertEqual(None, root)
+
+    def test_has_left(self):  # TODO
+        a = A()
+        # root = [1, None, 2, 3]
+        root = TreeNode(1)
+        root.right = TreeNode(2)
+        root.right.left = TreeNode(3)
+
+        a.flatten(root)
+
+        # root = [1, None, 2, None, 3]
+        self.assertEqual(1, root.val)
+        self.assertEqual(2, root.right.val)
+        self.assertEqual(3, root.right.right.val)
+
 
 if __name__ == '__main__':
     unittest.main()
