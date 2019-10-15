@@ -3,3 +3,4 @@ solutions/
 */__pycache__/
 */*/__pycache__/
 venv/
+*.ipynb_checkpoints*
