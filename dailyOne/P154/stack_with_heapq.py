@@ -54,30 +54,3 @@ class PriorityHeapq:
         """
         _, item = heapq.heappop(self.heap)  # Tuple
         return item
-
-
-"""
-Test
-"""
-# phq = PriorityHeapq()
-# phq.push('c', 0)
-# print(phq.heap)  # [(0, 'c')]
-# phq.push('a', 1)
-# print(phq.heap)  # [(-1, 'a'), (0, 'c')]
-# phq.push('b', 2)
-# print(phq.heap)  # [(-2, 'b'), (0, 'c'), (-1, 'a')]
-# print(phq.pop())  # b
-# print(phq.heap)  # [(-1, 'a'), (0, 'c')]
-
-stack = Stack()
-stack.push('a')
-stack.push('b')
-stack.push('c')
-print(stack.phq.heap)
-print(stack.pop())
-print(stack.phq.heap)
-print(stack.pop())
-print(stack.phq.heap)
-
-# empty_stack = Stack()
-# empty_stack.pop()
