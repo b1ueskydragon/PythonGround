@@ -9,6 +9,21 @@ class Node:
 class Solution:
     def flatten(self, head: 'Node') -> 'Node':
         # in-place
+        if not head:
+            return head
+
+        curr_prev = head.prev
+        curr_next = head.next
+
+        if curr_prev:
+            head.next = curr_prev
+        if curr_next:
+            pass
+
+        head.child = None
+
+        self.flatten(head.child)
+
         return head
 
 
@@ -67,6 +82,10 @@ if __name__ == '__main__':
                      "val": 2},
             "prev": None,
             "val": 1}
+
+    s = Solution()
+    s.flatten(head)
+    print(head)
 
     expected = {"$id": "1",
                 "child": None,
