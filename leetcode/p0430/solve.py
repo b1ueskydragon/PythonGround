@@ -7,23 +7,30 @@ class Node:
 
 
 class Solution:
-    # TODO: we should concat child first then next
     def flatten(self, head: 'Node') -> 'Node':
         if not head:
             return head
         branch = None
         if head.next:
             if head.child:
-                branch = head.child  # concat when reached the end
+                branch = head.next
+                head.child.prev = head
+                head.next = head.child
                 head.child = None
-            self.flatten(head.next)  # go to the next anyway
-            self.flatten(branch)  # if has child, should be go deeper and do same thing
-            tmp_head = head
-            while head.next:
-                head = head.next
-            else:
-                if branch:
+        else:  # no next but only has children
+            if head.child:
+                head.next = head.child
+                head.next.prev = head
+                head.child = None
+        self.flatten(head.next)
+        self.flatten(branch)
+        tmp_head = head
+        while head.next:
+            head = head.next
+        else:
+            if branch:
+                if head:
                     branch.prev = head
-                    head.next = branch
-            head = tmp_head  # revert
+                head.next = branch
+        head = tmp_head  # revert
         return head
