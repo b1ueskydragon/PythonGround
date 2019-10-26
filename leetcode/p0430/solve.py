@@ -22,8 +22,8 @@ class Solution:
                 head.next = head.child
                 head.next.prev = head
                 head.child = None
-        self.flatten(head.next)
-        self.flatten(branch)
+        self.flatten(head.next)  # lookup `child`
+        self.flatten(branch)  # then lookup `next`
         tmp_head = head
         while head.next:
             head = head.next
