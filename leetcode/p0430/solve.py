@@ -7,7 +7,7 @@ class Node:
 
 
 class Solution:
-    # TODO set prev
+    # TODO: we should concat child first then next
     def flatten(self, head: 'Node') -> 'Node':
         if not head:
             return head
@@ -23,6 +23,7 @@ class Solution:
                 head = head.next
             else:
                 if branch:
+                    branch.prev = head
                     head.next = branch
             head = tmp_head  # revert
         return head
