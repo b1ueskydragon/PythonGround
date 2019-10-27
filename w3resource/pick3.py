@@ -18,14 +18,13 @@ def pick3th(xs, res):
 
 def pick3th_another(xs, res):
     i = 0
-    size = len(xs)
-    while size > 0:
-        i = (i + 2) % size  # revert
+    while len(xs) > 0:
+        i = (i + 2) % len(xs)  # revert
         res.append(xs.pop(i))
-        size -= 1
-
     return res
 
 
 print(pick3th(nums.copy(), []))
 print(pick3th_another(nums.copy(), []))
+print(pick3th(alphas.copy(), []))
+print(pick3th_another(alphas.copy(), []))
