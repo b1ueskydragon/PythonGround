@@ -29,7 +29,7 @@ def find_unique_triplets(nums):
 xs = [3, 5, -7, 11, 2]
 print(find_unique_triplets(xs))  # 2, 5, -7
 
-ys = [1, -6, 4, 2, -1, 2, 0, -2, 0]
+ys = [1, -6, 4, 2, -1, 0, 2, 0, -2, 0]
 print(find_unique_triplets(ys))  # -6, 4, 2 or 1, -1, 0 or 2, 0, -2
 
 # use built-in combinations
