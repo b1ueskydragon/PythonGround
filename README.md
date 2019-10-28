@@ -1,7 +1,7 @@
 ### Application of basic ~ intermidiate algorithms and data structures
 also test codes.<br>
 ```
-/leetcode, /dailyOne, /graffity, /retrospective
+/leetcode, /dailyOne, /graffity, /retrospective, /w3resource, /atcoder, /ap_programming ...
 ```
 ### To build a base of machine learning
 basic concept of linear algebra and regressions.<br>
