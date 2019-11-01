@@ -1,6 +1,6 @@
 import unittest
 
-from w3resource.aeiou import permutation, permutation_builtin
+from w3resource.aeiou import permutation, permutation_builtin, combination, combination_builtin
 
 
 class AeiouTest(unittest.TestCase):
@@ -15,6 +15,11 @@ class AeiouTest(unittest.TestCase):
     def test_permutation(self):
         vowels = ['a', 'e', 'i', 'o', 'u']
         self.assertEqual(permutation(vowels), permutation_builtin(vowels))
+
+    def test_combination(self):
+        vowels = ['a', 'e', 'i', 'o', 'u']
+        k = 3
+        self.assertEqual(combination(vowels, k), combination_builtin(vowels, k))
 
 
 if __name__ == '__main__':

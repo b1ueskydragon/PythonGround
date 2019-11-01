@@ -9,6 +9,11 @@ def permutation_builtin(xs):
     return list(map(list, itertools.permutations(xs)))
 
 
+def combination_builtin(xs, k):
+    import itertools
+    return list(map(list, itertools.combinations(xs, k)))
+
+
 def permutation(xs):
     if not xs:
         return [[]]
@@ -18,3 +23,7 @@ def permutation(xs):
         for tail in permutation(rems):  # reuse previous result
             res.append([h] + tail)
     return res
+
+
+def combination(xs, k):
+    return
