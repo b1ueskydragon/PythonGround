@@ -1,6 +1,6 @@
 """
 create all possible strings by using 'a', 'e', 'i', 'o', 'u'.
-Use the characters exactly once
+Use the characters exactly once (permutation)
 """
 
 
@@ -26,4 +26,16 @@ def permutation(xs):
 
 
 def combination(xs, k):
-    return
+    res = []
+
+    def _dfs(node, i, leaf):
+        if len(leaf) == k:
+            res.append(leaf)
+            return
+
+        if len(node) - i + len(leaf) >= k:
+            _dfs(node, i + 1, leaf + [node[i]])
+            _dfs(node, i + 1, leaf)
+
+    _dfs(xs, 0, [])
+    return res
