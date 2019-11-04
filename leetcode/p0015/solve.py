@@ -1,31 +1,40 @@
 class Solution:
-    def twoSum(self, nums):
+    def threeSum_improve(self, nums):
         """
-        x  = a + b
-        -x = c
+        sort -> binary search
         """
-        res = []
-        pairs = {}  # -x -> x
-        # triplets = {}
-        for i, x in enumerate(nums):
-            if -x in pairs:
-                res.append([pairs[-x], -x])
-            else:
-                pairs[x] = -x
-        return res
+        n = len(nums)
+        res = set()
+        nums.sort()
+
+        for i, x in enumerate(nums[:-2]):
+            l = i + 1
+            r = n - 1
+            target = -x
+
+            while l < r:
+                if nums[l] + nums[r] == target:
+                    res.add((x, nums[l], nums[r]))
+                    l += 1
+                    r -= 1
+                elif nums[l] + nums[r] > target:
+                    r -= 1
+                else:
+                    l += 1
+
+        return list(map(list, res))
 
     def threeSum(self, nums: [int]) -> [[int]]:
         """
-        very slow
+        slow
         """
         res = set()
         n = len(nums)
         nums.sort()
-        for i in range(n - 1):
+        for i, x in enumerate(nums):
             for j in range(i + 1, n):
-                x, y = nums[i], nums[j]
+                y = nums[j]
                 z = -(x + y)
                 if z in set(nums[j + 1:]):
-                    t = (x, y, z)
-                    res.add(t)
+                    res.add((x, y, z))
         return list(map(list, res))
