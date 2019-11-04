@@ -1,16 +1,17 @@
 class Solution:
     def twoSum(self, nums):
         """
-        x, y, -(x + y)
+        x  = a + b
+        -x = c
         """
         res = []
-        table_2 = {}  # x -> y
+        pairs = {}  # -x -> x
+        # triplets = {}
         for i, x in enumerate(nums):
-            if x not in table_2:
-                table_2[-x] = x
+            if -x in pairs:
+                res.append([pairs[-x], -x])
             else:
-                res.append([-x, x])
-
+                pairs[x] = -x
         return res
 
     def threeSum(self, nums: [int]) -> [[int]]:

@@ -6,8 +6,8 @@ from leetcode.p0015.solve import Solution as A
 class ThreeSumTest(unittest.TestCase):
     def test_twoSum(self):
         a = A()
-        nums = [1, 2, 1, -2, 0]
-        expected = [[2, -2]]
+        nums = [1, 2, 0, 4, 3, -1, -2, 0]
+        expected = [[-1, 1], [-2, 2], [0, 0]]
         self.assertEqual(expected, a.twoSum(nums))
 
     def test_threeSum(self):
