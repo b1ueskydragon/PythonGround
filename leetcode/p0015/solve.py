@@ -4,20 +4,25 @@ class Solution:
         sort -> binary search
         """
         n = len(nums)
+        if n < 3:  # no more redundant calculation.
+            return []
         res = set()
         nums.sort()
 
         for i, x in enumerate(nums[:-2]):
-            l = i + 1
-            r = n - 1
-            target = -x
-
+            """
+            we can skip a turn that has same value as previous one
+            since sorted first.
+            """
+            if i != 0 and x == nums[i - 1]:
+                continue
+            l, r = i + 1, n - 1
             while l < r:
-                if nums[l] + nums[r] == target:
+                if nums[l] + nums[r] == -x:
                     res.add((x, nums[l], nums[r]))
                     l += 1
                     r -= 1
-                elif nums[l] + nums[r] > target:
+                elif nums[l] + nums[r] > -x:
                     r -= 1
                 else:
                     l += 1
