@@ -4,7 +4,7 @@
 """
 
 
-def fib_rec(n):
+def fib_rec_slow(n):
     """
     top-down approach.
     n, n-1, n-2 ...
@@ -17,26 +17,33 @@ def fib_rec(n):
            ...
 
     calling same number and this means calc same thing again.
+    very slow.
 
     :param n:
     :return:
     """
     if n <= 1:
         return 1
-    return fib_rec(n - 2) + fib_rec(n - 1)
+    return fib_rec_slow(n - 2) + fib_rec_slow(n - 1)
 
 
-def fib_tail_rec(prev, n):
+def fib_memo(n, memo):
+    """
+    Do not calc again that has been calculated.
+
+    :param n:
+    :param memo:
+    :return:
+    """
     # TODO
+    return memo
+
+
+def fib_tail_linear_rec(n, prev=1, res=1):
     # make branch to be created on linear
-    if n == 1:
-        return n
-    return fib_tail_rec(n, prev + n)
-
-
-def fib_memo(n):
-    # TODO
-    return
+    if n <= 1:
+        return res
+    return fib_tail_linear_rec(n - 1, res, res + prev)
 
 
 def fib_dp(n):
@@ -54,6 +61,8 @@ def fib_dp(n):
 
 
 if __name__ == '__main__':
-    n = 10
-    print([fib_rec(i) for i in range(n)])
+    # TODO measure speed or plot to graph
+    n = int(input())
+    # print([fib_rec_slow(i) for i in range(n)])
+    print([fib_tail_linear_rec(i) for i in range(n)])
     print(list(fib_dp(n).values()))
