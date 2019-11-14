@@ -27,16 +27,24 @@ def fib_rec_slow(n):
     return fib_rec_slow(n - 2) + fib_rec_slow(n - 1)
 
 
-def fib_memo(n, memo):
+memo = {}  # global
+
+
+def fib_memo(n):
     """
     Do not calc again that has been calculated.
 
     :param n:
-    :param memo:
     :return:
     """
-    # TODO
-    return memo
+    if n in memo:
+        # prevent to re-call to the same params again.
+        return memo[n]
+    if n <= 1:
+        memo[n] = 1
+        return 1
+    memo[n] = fib_memo(n - 2) + fib_memo(n - 1)
+    return memo[n]
 
 
 def fib_tail_linear_rec(n, prev=1, res=1):
@@ -64,5 +72,7 @@ if __name__ == '__main__':
     # TODO measure speed or plot to graph
     n = int(input())
     # print([fib_rec_slow(i) for i in range(n)])
+    fib_memo(n - 1)
+    print(list(memo.values()))
     print([fib_tail_linear_rec(i) for i in range(n)])
     print(list(fib_dp(n).values()))
