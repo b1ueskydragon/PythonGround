@@ -16,9 +16,7 @@ class Solution:
             if j < len(s):
                 num_next = self.table[s[j]]
                 if num < num_next:
-                    num = num_next - num
-                    i += 1
-                    j += 1
+                    num = -num
             res += num
             i += 1
             j += 1
