@@ -9,8 +9,7 @@ class Solution:
                       "M": 1000}
 
     def romanToInt(self, s: str) -> int:
-        res = 0
-        prev_num = max(self.table.values()) + 1  # anything bigger than table values
+        res = prev_num = 0
         for c in s:
             num = self.table[c]
             if prev_num < num:
