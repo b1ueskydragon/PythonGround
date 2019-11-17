@@ -1,9 +1,8 @@
-def flight_itinerary(journey, curr):
-    # base case
-    if not journey:
-        return curr
-
-    for i, flight in enumerate(journey):
-        departure, arrival = flight
-
-    return None
+def flight_itinerary(remains, journey):
+    """
+    :param remains: random-ordered itineraries
+    :param journey: an list of itineraries
+    :return: a completed journey (an list of whole itineraries which is ordered correctly)
+    """
+    if not remains:  # base case
+        return journey
