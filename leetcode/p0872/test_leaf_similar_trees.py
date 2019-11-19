@@ -70,7 +70,6 @@ class LeafSimilarTest(unittest.TestCase):
         self.assertTrue(a.leafSimilar(root1, root2))
 
     def test_diff_order_same_depth(self):
-        # TODO pass the test
         a = A()
 
         # [44,79,25,null,null,112,7,74,49,2,122]
