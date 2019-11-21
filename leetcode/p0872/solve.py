@@ -1,11 +1,5 @@
 from collections import deque as q
-
-
-class TreeNode:
-    def __init__(self, x):
-        self.val = x
-        self.left = None
-        self.right = None
+from leetcode.p0872.TreeNode import TreeNode
 
 
 class Solution:
