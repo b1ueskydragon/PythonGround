@@ -26,7 +26,7 @@ class Solution:
         if root.right:
             self._dfs_with_pop(root.right)
         if not root.left and not root.right:
-            self.is_same = (self.is_same & (root.val == self.res.popleft()))
+            self.is_same &= (root.val == self.res.popleft())
 
     def leafSimilar(self, root1: TreeNode, root2: TreeNode) -> bool:
         self._dfs(root1)
