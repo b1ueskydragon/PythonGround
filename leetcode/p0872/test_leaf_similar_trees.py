@@ -1,7 +1,8 @@
 import unittest
 
+from leetcode.p0872.TreeNode import TreeNode as Node
 from leetcode.p0872.solve import Solution as A
-from leetcode.p0872.solve import TreeNode as Node
+from leetcode.p0872.solve01 import Solution as B
 
 
 class LeafSimilarTest(unittest.TestCase):
@@ -30,7 +31,7 @@ class LeafSimilarTest(unittest.TestCase):
         root2.right.right.left = Node(9)
         root2.right.right.right = Node(8)
 
-        self.assertTrue(a.leafSimilar(root1, root2))
+        self.assertEqual(a.leafSimilar(root1, root2), True)
 
     def test_diff_order_diff_depth(self):
         a = A()
@@ -51,7 +52,7 @@ class LeafSimilarTest(unittest.TestCase):
         root2.left.left.right = Node(4)
         root2.left.right.right = Node(5)
 
-        self.assertFalse(a.leafSimilar(root1, root2))
+        self.assertEqual(a.leafSimilar(root1, root2), False)
 
     def test_linear_tree_diff_direction_same_depth(self):
         a = A()
@@ -67,7 +68,21 @@ class LeafSimilarTest(unittest.TestCase):
         root2.left = Node(2)
         root2.left.left = Node(3)
         root2.left.left.left = Node(4)
-        self.assertTrue(a.leafSimilar(root1, root2))
+        self.assertEqual(a.leafSimilar(root1, root2), True)
+
+    def test_linear_tree_diff_direction_same_depth_B(self):
+        b = B()
+
+        root1 = Node(1)
+        root1.right = Node(2)
+        root1.right.right = Node(3)
+        root1.right.right.right = Node(4)
+
+        root2 = Node(1)
+        root2.left = Node(2)
+        root2.left.left = Node(3)
+        root2.left.left.left = Node(4)
+        self.assertEqual(b.leafSimilar(root1, root2), True)
 
     def test_diff_order_same_depth(self):
         a = A()
@@ -94,4 +109,29 @@ class LeafSimilarTest(unittest.TestCase):
         root2.left.right.left = Node(74)
         root2.left.right.right = Node(79)
 
-        self.assertFalse(a.leafSimilar(root1, root2))
+        self.assertEqual(a.leafSimilar(root1, root2), False)
+
+    def test_diff_order_same_depth_B(self):
+        b = B()
+
+        root1 = Node(44)
+        root1.left = Node(79)
+        root1.right = Node(25)
+        root1.right.left = Node(112)
+        root1.right.right = Node(7)
+        root1.right.left.left = Node(74)
+        root1.right.left.right = Node(49)
+        root1.right.right.left = Node(2)
+        root1.right.right.right = Node(122)
+
+        root2 = Node(38)
+        root2.left = Node(86)
+        root2.right = Node(120)
+        root2.left.left = Node(49)
+        root2.left.right = Node(54)
+        root2.right.left = Node(2)
+        root2.right.right = Node(122)
+        root2.left.right.left = Node(74)
+        root2.left.right.right = Node(79)
+
+        self.assertEqual(b.leafSimilar(root1, root2), False)
