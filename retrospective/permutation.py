@@ -10,10 +10,18 @@ def permutation(xs, k):
     return res
 
 
+def factorial(n, acc=1):
+    if n < 1:
+        return 0
+    while n:
+        acc *= n
+        n -= 1
+    return acc
+
+
 xs = ['a', 'b', 'c', 'd']
 res_k2 = list(map(''.join, permutation(xs, k=2)))
 res_k3 = list(map(''.join, permutation(xs, k=3)))
-# TODO calc length  n! / (n-k)!
 # TODO test code
-print(len(res_k2), res_k2)
-print(len(res_k3), res_k3)
+print(factorial(len(xs)) // factorial(len(xs) - 2), len(res_k2), res_k2)
+print(factorial(len(xs)) // factorial(len(xs) - 3), len(res_k3), res_k3)
