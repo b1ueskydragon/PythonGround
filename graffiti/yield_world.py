@@ -9,10 +9,10 @@ def f2():
 
 
 def f(f1, f2):
-    for i in f1:
+    for i in f1():
         yield i
-    for i in f2:
+    for i in f2():
         yield i
 
 
-print(f(f1, f2))
+print(list(f(f1, f2)))
