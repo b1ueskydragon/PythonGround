@@ -12,4 +12,10 @@ class Solution:
             yield from Solution._dfs(root.right)
 
     def leafSimilar(self, root1: TreeNode, root2: TreeNode) -> bool:
-        return list(Solution._dfs(root1)) == list(Solution._dfs(root2))
+        x, y = list(Solution._dfs(root1)), list(Solution._dfs(root2))
+        if len(x) != len(y):
+            return False
+        for i, v in enumerate(x):
+            if v != y[i]:
+                return False
+        return True
