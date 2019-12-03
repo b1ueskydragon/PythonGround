@@ -6,25 +6,25 @@ class TreeNode:
 
 
 class Solution:
-    @staticmethod
-    def is_valid(node):
-        flag = True
-        if node.left:
-            flag &= node.left.val < node.val
-        if node.right:
-            flag &= node.val < node.right.val
-        return flag
+    def __init__(self):
+        self.flag = True
 
-    @staticmethod
-    def dfs(node):
+    def is_valid(self, node):
+        if node.left:
+            self.flag &= node.left.val < node.val
+        if node.right:
+            self.flag &= node.val < node.right.val
+
+    def dfs(self, node):
         if node:
-            return Solution.is_valid(node)
-        # search left to right
-        Solution.dfs(node.left)
-        Solution.dfs(node.right)
+            self.dfs(node.left)
+            self.is_valid(node)
+            self.dfs(node.right)
+            self.is_valid(node)
 
     def isValidBST(self, root: TreeNode) -> bool:
-        return Solution.dfs(root)
+        self.dfs(root)
+        return self.flag
 
 # Test cases
 # [2, 1, 3]
