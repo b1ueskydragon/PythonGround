@@ -7,23 +7,19 @@ class TreeNode:
 
 class Solution:
     def __init__(self):
+        self.prev = None
         self.flag = True
 
-    def is_valid(self, node):
-        if node.left:
-            self.flag &= node.left.val < node.val
-        if node.right:
-            self.flag &= node.val < node.right.val
-
-    def dfs(self, node):
+    def _dfs(self, node):
         if node:
-            self.dfs(node.left)
-            self.is_valid(node)
-            self.dfs(node.right)
-            self.is_valid(node)
+            self._dfs(node.left)
+            if self.prev:
+                self.flag &= self.prev.val < node.val
+            self.prev = node
+            self._dfs(node.right)
 
     def isValidBST(self, root: TreeNode) -> bool:
-        self.dfs(root)
+        self._dfs(root)
         return self.flag
 
 # Test cases
@@ -31,3 +27,4 @@ class Solution:
 # [5, 1, 4, null, null, 3, 6]
 # [5, 1, 6, null, null, 7, 8]
 # [10, null, 15, 6]
+# [3, 1, 5, 0, 2, 4, 6]
