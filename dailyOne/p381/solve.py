@@ -34,12 +34,12 @@ class Base64Convert:
 
     @staticmethod
     def _padding(lower_sextets: str):
-        sextets = int(lower_sextets, 2)
-        while sextets < 63:
-            sextets <<= 1
-        if sextets > 63:
-            sextets >>= 1
-        return sextets
+        """
+        before with shift-op : 0001 -> 100000
+        now with zero fill   : 0001 -> 000100
+        TODO: But, I want to calc with numeric approach rather than str-concatenation.
+        """
+        return int(lower_sextets.ljust(6, '0'), 2)
 
     def convert(self, string_hex: str):
         """
