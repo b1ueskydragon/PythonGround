@@ -51,6 +51,11 @@ class Base64Convert:
         hex_int = int(string_hex, 16)
         bin_int = bin(hex_int)[2:]
 
+        # zero fill
+        if len(bin_int) % 8 != 0:
+            total_octets_len = ((len(bin_int) // 8) + 1) * 8
+            bin_int = bin_int.rjust(total_octets_len, '0')
+
         table = self.table
         res = ''
         i = 0
