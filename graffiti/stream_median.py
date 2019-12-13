@@ -19,3 +19,8 @@ class Solution:
 
 if __name__ == '__main__':
     a = Solution()
+    # an example of the integer stream in range [1, 10], and the number comes randomly.
+    a.min_heap = [1, 2, 3, 4, 5]
+    a.max_heap = [-10, -9, -8, -7, -6]
+    res = a.get_median()
+    print(res)
