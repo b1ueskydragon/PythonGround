@@ -17,19 +17,18 @@ class Solution:
     def insert(self, num):
         heapq.heappush(self._left_heap, -1 * num)
         if self._N % 2 == 0:
-            self._N += 1
             if not self._right_heap:
+                self._N += 1  # count-up only
                 return
-            if -1 * self._left_heap[0] > self._right_heap[0]:
+            if -1 * self._left_heap[0] > self._right_heap[0]:  # swap
                 min_val = -1 * heapq.heappop(self._left_heap)
                 max_val = heapq.heappop(self._right_heap)
-
                 heapq.heappush(self._right_heap, min_val)
                 heapq.heappush(self._left_heap, -1 * max_val)
         else:
-            self._N += 1
             min_val = -1 * heapq.heappop(self._left_heap)
             heapq.heappush(self._right_heap, min_val)
+        self._N += 1
 
     def get_median(self):
         if self._N % 2 == 0:  # two pivots
