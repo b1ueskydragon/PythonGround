@@ -21,29 +21,19 @@ class Solution:
                 self._N += 1  # count-up only
                 return
             if -1 * self._left_heap[0] > self._right_heap[0]:  # swap
-                min_val = -1 * heapq.heappop(self._left_heap)
+                min_val = heapq.heappop(self._left_heap)
                 max_val = heapq.heappop(self._right_heap)
-                heapq.heappush(self._right_heap, min_val)
+                heapq.heappush(self._right_heap, -1 * min_val)
                 heapq.heappush(self._left_heap, -1 * max_val)
         else:
-            min_val = -1 * heapq.heappop(self._left_heap)
-            heapq.heappush(self._right_heap, min_val)
+            min_val = heapq.heappop(self._left_heap)
+            heapq.heappush(self._right_heap, -1 * min_val)
         self._N += 1
 
     def get_median(self):
+        l_max = -1 * self._left_heap[0]
         if self._N % 2 == 0:  # two pivots
-            l_max, r_min = -1 * self._left_heap[0], self._right_heap[0]
-            print(l_max, r_min)
+            r_min = self._right_heap[0]
             return (l_max + r_min) / 2.
         else:
-            return -1 * self._left_heap[0]
-
-
-if __name__ == '__main__':
-    # for debugging
-    a = Solution()
-    integer_stream = [31, 22, 45, -9, 10, 0, 78, 9]
-    for v in integer_stream:
-        a.insert(v)
-    print('left', a._left_heap)
-    print('right', a._right_heap)
+            return l_max
