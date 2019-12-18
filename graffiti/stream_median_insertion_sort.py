@@ -36,10 +36,10 @@ class Solution:
     def get_median(self):
         n = len(self.sorted)
         m = n // 2
-        if n % 2 == 0:
-            return (self.sorted[m - 1] + self.sorted[m]) / 2.
-        else:
+        if n & 1:
             return self.sorted[m]
+        else:
+            return (self.sorted[m - 1] + self.sorted[m]) / 2.
 
 
 if __name__ == '__main__':
