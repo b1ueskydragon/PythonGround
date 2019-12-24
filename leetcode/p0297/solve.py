@@ -20,9 +20,11 @@ class Codec:
         res = []
         q = deque()
         q.append(root)
+        depth = 0
         while q:
             parent = q.popleft()
             if parent:
+                depth += 1
                 res.append(parent.val)
                 # add children
                 # child be the next parent
@@ -32,7 +34,7 @@ class Codec:
                     q.append(parent.right)
         # TODO insert None if node is none
         # TODO mkStr
-        return res
+        return res, depth
 
     def deserialize(self, data):
         """Decodes your encoded data to tree.
@@ -52,6 +54,7 @@ class Codec:
 codec = Codec()
 root = TreeNode(1)
 root.left = TreeNode(2)
+# root.left.left = TreeNode('a')
 root.right = TreeNode(3)
 root.right.left = TreeNode(4)
 root.right.right = TreeNode(5)
