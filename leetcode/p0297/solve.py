@@ -17,24 +17,17 @@ class Codec:
         :type root: TreeNode
         :rtype: str
         """
-        res = []
-        q = deque()
-        q.append(root)
-        depth = 0
+        res = ""
+        q = deque([root])
         while q:
             parent = q.popleft()
-            if parent:
-                depth += 1
-                res.append(parent.val)
-                # add children
-                # child be the next parent
-                if parent.left:
-                    q.append(parent.left)
-                if parent.right:
-                    q.append(parent.right)
-        # TODO insert None if node is none
-        # TODO mkStr
-        return res, depth
+            if not parent:
+                res += f'null, '
+                continue
+            res += f'{parent.val}, '
+            q.append(parent.left)
+            q.append(parent.right)
+        return f'[{res[:-2]}]'
 
     def deserialize(self, data):
         """Decodes your encoded data to tree.
