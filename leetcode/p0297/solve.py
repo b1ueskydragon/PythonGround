@@ -41,16 +41,34 @@ class Codec:
         :type data: str
         :rtype: TreeNode
         """
+        lq = deque()
+        rq = deque()
         data_list = Codec.str2list(data)
-        # debug
-        print(data_list)
+        for i, data in enumerate(data_list):
+            if i % 2 != 0:
+                lq.append(data)
+            else:
+                rq.append(data)
 
-        root = TreeNode(data_list[0])
-        root.left = TreeNode(data_list[1])
-        root.right = TreeNode(data_list[2])
-        root.right.left = TreeNode(data_list[5])
-        root.right.right = TreeNode(data_list[6])
+        root = TreeNode(rq.popleft())
 
+        def dfs(root):
+            if lq:
+                lv = lq.popleft()
+                if lv:
+                    root.left = TreeNode(lv)
+                    dfs(root.left)
+                else:
+                    return
+            if rq:
+                rv = rq.popleft()
+                if rv:
+                    root.right = TreeNode(rv)
+                    dfs(root.right)
+                else:
+                    return
+
+        dfs(root)
         return root
 
 # Your Codec object will be instantiated and called as such:
