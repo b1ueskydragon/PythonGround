@@ -54,11 +54,29 @@ class CodecTest(unittest.TestCase):
         self.assertEqual(root.val, deserialized.val)
         self.assertEqual(root.left.val, deserialized.left.val)
         self.assertEqual(root.right.val, deserialized.right.val)
+        self.assertEqual(root.right.left.val, deserialized.right.left.val)
+        self.assertEqual(root.right.right.val, deserialized.right.right.val)
 
-        # None
-        self.assertEqual(root.left.left, deserialized.left.left)
-        # None
-        self.assertEqual(root.left.right, deserialized.left.right)
+        self.assertIsNone(root.left.left)
+        self.assertIsNone(deserialized.left.left)
+        self.assertIsNone(root.left.right)
+        self.assertIsNone(deserialized.left.right)
 
+    def test_deserialize_a_tree_all_have_a_node(self):
+        codec = Codec()
+        root = TreeNode(1)
+        root.left = TreeNode(2)
+        root.right = TreeNode(3)
+        root.left.left = TreeNode(4)
+        root.left.right = TreeNode(5)
+        root.right.left = TreeNode(6)
+        root.right.right = TreeNode(7)
+        deserialized = codec.deserialize(codec.serialize(root))
+
+        self.assertEqual(root.val, deserialized.val)
+        self.assertEqual(root.left.val, deserialized.left.val)
+        self.assertEqual(root.right.val, deserialized.right.val)
+        self.assertEqual(root.left.left.val, deserialized.left.left.val)
+        self.assertEqual(root.left.right.val, deserialized.left.right.val)
         self.assertEqual(root.right.left.val, deserialized.right.left.val)
         self.assertEqual(root.right.right.val, deserialized.right.right.val)
