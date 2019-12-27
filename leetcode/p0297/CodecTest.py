@@ -13,10 +13,10 @@ class CodecTest(unittest.TestCase):
         root.right.right = TreeNode(5)
         serialized = codec.serialize(root)
         self.assertEqual(
-            "[1, 2, 3, null, null, 4, 5, null, null, null, null]",
+            "[1, 2, 3, null, null, 4, 5]",
             serialized)
 
-    def test_serialize_a_tree_has_a_odd_leaf(self):
+    def test_serialize_a_tree_has_a_odd_leaf_right(self):
         codec = Codec()
         root = TreeNode(1)
         root.left = TreeNode(2)
@@ -26,7 +26,20 @@ class CodecTest(unittest.TestCase):
         root.right.right.right = TreeNode(6)
         serialized = codec.serialize(root)
         self.assertEqual(
-            "[1, 2, 3, null, null, 4, 5, null, null, null, 6, null, null]",
+            "[1, 2, 3, null, null, 4, 5, null, null, null, 6]",
+            serialized)
+
+    def test_serialize_a_tree_has_a_odd_leaf_left(self):
+        codec = Codec()
+        root = TreeNode(1)
+        root.left = TreeNode(2)
+        root.right = TreeNode(3)
+        root.right.left = TreeNode(4)
+        root.right.right = TreeNode(5)
+        root.right.right.left = TreeNode(6)
+        serialized = codec.serialize(root)
+        self.assertEqual(
+            "[1, 2, 3, null, null, 4, 5, null, null, 6, null]",
             serialized)
 
     def test_deserialize_a_tree_inclined_right_side(self):

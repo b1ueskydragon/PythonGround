@@ -26,19 +26,14 @@ class Codec:
                 q.append(parent.left)
                 q.append(parent.right)
             else:
+                if len(q) % 2 != 0 and all(not v for v in q):
+                    break
                 res += f'null, '
         return f'[{res[:-2]}]'
 
     @staticmethod
     def str2list(data_str):
-        data_list = [None if v == 'null' else int(v) for v in data_str[1:-1].split(", ")]
-        c = 0
-        for v in reversed(data_list):
-            if v:
-                break
-            c += 1
-        trim_len = c if c % 2 == 0 else c - 1
-        return data_list[:len(data_list) - trim_len]
+        return [None if v == 'null' else int(v) for v in data_str[1:-1].split(", ")]
 
     def deserialize(self, data) -> TreeNode:
         """Decodes your encoded data to tree.
