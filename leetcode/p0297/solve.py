@@ -42,31 +42,21 @@ class Codec:
         :rtype: TreeNode
         """
         data_list = Codec.str2list(data)
-        q = deque(data_list)
-        root = TreeNode(q.popleft())
-
-        #              1
-        #     2   ,  3    , 4,     5,       1 ~ 2  2 * (2**1 -1)    + 1
-        #   6, 7,  8 , 9, 10, 11, 12, 13    5 ~ 8  2 * (2**2 -1)    + 3
-        #  14        20,21                  13 ~20 2 * (2**3 -1)    + 7
-        # 30                                29 ~   2 * (2**4 -1)    + 15
-        test = data_list[1:]
-        lq = deque()
-        for i, v in enumerate(test, start=1):
-            a = 2 * (2 ** i - 1) - 1
-            b = a + 2 ** i
-            print(a, b)
-            if b > len(data_list):
-                break
-
-        def dfs(root):
-            if root:
-                if q:
-                    root.left = TreeNode(q.popleft())
-                    root.right = TreeNode(q.popleft())
-                dfs(root.left)
-
-        dfs(root)
+        if data_list[0] is None:
+            return []  # edge case
+        root = TreeNode(data_list[0])
+        q = deque([root])
+        pos = 1
+        while q and len(data_list) > pos:
+            parent = q.popleft()
+            if data_list[pos] is not None:
+                parent.left = TreeNode(data_list[pos])
+                q.append(parent.left)
+            pos += 1
+            if data_list[pos] is not None:
+                parent.right = TreeNode(data_list[pos])
+                q.append(parent.right)
+            pos += 1
         return root
 
 # Your Codec object will be instantiated and called as such:

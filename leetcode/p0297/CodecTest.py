@@ -80,3 +80,19 @@ class CodecTest(unittest.TestCase):
         self.assertEqual(root.left.right.val, deserialized.left.right.val)
         self.assertEqual(root.right.left.val, deserialized.right.left.val)
         self.assertEqual(root.right.right.val, deserialized.right.right.val)
+
+    def test_deserialize_empty(self):
+        codec = Codec()
+        deserialized = codec.deserialize(codec.serialize(None))
+        self.assertEqual([], deserialized)  # not a [None]
+
+    def test_deserialize_includes_numeric_zero(self):
+        codec = Codec()
+        root = TreeNode(-1)
+        root.left = TreeNode(0)  # 0 != None
+        root.right = TreeNode(1)
+        deserialized = codec.deserialize(codec.serialize(root))
+
+        self.assertEqual(root.val, deserialized.val)
+        self.assertEqual(root.left.val, deserialized.left.val)
+        self.assertEqual(root.right.val, deserialized.right.val)
