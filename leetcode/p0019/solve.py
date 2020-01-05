@@ -14,12 +14,14 @@ class Solution:
         res = ListNode(head.val)
         q = deque([res])
         while q and head.next:
+            k += 1
             node = q.popleft()
             node.next = ListNode(head.next.val)
             q.append(node.next)
+            if k == 3:  # TODO: len - n
+                q.popleft()
+                q.append(head)
             head = head.next
-            k += 1
-        print(k)
         return res
         # TODO: fix wip
         # TODO: two points
