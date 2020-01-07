@@ -17,6 +17,10 @@ class Solution:
             size += 1
         k = 0
         index = size - n
+        if index == 0:
+            head = head.next
+        if not head:
+            return None
         res = ListNode(head.val)
         q = deque([res])
         while q and head.next:
@@ -29,5 +33,4 @@ class Solution:
                 q.append(node.next)
                 head = head.next
         return res
-        # TODO: [1] 1
         # TODO: two points
