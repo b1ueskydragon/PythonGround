@@ -33,4 +33,3 @@ class Solution:
                 q.append(node.next)
                 head = head.next
         return res
-        # TODO: two points
