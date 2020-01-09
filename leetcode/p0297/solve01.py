@@ -12,9 +12,15 @@ class Solution:
 
     def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
         j = 0
-        i = j - n + 1  # Specify the index which be removed.
+        i = j - n
+        res = ListNode(head.val)
+        point = res
         while head.next:
             j += 1
             i += 1
             head = head.next
-        print(i, j)
+            if head:
+                point.next = head
+                print(i, j)
+                point = point.next
+        return res
