@@ -11,19 +11,30 @@ class Solution:
     """
 
     def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
-        # j = 0
-        # i = j - n
+        # i = 0 - n
         # res = ListNode(head.val)
         # point = res
         # while head.next:
-        #     j += 1
         #     i += 1
         #     head = head.next
         #     if head:
         #         point.next = head
-        #         print(i, j)
         #         point = point.next
+        #         if not head.next:
+        #             # get the i for left side
+        #             # point for right side
+        #             break
+        #
+        # # TODO: complete. this is a WIP
+        # left = res
+        # # print(point)
+        # while i > 0:
+        #     left = left.next
+        #     i -= 1
+        # else:
+        #     left.next = point
         # return res
+
         p1 = head
         p2 = head
         while n:
