@@ -17,10 +17,10 @@ def insertion_sort_desc(nums):
     nums.append(min_int)  # sentinel to skip checking n > j
 
     for i in reversed(range(n - 1)):
-        fixed_ahead = nums[i]
+        min_val = nums[i]  # should be sent to the back
         j = i + 1
-        while nums[j] > fixed_ahead:
+        while nums[j] > min_val:
             nums[j - 1] = nums[j]
             j += 1
-        nums[j - 1] = fixed_ahead
+        nums[j - 1] = min_val
     return nums[:-1]
