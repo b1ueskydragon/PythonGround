@@ -26,6 +26,14 @@ class StrobogrammaticNumbersTest(unittest.TestCase):
                     9006, 9116, 9696, 9886, 9966]
         self.assertEqual(expected, strobogrammatic_numbers(4))
 
+    def test_digit_5(self):
+        expected = [10001, 10101, 10801,
+                    11011, 11111, 11811,
+                    16091, 16191, 16891,
+                    18081, 18181, 18881,
+                    19061, 19161, 19861]  # TODO
+        self.assertEqual(expected, strobogrammatic_numbers(5))
+
 
 if __name__ == '__main__':
     unittest.main()
