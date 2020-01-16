@@ -19,5 +19,21 @@ def strobogrammatic_numbers(n):
             for x in prev:
                 res.append(906 + x * (10 ** (n - 2)))
     else:
-        return [11, 69, 88, 96]
+        if n == 2:
+            return [11, 69, 88, 96]
+        else:
+            # n = 4
+            prev = strobogrammatic_numbers(n - 2)
+            res.append(1001) # 100001
+            for x in prev:
+                res.append(1001 + x * 10)
+            res.append(6009)
+            for x in prev:
+                res.append(6009 + x * 10)
+            res.append(8008)
+            for x in prev:
+                res.append(8008 + x * 10)
+            res.append(9006)
+            for x in prev:
+                res.append(9006 + x * 10)
     return res
