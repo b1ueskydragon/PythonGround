@@ -7,24 +7,48 @@ def strobogrammatic_numbers(n):
     if n % 2 != 0:
         if n == 1:
             return [0, 1, 8]  # 6 and 9 is excluded. yep.
+        elif n == 3:
+            return [101, 111, 181,
+                    609, 619, 689,
+                    808, 818, 888,
+                    906, 916, 986]
         else:
-            # n = 3
             prev = strobogrammatic_numbers(n - 2)
+            a = 10 ** (n - 1) + 1
+            res.append(a)
+            res.append(a + 10 ** (n // 2))
+            res.append(a + 8 * 10 ** (n // 2))
             for x in prev:
-                res.append(101 + x * (10 ** (n - 2)))
+                res.append(a + x * 10)
+
+            b = 6 * 10 ** (n - 1) + 9
+            res.append(b)
+            res.append(b + 10 ** (n // 2))
+            res.append(b + 8 * 10 ** (n // 2))
+
             for x in prev:
-                res.append(609 + x * (10 ** (n - 2)))
+                res.append(b + x * 10)
+
+            c = 8 * 10 ** (n - 1) + 8
+            res.append(c)
+            res.append(c + 10 ** (n // 2))
+            res.append(c + 8 * 10 ** (n // 2))
             for x in prev:
-                res.append(808 + x * (10 ** (n - 2)))
+                res.append(c + x * 10)
+
+            d = 9 * 10 ** (n - 1) + 6
+            res.append(d)
+            res.append(d + 10 ** (n // 2))
+            res.append(d + 8 * 10 ** (n // 2))
             for x in prev:
-                res.append(906 + x * (10 ** (n - 2)))
+                res.append(d + x * 10)
     else:
         if n == 2:
             return [11, 69, 88, 96]
         else:
             # n = 4
             prev = strobogrammatic_numbers(n - 2)
-            res.append(1001) # 100001
+            res.append(1001)  # 100001
             for x in prev:
                 res.append(1001 + x * 10)
             res.append(6009)

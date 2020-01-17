@@ -32,7 +32,13 @@ class StrobogrammaticNumbersTest(unittest.TestCase):
                     16091, 16191, 16891,
                     18081, 18181, 18881,
                     19061, 19161, 19861]  # TODO
-        self.assertEqual(expected, strobogrammatic_numbers(5))
+        actual = strobogrammatic_numbers(5)
+        self.assertEqual(expected, actual[:15])
+
+    @staticmethod
+    def test_printout_digit_n():
+        n = 7
+        print(strobogrammatic_numbers(n))
 
 
 if __name__ == '__main__':
