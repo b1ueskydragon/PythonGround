@@ -17,14 +17,18 @@ class StrobogrammaticNumbersTest(unittest.TestCase):
                     609, 619, 689,
                     808, 818, 888,
                     906, 916, 986]
-        self.assertEqual(expected, strobogrammatic_numbers(3))
+        actual = strobogrammatic_numbers(3)
+        actual.sort()
+        self.assertEqual(expected, actual)
 
-    def test_digit_4(self):  # TODO
+    def test_digit_4(self):
         expected = [1001, 1111, 1691, 1881, 1961,
                     6009, 6119, 6699, 6889, 6969,
                     8008, 8118, 8698, 8888, 8968,
                     9006, 9116, 9696, 9886, 9966]
-        self.assertEqual(expected, strobogrammatic_numbers(4))
+        actual = strobogrammatic_numbers(4)
+        actual.sort()
+        self.assertEqual(expected, actual)
 
     def test_digit_5(self):
         expected = [10001, 10101, 10801,
@@ -47,9 +51,11 @@ class StrobogrammaticNumbersTest(unittest.TestCase):
                     96096, 96196, 96896,
                     98086, 98186, 98886,
                     99066, 99166, 99866]
-        self.assertEqual(expected, strobogrammatic_numbers(5))
+        actual = strobogrammatic_numbers(5)
+        actual.sort()
+        self.assertEqual(expected, actual)
 
-    def test_digit_7(self):  # TODO
+    def test_digit_7(self):
         expected = [
             1000001, 1001001, 1008001, 1010101, 1011101, 1018101, 1060901, 1061901, 1068901, 1080801, 1081801, 1088801,
             1090601, 1091601, 1098601, 1100011, 1101011, 1108011, 1110111, 1111111, 1118111, 1160911, 1161911, 1168911,
@@ -77,7 +83,9 @@ class StrobogrammaticNumbersTest(unittest.TestCase):
             9860986, 9861986, 9868986, 9880886, 9881886, 9888886, 9890686, 9891686, 9898686, 9900066, 9901066, 9908066,
             9910166, 9911166, 9918166, 9960966, 9961966, 9968966, 9980866, 9981866, 9988866, 9990666, 9991666, 9998666
         ]
-        self.assertEqual(expected, strobogrammatic_numbers(7))
+        actual = strobogrammatic_numbers(7)
+        actual.sort()
+        self.assertEqual(expected, actual)
 
 
 if __name__ == '__main__':
