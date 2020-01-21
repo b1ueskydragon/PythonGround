@@ -6,16 +6,16 @@ def strobogrammatic_numbers(n):
     :return: strobogrammatic numbers with N digits
     """
 
-    def _rec(_n, curr):
+    def rec(k, curr):
         res = []
-        if _n == 0:  # base case even
+        if k == 0:  # base case even
             return ['']
-        if _n == 1:  # base case odd
+        if k == 1:  # base case odd
             return [0, 1, 8]
         else:
-            prev = _rec(_n - 2, curr)
+            prev = rec(k - 2, curr)
             for middle in prev:
-                if _n < curr:
+                if k < curr:
                     res.append(f'0{middle}0')  # zero-fill to [0, 1, 8] or ['']
                 res.append(int(f'1{middle}1'))
                 res.append(int(f'6{middle}9'))
@@ -23,4 +23,6 @@ def strobogrammatic_numbers(n):
                 res.append(int(f'9{middle}6'))
         return res
 
-    return _rec(n, n)
+    result = rec(n, n)
+    result.sort()  # for test
+    return result
