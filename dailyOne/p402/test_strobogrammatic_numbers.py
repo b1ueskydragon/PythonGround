@@ -1,34 +1,35 @@
 import unittest
 
-from dailyOne.p402.solve import strobogrammatic_numbers
+from dailyOne.p402.solve import strobogrammatic_numbers as A
+from dailyOne.p402.solve01 import strobogrammatic_numbers as B
 
 
 class StrobogrammaticNumbersTest(unittest.TestCase):
     def test_digit_1(self):
         expected = [0, 1, 8]
-        self.assertEqual(expected, strobogrammatic_numbers(1))
+        self.assertEqual(expected, A(1))
+        self.assertEqual(expected, B(1))
 
     def test_digit_2(self):
         expected = [11, 69, 88, 96]
-        self.assertEqual(expected, strobogrammatic_numbers(2))
+        self.assertEqual(expected, A(2))
+        self.assertEqual(expected, B(2))
 
     def test_digit_3(self):
         expected = [101, 111, 181,
                     609, 619, 689,
                     808, 818, 888,
                     906, 916, 986]
-        actual = strobogrammatic_numbers(3)
-        actual.sort()
-        self.assertEqual(expected, actual)
+        self.assertEqual(expected, A(3))
+        self.assertEqual(expected, B(3))
 
     def test_digit_4(self):
         expected = [1001, 1111, 1691, 1881, 1961,
                     6009, 6119, 6699, 6889, 6969,
                     8008, 8118, 8698, 8888, 8968,
                     9006, 9116, 9696, 9886, 9966]
-        actual = strobogrammatic_numbers(4)
-        actual.sort()
-        self.assertEqual(expected, actual)
+        self.assertEqual(expected, A(4))
+        self.assertEqual(expected, B(4))
 
     def test_digit_5(self):
         expected = [10001, 10101, 10801,
@@ -51,9 +52,8 @@ class StrobogrammaticNumbersTest(unittest.TestCase):
                     96096, 96196, 96896,
                     98086, 98186, 98886,
                     99066, 99166, 99866]
-        actual = strobogrammatic_numbers(5)
-        actual.sort()
-        self.assertEqual(expected, actual)
+        self.assertEqual(expected, A(5))
+        self.assertEqual(expected, B(5))
 
     def test_digit_7(self):
         expected = [
@@ -83,9 +83,8 @@ class StrobogrammaticNumbersTest(unittest.TestCase):
             9860986, 9861986, 9868986, 9880886, 9881886, 9888886, 9890686, 9891686, 9898686, 9900066, 9901066, 9908066,
             9910166, 9911166, 9918166, 9960966, 9961966, 9968966, 9980866, 9981866, 9988866, 9990666, 9991666, 9998666
         ]
-        actual = strobogrammatic_numbers(7)
-        actual.sort()
-        self.assertEqual(expected, actual)
+        self.assertEqual(expected, A(7))
+        self.assertEqual(expected, B(7))
 
 
 if __name__ == '__main__':
