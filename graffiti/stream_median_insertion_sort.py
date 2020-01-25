@@ -9,7 +9,7 @@ and insert the incoming number to the right place.
 
 class Solution:
     def __init__(self):
-        self.sorted = []
+        self.res = []
 
     @staticmethod
     def get_pos(xs, low, high, value):
@@ -27,50 +27,16 @@ class Solution:
         return high  # cursors already got crossed; value is the largest one
 
     def insert(self, num):
-        if not self.sorted:
-            self.sorted.append(num)  # append to the end
+        if not self.res:
+            self.res.append(num)  # append to the end
         else:
-            index = Solution.get_pos(self.sorted, 0, len(self.sorted), num)
-            self.sorted.insert(index, num)
+            index = self.get_pos(self.res, 0, len(self.res), num)
+            self.res.insert(index, num)
 
     def get_median(self):
-        n = len(self.sorted)
+        n = len(self.res)
         m = n // 2
         if n & 1:
-            return self.sorted[m]
+            return self.res[m]
         else:
-            return (self.sorted[m - 1] + self.sorted[m]) / 2.
-
-
-if __name__ == '__main__':
-    a = Solution()
-    a.insert(3)
-    a.insert(1)
-    a.insert(4)
-    a.insert(2)
-
-    print(a.sorted)
-
-    xs = [1, 3, 4, 5]
-    index = Solution.get_pos(xs, 0, len(xs), 2)
-    print(index)
-
-    xs = [1, 3]
-    index = Solution.get_pos(xs, 0, len(xs), 4)
-    print(index)
-
-    xs = [1, 3, 4, 5]
-    index = Solution.get_pos(xs, 0, len(xs), 3)
-    print(index)
-
-    xs = [1, 2, 3, 4]
-    index = Solution.get_pos(xs, 0, len(xs), 5)
-    print(index)
-
-    xs = [1, 2, 3, 4, 5, 6, 8]
-    index = Solution.get_pos(xs, 0, len(xs), 7)
-    print(index)
-
-    xs = [1]
-    index = Solution.get_pos(xs, 0, len(xs), 0)
-    print(index)
+            return (self.res[m - 1] + self.res[m]) / 2.
