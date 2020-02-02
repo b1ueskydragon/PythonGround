@@ -12,9 +12,9 @@ class Solution:
     def maxLevelSum(self, root: TreeNode) -> int:
         parent = deque([(root, 1)])
         res = (root.val, 1)
-
         while parent:
             acc = 0
+            depth = 0  # only for assigning before it used
             children = deque()
             while parent:
                 node, depth = parent.popleft()
@@ -23,8 +23,7 @@ class Solution:
                     children.append((node.left, depth + 1))
                 if node.right:
                     children.append((node.right, depth + 1))
-                print(depth, acc, res[0])
-                if acc > res[0]:
-                    res = (acc, depth)
+            if acc > res[0]:
+                res = (acc, depth)
             parent = children  # next generation
         return res[1]
