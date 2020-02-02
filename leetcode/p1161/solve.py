@@ -13,17 +13,18 @@ class Solution:
         parent = deque([(root, 1)])
         res = (root.val, 1)
 
-        acc = 0
-        children = deque()
         while parent:
-            node, depth = parent.popleft()
-            acc += node.val
-            if node.left:
-                children.append((node.left, depth + 1))
-            if node.right:
-                children.append((node.right, depth + 1))
+            acc = 0
+            children = deque()
+            while parent:
+                node, depth = parent.popleft()
+                acc += node.val
+                if node.left:
+                    children.append((node.left, depth + 1))
+                if node.right:
+                    children.append((node.right, depth + 1))
 
-            if acc > res[0]:
-                res = (acc, depth)
-        print(children)
+                if acc > res[0]:
+                    res = (acc, depth)
+            parent = children  # next generation
         return res[1]
