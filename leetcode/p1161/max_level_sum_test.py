@@ -46,3 +46,20 @@ class MaxLevelSumTest(unittest.TestCase):
         root.right = TreeNode(3)
         root.left.right = TreeNode(-1005)
         self.assertEqual(2, a.maxLevelSum(root))
+
+    def test_tree_has_a_complex_children_structure(self):
+        #  [1,2,3,null,4,5,6,null,null,7,8,9,10,11,null,12]
+        a = A()
+        root = TreeNode(1)
+        root.left = TreeNode(2)
+        root.right = TreeNode(3)
+        root.left.right = TreeNode(4)
+        root.right.left = TreeNode(5)
+        root.right.right = TreeNode(6)
+        root.right.left.left = TreeNode(7)
+        root.right.left.right = TreeNode(8)
+        root.right.right.left = TreeNode(9)
+        root.right.right.right = TreeNode(10)
+        root.right.left.left.left = TreeNode(11)
+        root.right.left.right.left = TreeNode(12)
+        self.assertEqual(4, a.maxLevelSum(root))

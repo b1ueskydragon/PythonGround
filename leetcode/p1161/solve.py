@@ -1,3 +1,6 @@
+from collections import deque
+
+
 class TreeNode:
     def __init__(self, x):
         self.val = x
@@ -7,5 +10,20 @@ class TreeNode:
 
 class Solution:
     def maxLevelSum(self, root: TreeNode) -> int:
-        level = [(root, 1)]
-        max_val = (root.val, 1)  # or insert a sentinel
+        parent = deque([(root, 1)])
+        res = (root.val, 1)
+
+        acc = 0
+        children = deque()
+        while parent:
+            node, depth = parent.popleft()
+            acc += node.val
+            if node.left:
+                children.append((node.left, depth + 1))
+            if node.right:
+                children.append((node.right, depth + 1))
+
+            if acc > res[0]:
+                res = (acc, depth)
+        print(children)
+        return res[1]
