@@ -10,7 +10,7 @@ class TreeNode:
 
 class Solution:
     def maxLevelSum(self, root: TreeNode) -> int:
-        max_sum = 0
+        max_sum = root.val  # not 0 for a single node tree
         max_depth = 1
         curr_depth = 1
         seed = deque([root])
@@ -32,5 +32,4 @@ class Solution:
 
             curr_depth += 1
             seed = curr
-        print(max_sum)
         return max_depth
