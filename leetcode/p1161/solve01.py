@@ -11,20 +11,19 @@ class TreeNode:
 class Solution:
     def maxLevelSum(self, root: TreeNode) -> int:
         max_sum = 0
-        curr_depth = 1
         max_depth = 1
-        parent = deque([root])
-
-        while parent:
+        curr_depth = 1
+        seed = deque([root])
+        while seed:
             # initialize before every new parent generated
-            tmp = []
+            curr = []
             curr_sum = 0
 
-            for node in parent:
+            for node in seed:
                 if node.left:
-                    tmp.append(node.left)
+                    curr.append(node.left)
                 if node.right:
-                    tmp.append(node.right)
+                    curr.append(node.right)
                 curr_sum += node.val
 
             if curr_sum > max_sum:
@@ -32,5 +31,6 @@ class Solution:
                 max_depth = curr_depth
 
             curr_depth += 1
-
+            seed = curr
+        print(max_sum)
         return max_depth
