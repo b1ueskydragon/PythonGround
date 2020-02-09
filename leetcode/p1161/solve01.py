@@ -13,7 +13,7 @@ class Solution:
         max_sum = root.val  # not 0 for a single node tree
         max_depth = 1
         curr_depth = 1
-        seed = deque([root])
+        seed = deque([root])  # using stack is also OK. since there is no pop
         while seed:
             # initialize before every new parent generated
             curr = []
