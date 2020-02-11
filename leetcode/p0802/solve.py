@@ -20,8 +20,9 @@ class Solution:
             return True
         for step in end_points:
             if step in self.visited:
-                continue
-            self.visited.add(start)
-            if not self.has_terminal_node(graph, step):
-                continue
-            self.res.append(start)  # or put first and pop if not
+                if start in self.visited:
+                    continue
+            self.visited.add(step)
+            if self.has_terminal_node(graph, step):
+                # print(start, " next: ", step, self.visited)
+                self.res.append(start)  # or put first and pop if not
