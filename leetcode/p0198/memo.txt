@@ -1,0 +1,15 @@
+Let's make a formula for make the problem simple.
+
+nums = [a1, a2, a3, a4, a5, a6]
+Index i start with 1. Each num is bigger than 0.
+
+i=6 (curr=a6)
+includes_curr := a6 + exclude_previous
+
+exclude_previous :=    a1 + a3   --- x  or
+                       a1 + a4   --- y  or
+                       a2 + a4   --- z
+
+x is the exclude_previous from curr=a5 (need to remember at the previous point, a5)
+y or z is the include_previous from curr=a5 (need to determine which one is bigger at the previous point, a5)
+In any case, Those should be determined at the previous stage.
