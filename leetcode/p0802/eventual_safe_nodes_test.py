@@ -28,9 +28,21 @@ class EventualSafeStatesTest(unittest.TestCase):
         expected = []
         self.assertEqual(expected, a.eventualSafeNodes(graph))
 
-    def test_just_one_goal(self):
+    def test_has_both_safe_and_circle_1(self):
         a = A()
         graph = [[1, 2, 3, 4], [1, 2], [3, 4], [0, 4], []]
         # i=0 has a chance to be a circle
         expected = [4]
+        self.assertEqual(expected, a.eventualSafeNodes(graph))
+
+    def test_has_both_safe_and_circle_2(self):
+        a = A()
+        graph = [[1, 2, 3], [1, 2], [3], [3, 4], []]
+        expected = [4]
+        self.assertEqual(expected, a.eventualSafeNodes(graph))
+
+    def test_only_one_goal(self):
+        a = A()
+        graph = [[1, 2, 3], [2, 3], [3, 4], [4, 5], [4], []]
+        expected = [5]
         self.assertEqual(expected, a.eventualSafeNodes(graph))
