@@ -1,6 +1,6 @@
 class Solution:
     def __init__(self):
-        self.visited = set()  # memoing all of visited start and step point
+        self.visited = set()
         self.res = set()
         self.has_circle = set()
 
@@ -18,7 +18,6 @@ class Solution:
             return True
         for step in end_points:
             if start in self.visited and step in self.visited:
-                print(self.res, root, start, step)
                 if start == step:
                     self.has_circle.add(root)
                 continue

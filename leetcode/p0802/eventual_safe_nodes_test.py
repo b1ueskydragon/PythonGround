@@ -41,8 +41,14 @@ class EventualSafeStatesTest(unittest.TestCase):
         expected = [4]
         self.assertEqual(expected, a.eventualSafeNodes(graph))
 
-    def test_only_one_goal(self):
+    def test_has_a_circle(self):  # TODO
         a = A()
         graph = [[1, 2, 3], [2, 3], [3, 4], [4, 5], [4], []]
         expected = [5]
+        self.assertEqual(expected, a.eventualSafeNodes(graph))
+
+    def test_go_forward_all_except_last(self):  # TODO
+        a = A()
+        graph = [[1, 2, 3], [2, 3], [3, 4], [4, 5], [5], []]
+        expected = [0, 1, 2, 3, 4, 5]
         self.assertEqual(expected, a.eventualSafeNodes(graph))
