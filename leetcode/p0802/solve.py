@@ -1,29 +1,23 @@
 class Solution:
     def __init__(self):
         self.visited = set()
-        self.res = set()
-        self.has_circle = set()
+        self.res = set()  # TODO list with continue
 
     def eventualSafeNodes(self, graph: [[int]]) -> [int]:
         for i, node in enumerate(graph):
-            if node == []:
+            if not node:
                 self.res.add(i)
             else:
-                self.has_terminal_node(graph, i, i)
-        return list(self.res - self.has_circle)
+                self.has_terminal_node(graph, i)
+        return list(self.res)
 
-    def has_terminal_node(self, graph, root, start):
+    def has_terminal_node(self, graph, start):
         end_points = graph[start]
-        if end_points == []:
+        if not end_points:
             return True
         for step in end_points:
-            if start in self.visited and step in self.visited:
-                if start == step:
-                    self.has_circle.add(root)
-                continue
-            if step in self.res:
-                self.res.add(start)
-                continue
+            if step in self.visited:
+                return False
             self.visited.add(step)
-            if self.has_terminal_node(graph, root, step):
-                self.res.add(start)
+            if self.has_terminal_node(graph, step):
+                self.res.add(step)
