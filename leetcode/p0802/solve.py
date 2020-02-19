@@ -1,22 +1,21 @@
 class Solution:
-    def __init__(self):
-        self.res = set()
-        self.visited = set()
-
     def eventualSafeNodes(self, graph: [[int]]) -> [int]:
-        for node, end_points in enumerate(graph):
-            if node not in self.visited:
-                self.is_terminal_node(node, graph)
-        return sorted(self.res)
+        res = set()
+        visited = set()
 
-    def is_terminal_node(self, start, graph):
-        if start in self.res:
-            return True
-        if start in self.visited:
-            return False
-        self.visited.add(start)
-        for step in graph[start]:
-            if not self.is_terminal_node(step, graph):
+        def is_terminal_node(start):
+            if start in res:
+                return True
+            if start in visited:
                 return False
-        self.res.add(start)
-        return True
+            visited.add(start)
+            for step in graph[start]:
+                if not is_terminal_node(step):
+                    return False
+            res.add(start)
+            return True
+
+        for node in range(len(graph)):
+            if node not in visited:
+                is_terminal_node(node)
+        return sorted(res)
