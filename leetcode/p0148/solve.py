@@ -5,17 +5,20 @@ class ListNode:
 
 
 class Solution:
+    @staticmethod
+    def mergeTwoLists(l1: ListNode, l2: ListNode):
+        p = res = ListNode(None)
+        while l1 and l2:
+            if l1.val < l2.val:
+                p.next = l1
+                l1 = l1.next
+            else:
+                p.next = l2
+                l2 = l2.next
+            p = p.next
+        p.next = l1 or l2
+        return res.next
+
     def sortList(self, head: ListNode) -> ListNode:
-        pos = head
-        pivot_v, n = 0, 0
-        # O(N) to find a pivot
-        while pos:
-            pivot_v += pos.val
-            n += 1
-            pos = pos.next
-        pivot_v //= n
-
-        print(pivot_v)
-
-        # O(logN) to sorting
         p1 = p2 = head
+        # TODO
