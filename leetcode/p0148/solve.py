@@ -20,5 +20,17 @@ class Solution:
         return res.next
 
     def sortList(self, head: ListNode) -> ListNode:
+        # exit case: length is less than 2.
+        if not head or not head.next:
+            return head
+
+        # standard case: split to two lists (from last to head).
+        prev = ListNode(None)  # prev res
         p1 = p2 = head
-        # TODO
+
+        while p2 and p2.next:
+            p1 = p1.next
+            p2 = p2.next.next
+
+        print(p1)
+        print(p2)
