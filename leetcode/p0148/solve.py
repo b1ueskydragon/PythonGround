@@ -7,7 +7,7 @@ class ListNode:
 class Solution:
     @staticmethod
     def mergeTwoLists(l1: ListNode, l2: ListNode):
-        p = res = ListNode(None)
+        p = res = ListNode(None)  # sentinel
         while l1 and l2:
             if l1.val < l2.val:
                 p.next = l1
@@ -25,12 +25,13 @@ class Solution:
             return head
 
         # standard case: split to two lists (from last to head).
-        prev = ListNode(None)  # prev res
+        prev = None
         p1 = p2 = head
-
         while p2 and p2.next:
+            prev = p1
             p1 = p1.next
             p2 = p2.next.next
 
-        print(p1)
-        print(p2)
+        prev.next = None  # make a head as a left-half (same object).
+
+        return Solution.mergeTwoLists(self.sortList(head), self.sortList(p1))
