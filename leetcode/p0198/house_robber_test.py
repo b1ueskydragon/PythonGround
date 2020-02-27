@@ -1,6 +1,7 @@
 import unittest
 
 from leetcode.p0198.solve import Solution as A
+from leetcode.p0198.solve01 import Solution as B
 
 
 class HouseRobberTest(unittest.TestCase):
@@ -37,3 +38,8 @@ class HouseRobberTest(unittest.TestCase):
         a = A()
         nums = []
         self.assertEqual(0, a.rob(nums))
+
+    def test_why_init_p2_is_max_0_or_1(self):
+        b = B()
+        nums = [2, 1, 1, 2]
+        self.assertEqual(4, b.rob(nums))
