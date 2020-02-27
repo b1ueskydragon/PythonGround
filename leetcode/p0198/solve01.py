@@ -8,7 +8,7 @@ class Solution:
         p1 = nums[0]
         # chance to includes previous num.
         # if curr = a3, p2 is the max result until a2.
-        p2 = nums[1]
+        p2 = max(nums[0], nums[1])  # since next p1 is p2
         i = 2  # current pos init
         while i < N:
             cache = max(p1 + nums[i], p2)
