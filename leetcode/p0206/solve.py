@@ -5,25 +5,13 @@ class ListNode:
 
 
 class Solution:
-    """
-    in-place ?
-    """
+    """ O(N) speed, O(1) space. """
 
     def reverseList(self, head: ListNode) -> ListNode:
-        if not head or not head.next:
-            return head
-        s = head
-        f = s.next
-        a = acc = ListNode(-1)
-        while f:
-            if not f.next:
-                s.next = None
-                f.next = s
-                a.next = f
-                a = a.next
-                s = head
-                f = s.next
-            else:
-                f = f.next
-                s = s.next
-        return acc.next
+        prev, curr = None, head
+        while curr:
+            tmp = curr.next
+            curr.next = prev
+            prev = curr
+            curr = tmp
+        return prev
