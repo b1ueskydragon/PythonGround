@@ -17,7 +17,7 @@ class SolutionA:
         def _rec(head: ListNode, res: ListNode):
             if not head:
                 return res
-            follow = head.next
+            follow = head.next  # do this at the beginning
             head.next = res  # res is prev
             return _rec(follow, head)
 
@@ -34,3 +34,12 @@ class SolutionB:
         head.next = self.prev
         self.prev = head
         return self.reverseList(follow)
+
+
+class Solution:
+    def reverseList(self, head: ListNode, prev=None) -> ListNode:
+        if not head:
+            return prev
+        follow = head.next
+        head.next = prev
+        return self.reverseList(follow, head)
