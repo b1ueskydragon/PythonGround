@@ -4,8 +4,8 @@ Given a number in the form of a list of digits, return all possible permutations
 
 
 def permutations(nums):
-    if not nums:
-        return [[]]
+    if len(nums) < 2:
+        return [nums]
     res = []  # should be local to refresh (need to append to prev res)
     for i, head in enumerate(nums):
         rems = nums[:i] + nums[i + 1:]
