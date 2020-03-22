@@ -28,8 +28,9 @@ class Solution:
             return ""
         p = ""
         for d in D:  # O(k) time.
-            if d[1] == count:
-                p += d[0]
+            if d[1] != count:
+                break
+            p += d[0]
         return p
 
 # Edge test cases
