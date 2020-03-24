@@ -15,13 +15,14 @@ class Solution:
             return ""
 
         def prefix(w1, w2, p=""):
-            for i in range(min(len(w1), len(w2))):
+            m = min(len(w1), len(w2))
+            for i in range(m):  # O(m)
                 if w1[i] != w2[i]:
                     break
                 p += w1[i]
             return p
 
-        def loop(xs, l, r):
+        def loop(xs, l, r):  # O(log n)
             if l == r:  # single range
                 return xs[l]
             k = (l + r) // 2
