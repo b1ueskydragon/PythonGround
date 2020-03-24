@@ -1,6 +1,13 @@
 class Solution:
     """
     Divide and conquer
+
+    O(S) Time,
+    S := the number of all characters in the array.
+
+    O(m * log n) Space,
+    (m, n) := there are n equal strings with length m in the worst case. (S := m * n).
+    Since the recursion, there is a memory overhead. Recursive calls are stored in the execution stack.
     """
 
     def longestCommonPrefix(self, strs: [str]) -> str:
@@ -8,8 +15,7 @@ class Solution:
             return ""
 
         def prefix(w1, w2, p=""):
-            n = min(len(w1), len(w2))
-            for i in range(n):
+            for i in range(min(len(w1), len(w2))):
                 if w1[i] != w2[i]:
                     break
                 p += w1[i]
@@ -18,8 +24,6 @@ class Solution:
         def loop(xs, l, r):
             if l == r:  # single range
                 return xs[l]
-            if r - l == 1:  # binary range
-                return prefix(xs[l], xs[r])
             k = (l + r) // 2
             return prefix(loop(xs, l, k), loop(xs, k + 1, r))  # left prefix vs right prefix
 
