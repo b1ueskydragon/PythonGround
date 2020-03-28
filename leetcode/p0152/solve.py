@@ -9,7 +9,7 @@ class Solution:
         """
         There are two signs, so two caches required.        
         cache[i] := max or min result until i'th.
-        each cache result can be used and move to diffrent cache.
+        each cache result can be used and move to different cache.
         """
         max_cache = [0] * N
         min_cache = [0] * N
