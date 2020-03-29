@@ -8,11 +8,10 @@ def length_of_longest_subarray(xs):
     res = 0
     i, j = 0, 0
     while j < len(xs):
-        # try to move j for spread range.
         if xs[j] not in visited:
             visited.add(xs[j])
-            j += 1
-            res = max(res, j - i)
+            j += 1  # we only move j for spread range, if the element has't visited yet.
+            res = max(res, j - i)  # we omitted +1 since we've increased j already.
         else:
             visited.remove(xs[i])  # xs[j] already visited the point where xs[i] is.
             i += 1  # the new start point of the range.
