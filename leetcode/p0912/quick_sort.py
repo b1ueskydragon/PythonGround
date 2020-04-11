@@ -1,7 +1,10 @@
 class Solution:
     def sortArray(self, nums: [int]) -> [int]:
+        if not nums:
+            return nums
+
         def quick_sort(left, right):
-            pivot = nums[(right - left + 1) / 2] # ???
+            pivot = nums[left + ((right - left + 1) // 2)]  # medium index counted from left index.
             l, r = left, right
             while l < r:
                 while nums[l] < pivot:
@@ -19,6 +22,3 @@ class Solution:
 
         quick_sort(0, len(nums) - 1)
         return nums
-
-
-print(Solution().sortArray([50000, 0, -50000, 9, 8, 7, 6, 5, 4, 3, 2, 1, 2, 3, 4, 5, 4, 3, 2, 1]))
