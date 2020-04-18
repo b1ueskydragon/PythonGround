@@ -17,3 +17,8 @@ class SkipTableTest(unittest.TestCase):
         s = Solution()
         pattern = 'aabaaab'
         self.assertEqual([0, 1, 0, 1, 2, 2, 3], s.skip_table(pattern))
+
+    def test04(self):
+        s = Solution()
+        pattern = 'ababba'
+        self.assertEqual([0, 0, 1, 2, 0, 1], s.skip_table(pattern))
