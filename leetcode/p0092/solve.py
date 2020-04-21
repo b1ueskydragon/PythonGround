@@ -20,10 +20,15 @@ class Solution:
             a = an
             loop -= 1
 
-        b = head
-        while b.next.next:
-            b = b.next
-        b.next = res
+        if not head.next:
+            head = res
+        else:
+            h = head
+            b = head.next
+            while b.next:
+                b = b.next
+                h = h.next
+            h.next = res
 
         c = res
         while c.next:
