@@ -1,11 +1,14 @@
 class Solution:
-    def twoSum(self, nums: [int], target: int) -> [int]:
-        for i, inum in enumerate(nums):
-            for j, jnum in enumerate(nums):
-                if i < j and inum + jnum == target:
-                    return [i, j]
+    def twoSum(self, nums, target):
+        pairs = {}  # O(N) space
+        for i, x in enumerate(nums):  # O(N) time
+            y = target - x
+            if y in pairs.keys():  # lookup previous in O(1) with hash table
+                return [pairs[y], i]
+
+            pairs[x] = i
 
 
 if __name__ == '__main__':
     s = Solution()
-    print(s.twoSum(nums=[2, 7, 11, 15], target=9))  # [0, 1]
+    print(s.twoSum(nums=[_ for _ in range(0, 25197)], target=16021))
