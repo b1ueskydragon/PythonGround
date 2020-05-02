@@ -19,18 +19,18 @@ class Solution:
                 res.append(matrix[s][i])
                 length += 1
 
+            n -= 1
             for i in range(s + 1, m):  # down
                 if length == size: break
-                res.append(matrix[i][n - 1])
-                length += 1
-
-            n -= 1
-            for i in reversed(range(s, n)):  # left
-                if length == size: break
-                res.append(matrix[m - 1][i])
+                res.append(matrix[i][n])
                 length += 1
 
             m -= 1
+            for i in reversed(range(s, n)):  # left
+                if length == size: break
+                res.append(matrix[m][i])
+                length += 1
+
             for i in reversed(range(s + 1, m)):  # up
                 if length == size: break
                 res.append(matrix[i][s])
