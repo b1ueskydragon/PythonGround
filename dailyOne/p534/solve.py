@@ -4,6 +4,14 @@ Given a string, determine if a permutation of the string could form a palindrome
 whether any PERMUTATION.
 """
 
+"""
+There are only two ways to define palindrome
+I.  a..a..b..b....  x .... b..b..a..a    # odd == 1
+II. a..a..b..b.... x..x .... b..b..a..a  # odd == 0
+
+Count a character (with HashTable) is based by this idea.
+"""
+
 
 # O(N) time and space.
 def canPermutePalindrome(str):
