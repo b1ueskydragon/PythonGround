@@ -9,22 +9,21 @@ def collatzSeq(n):
             n = 3 * n + 1
 
 
-# def longest_seq(limit=1_000_000):
-#     start = [0] * (limit + 1)  # sentinel
-#     cache = [0] * (limit + 1)  # sentinel
-#     cache[0], cache[1] = 1, 1
-#     start[0], start[1] = 1, 1
-#     for n in range(2, limit + 1):
-#         count = 0
-#         x = n
-#         while x > 1:
-#             if x % 2 == 0:
-#                 x = x // 2
-#             else:
-#                 x = 3 * x + 1
-#             count += 1
-#             if x == start[n - 2]:
-#                 cache[n] = count + cache[n - 2]
-#                 start[n] = n
-#                 continue
-#     return cache
+def longest_seq(limit=1_000_000):
+    cache = [0] * (limit + 1)  # 0 th is a sentinel. 1 MB at most.
+    cache[1] = 1  # cache the length of n-th. it helps remove the calculation that happens before.
+    for n in range(2, limit + 1):
+        x = n
+        count = 1  # itself
+        while x > 1:
+            if x <= limit and cache[x] > 0:
+                cache[n] = count + cache[x] - 1
+                break
+            if x % 2 == 0:
+                x //= 2
+            else:
+                x = 3 * x + 1
+            count += 1
+        if cache[n] == 0:
+            cache[n] = count
+    return cache

@@ -35,11 +35,9 @@ class CollatzSequenceTest(unittest.TestCase):
     def test_10(self):
         self.assertEqual([10, 5, 16, 8, 4, 2, 1], list(collatzSeq(10)))
 
-    def test_14(self):
-        self.assertEqual([14, 7, 22, 11, 34, 17, 52, 26, 13, 40, 20, 10, 5, 16, 8, 4, 2, 1], list(collatzSeq(14)))
+    def test_28(self):  # derived from test_9
+        self.assertEqual([28, 14, 7, 22, 11, 34, 17, 52, 26, 13, 40, 20, 10, 5, 16, 8, 4, 2, 1], list(collatzSeq(28)))
 
-    def test_15(self):
-        self.assertEqual([15, 46, 23, 70, 35, 106, 53, 160, 80, 40, 20, 10, 5, 16, 8, 4, 2, 1], list(collatzSeq(15)))
-
-    # def test_longest_seq(self):
-    #     self.assertEqual([1, 1, 2, 8, 3, 6, 9, 17, 4, 20, 7], longest_seq(10))
+    def test_longest_seq(self):
+        self.assertEqual([0, 1, 2, 8, 3, 6, 9, 17, 4, 20, 7], longest_seq(10))
+        self.assertEqual(525, max(longest_seq()))
