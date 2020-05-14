@@ -40,4 +40,9 @@ class CollatzSequenceTest(unittest.TestCase):
 
     def test_longest_seq(self):
         self.assertEqual([0, 1, 2, 8, 3, 6, 9, 17, 4, 20, 7], longest_seq(10))
-        self.assertEqual(525, max(longest_seq()))
+
+        results = longest_seq()
+        max_len = max(results)
+
+        self.assertEqual(525, max_len)
+        self.assertEqual([837799], [i for i, v in enumerate(results) if v == max_len])
