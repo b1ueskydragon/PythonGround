@@ -14,16 +14,12 @@ def longest_seq(limit=1_000_000):
     cache[1] = 1  # cache the length of n-th. it helps remove the calculation that happens before.
     for n in range(2, limit + 1):
         x = n
-        count = 1  # itself
-        while x > 1:
-            if x <= limit and cache[x] > 0:
-                cache[n] = count + cache[x] - 1
-                break
+        count = 0
+        while x >= n:  # if the next is smaller then itself, stop calculating and find from the cache.
             if x % 2 == 0:
                 x //= 2
             else:
                 x = 3 * x + 1
             count += 1
-        if cache[n] == 0:
-            cache[n] = count
+        cache[n] = count + cache[x]
     return cache
