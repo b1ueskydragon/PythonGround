@@ -13,35 +13,32 @@ class Solution:
     # p and q are different and both values will exist in the binary tree.
     def lowestCommonAncestor(self, root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
         pair = dict()  # curr : parent
-        pair[root.val] = None
+        pair[root] = None
         path = deque([root])
         while path:
             curr = path.popleft()
             if curr.left:
                 path.append(curr.left)
-                pair[curr.left.val] = curr.val
+                pair[curr.left] = curr
             if curr.right:
                 path.append(curr.right)
-                pair[curr.right.val] = curr.val
+                pair[curr.right] = curr
 
-        pp = pair[p.val]
-        ps = [p.val]
-        while pp is not None:
-            ps.append(pp)
+        pp, qp = pair[p], pair[q]
+        ans_p, ans_q = [p], [q]
+        while pp:
+            ans_p.append(pp)
             pp = pair[pp]
-
-        qp = pair[q.val]
-        qs = [q.val]
-        while qp is not None:
-            qs.append(qp)
+        while qp:
+            ans_q.append(qp)
             qp = pair[qp]
 
-        while len(ps) > len(qs):
-            ps.pop(0)
-        while len(qs) > len(ps):
-            qs.pop(0)
+        while len(ans_p) > len(ans_q):
+            ans_p.pop(0)
+        while len(ans_q) > len(ans_p):
+            ans_q.pop(0)
 
-        for i, v in enumerate(ps):
-            if qs[i] == v:
-                return TreeNode(v)
+        for i, lcp in enumerate(ans_p):
+            if ans_q[i] == lcp:
+                return lcp
         return None
