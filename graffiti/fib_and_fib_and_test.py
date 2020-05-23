@@ -18,3 +18,7 @@ class FibAndFibTest(TestCase):
         under_test = FibLoop()
         self.assertEqual(1, under_test.fib(0))
         self.assertEqual(377, under_test.fib(13))
+
+    def test_fib_linear(self):
+        under_test = FibLinear(13)
+        self.assertEqual([1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377], under_test.fib())

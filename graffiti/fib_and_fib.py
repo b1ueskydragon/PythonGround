@@ -24,3 +24,17 @@ class FibLoop:
         for _ in range(x):
             prev, stack = stack, prev + stack
         return stack
+
+
+class FibLinear:
+    def __init__(self, x):
+        self.x = x
+        self.fibs = [0] * (x + 1)
+
+    def fib(self):
+        for i in range(self.x + 1):
+            if i < 2:
+                self.fibs[i] = 1
+            else:
+                self.fibs[i] = self.fibs[i - 1] + self.fibs[i - 2]
+        return self.fibs
