@@ -8,6 +8,11 @@ class MaxSubArrayTest(unittest.TestCase):
     containing at least one number.
     """
 
+    def test_something(self):
+        a = A()
+        nums = [9999, 0, -1, 2]
+        self.assertEqual(10000, a.maxSubArray(nums))
+
     def test_singular(self):
         a = A()
         nums = [99]
