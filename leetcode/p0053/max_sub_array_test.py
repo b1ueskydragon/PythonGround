@@ -1,6 +1,6 @@
 import unittest
 
-from leetcode.p0053.solve import Solution as A
+from leetcode.p0053.max_sub_array import Solution as A
 
 
 class MaxSubArrayTest(unittest.TestCase):
