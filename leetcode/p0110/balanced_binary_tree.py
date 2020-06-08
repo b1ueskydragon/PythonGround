@@ -10,15 +10,15 @@ class Solution:
         self.balanced = 1
 
     def isBalanced(self, root: TreeNode) -> bool:
-        def max_depth(root) -> int:
-            if not root:
+        def max_depth(node) -> int:
+            if not node:
                 return 0
-            lefts = max_depth(root.left) + 1
-            rights = max_depth(root.right) + 1
-            # print(root.val, lefts, rights)
+            lefts = max_depth(node.left) + 1
+            rights = max_depth(node.right) + 1
+            # print(node.val, lefts, rights)
             if abs(lefts - rights) > 1:
                 self.balanced *= 0
-            return (rights, lefts)[lefts > rights]
+            return max(lefts, rights)
 
         max_depth(root)
         return self.balanced != 0
