@@ -7,6 +7,7 @@ class Solution:
         # delete == cannot select anymore; can convert a non-adjacent max sum problem
         res = [0] * limit
         res[0] = order[0]
-        for i in range(1, limit):  # [i] + [i-2] so far VS [i-1] so far
+        res[1] = max(order[0], order[1])
+        for i in range(2, limit):  # [i] + [i-2] so far VS [i-1] so far
             res[i] = max(res[i - 2] + order[i], res[i - 1])
         return max(res)
