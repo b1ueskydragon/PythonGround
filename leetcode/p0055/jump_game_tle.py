@@ -4,6 +4,8 @@ Initially positioned at the first index.
 
 
 class Solution:
+    # DP; using reachable table.
+    # O(N * M) time at worst, O(N) space; M is the maximum number from nums.
     def canJump(self, nums: [int]) -> bool:
         end = len(nums) - 1
         reachable = [False for _ in range(end + 1)]
@@ -19,6 +21,7 @@ class Solution:
 
 
 class Solution01:
+    # DP; optimize the using space, but still O(N) space for using visited set.
     def canJump(self, nums: [int]) -> bool:
         end = len(nums) - 1
         reach_count = end
