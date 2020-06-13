@@ -30,3 +30,21 @@ class Solution01:
                 visited.add(i + acc)
                 reach_count -= 1
         return reach_count == 0
+
+
+class Solution02:
+    def canJump(self, nums: [int]) -> bool:
+        # backtrack to retrieve all of the path that possible to reach.
+        def reachable(pos, xs) -> bool:
+            last = len(xs) - 1
+            if pos == last:
+                return True
+            max_reachable = min(pos + xs[pos], last)
+            pos_end = max_reachable
+            while pos_end > pos:  # a bit optimization; retrieve from right to left.
+                if reachable(pos_end, xs):
+                    return True
+                pos_end -= 1
+            return False
+
+        return reachable(0, nums)
