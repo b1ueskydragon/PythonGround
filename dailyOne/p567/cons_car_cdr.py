@@ -6,11 +6,11 @@ def cons(a, b):
 
 
 # functional composition
-def car(pair):
-    g = lambda a, _: a
-    return pair(g)
+def car(g):
+    h = lambda a, _: a
+    return g(h)
 
 
-def cdr(pair):
-    g = lambda _, b: b
-    return pair(g)
+def cdr(g):
+    h = lambda _, b: b
+    return g(h)
