@@ -10,17 +10,15 @@ class Solution:
     """
 
     def isIsomorphic(self, s: str, t: str) -> bool:
-        def mapping(X, Y, N):
-            cache = dict()
-            i = 0
-            while i < N:
-                x, y = X[i], Y[i]
-                if x not in cache:
-                    cache[x] = y
-                elif cache[x] != y:
-                    return False
-                i += 1
-            return True
-
-        N = len(s)
-        return mapping(s, t, N) and mapping(t, s, N)
+        x2y, y2x = dict(), dict()
+        for i in range(len(s)):
+            x, y = s[i], t[i]
+            if x not in x2y:
+                x2y[x] = y
+            elif x2y[x] != y:
+                return False
+            if y not in y2x:
+                y2x[y] = x
+            elif y2x[y] != x:
+                return False
+        return True
