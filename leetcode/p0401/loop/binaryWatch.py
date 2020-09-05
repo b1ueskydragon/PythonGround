@@ -8,7 +8,7 @@ class Solution:
         def gen_table(limit):
             table = {}
             for i in range(0, limit):
-                digit = sum(list(map(int, bin(i)[2:])))
+                digit = sum(list(map(int, bin(i)[2:])))  # TODO bit manipulation
                 if digit not in table:
                     table[digit] = []
                 table[digit].append(i)
