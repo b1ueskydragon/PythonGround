@@ -23,7 +23,7 @@ class Solution:
                     dfs(digits, hour + digits[i], minute, i + 1, level - 1)
                 else:
                     dfs(digits, hour, minute + digits[i], i + 1, level - 1)
-                # level is the lowest stack at this point
+                # level is the highest stack at this point
                 dfs(digits, hour, minute, i + 1, level)
 
         dfs(digits, 0, 0, 0, num)
