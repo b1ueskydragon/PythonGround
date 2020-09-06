@@ -24,6 +24,7 @@ class Solution:
                 else:
                     dfs(digits, hour, minute + digits[i], i + 1, level - 1)
                 # level is the highest stack at this point
+                # expand width (grow the node) i + 1 in the current level
                 dfs(digits, hour, minute, i + 1, level)
 
         dfs(digits, 0, 0, 0, num)
