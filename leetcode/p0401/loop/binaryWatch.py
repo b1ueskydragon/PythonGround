@@ -5,17 +5,24 @@ from typing import List
 # There is a  limit, h < 12, m < 60.
 class Solution:
     def __init__(self):
-        def gen_table(limit):
+        def _ones(n, cnt=0):
+            while n > 0:
+                if n & 1 == 1:
+                    cnt += 1
+                n >>= 1
+            return cnt
+
+        def _gen_table(limit):
             table = {}
             for i in range(0, limit):
-                digit = sum(list(map(int, bin(i)[2:])))  # TODO bit manipulation
+                digit = _ones(i)
                 if digit not in table:
                     table[digit] = []
                 table[digit].append(i)
             return table
 
-        self.h = gen_table(12)
-        self.m = gen_table(60)
+        self.h = _gen_table(12)
+        self.m = _gen_table(60)
 
     def readBinaryWatch(self, num: int) -> List[str]:
         h, m = self.h, self.m
